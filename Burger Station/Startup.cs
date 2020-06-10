@@ -55,7 +55,7 @@ namespace Burger_Station
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=MenuItems}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
