@@ -1,0 +1,16 @@
+﻿body {
+    font-family: "Montserrat";
+    text-align: center;
+}
+
+#title {
+    background-color: #ffd460;
+    color: #FFF;
+}
+
+h1 {
+    font-family: "Montserrat";
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.5;
+}
