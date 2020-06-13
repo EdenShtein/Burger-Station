@@ -9,16 +9,16 @@ namespace Burger_Station.Models
     {
         public int Id { get; set; }
 
-        public User User { get; set; }
+        public User PostBy { get; set; }
 
         public Item Item { get; set; }
 
-        public DateTime DatePost { get; set; }
+        public DateTime PostDate { get; set; }
 
-        public string TitlePost { get; set; }
+        public String PostTitle { get; set; }
 
-        public string BodyPost { get; set; }
+        public String PostBody { get; set; }
     
-        public int Score { get; set; }
+        public int ReviewScore { get; set; }
     }
 }

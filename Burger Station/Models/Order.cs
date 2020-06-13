@@ -15,6 +15,6 @@ namespace Burger_Station.Models
 
         public String PhoneNumber { get; set; }
 
-        public ICollection<User> favUsers { get; set; }
+        public ICollection<ItemOrder> ItemsInOrder { get; set; }
     }
 }

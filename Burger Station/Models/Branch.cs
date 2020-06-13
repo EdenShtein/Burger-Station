@@ -9,9 +9,13 @@ namespace Burger_Station.Models
     public class Branch
     {
         public int Id { get; set; }
+
         public String Name { get; set; }
+
         public String Address { get; set; }
-        public String phoneNumber { get; set; }
-        public ICollection<User> favUser { get; set; }
+
+        public String PhoneNumber { get; set; }
+        
+        public ICollection<User> FavoriteUsers { get; set; }
     }
 }

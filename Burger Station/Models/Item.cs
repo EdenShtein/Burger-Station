@@ -10,11 +10,11 @@ namespace Burger_Station.Models
     {
         public int Id { get; set; }
         public String Name { get; set; }
+
         public double Price { get; set; }
         
         public ICollection<Comment> Comments { get; set; }
         
-        public ICollection<ItemOrder> ItemsOrders { get; set; }
-
+        public ICollection<ItemOrder> OrdersOfItem { get; set; }
     }
 }

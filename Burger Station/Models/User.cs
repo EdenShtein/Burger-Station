@@ -22,13 +22,10 @@ namespace Burger_Station.Models
 
         //public enum MembershipType { get; set; }
 
-        public Branch favBranch { get; set; }
+        public Branch FavoriteBranch { get; set; }
 
-        public ICollection<Order> listOrders { get; set; }
+        public ICollection<Order> Orders { get; set; }
 
-        public ICollection<Comment> listComments { get; set; }
-
-
-
+        public ICollection<Comment> Comments { get; set; }
     }
 }
