@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Burger_Station.Models
 {
-    public class itemOrder
+    public class ItemOrder
     {
         public int IdItem { get; set; }
         public Item Item { get; set; }
