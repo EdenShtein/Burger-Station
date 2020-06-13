@@ -6,6 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\images\.DS_Store" />
+    <None Include="wwwroot\images\bizinsider.png" />
+    <None Include="wwwroot\images\dog-img.jpg" />
+    <None Include="wwwroot\images\iphone.png" />
+    <None Include="wwwroot\images\iphone6.png" />
+    <None Include="wwwroot\images\lady-img.jpg" />
+    <None Include="wwwroot\images\mashable.png" />
+    <None Include="wwwroot\images\TechCrunch.png" />
+    <None Include="wwwroot\images\tnw.png" />
+    <None Include="wwwroot\Resources\favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4">
