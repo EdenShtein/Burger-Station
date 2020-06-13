@@ -7,9 +7,12 @@ namespace Burger_Station.Models
 {
     public class ItemOrder
     {
-        public int IdItem { get; set; }
+        public int ItemId { get; set; }
+
         public Item Item { get; set; }
-        public int IdOrder { get; set; }
+
+        public int OrderId { get; set; }
+
         public Order Orders { get; set; }
     }
 }

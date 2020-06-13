@@ -10,7 +10,9 @@ namespace Burger_Station.Models
     {
         public int Id { get; set; }
 
-        public String Name { get; set; }
+        public String FirstName { get; set; }
+
+        public String LastName { get; set; }
 
         public String Email { get; set; }
 
