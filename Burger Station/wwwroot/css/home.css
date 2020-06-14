@@ -7,16 +7,17 @@
 
 
 #title {
-    background-color: #FF4C68;
+    background-color: #fbd46d;
     color: #FFF;
     
 }
 
 h1 {
-    font-family: "Montserrat";
-    font-size: 3.5rem;
-    font-weight: 900;
-    line-height: 1.5;
+    color: #FFF;
+    font-size: 5.625rem;
+    /*16px=100%=1em*/
+    margin: 50px auto 0 auto;
+    font-family: 'Sacramento', cursive;
 }
 
 h2 {
@@ -78,7 +79,7 @@ p {
 /* Testimonials section */
 #testimonials {
     text-align: center;
-    background-color: #EF8172;
+    background-color: #f8b24f;
     color: #FFF;
 }
 
@@ -89,7 +90,7 @@ p {
 }
 
 #press {
-    background-color: #EF8172;
+    background-color: #f8b24f;
     text-align: center;
     padding-bottom: 3%;
 }
@@ -115,7 +116,7 @@ p {
 
 /* CTA Section */
 #cta {
-    background-color: #FF4C68;
+    background-color: #fbd46d;
     text-align: center;
     color: #FFF;
     padding: 7% 15%;

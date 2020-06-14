@@ -14,6 +14,6 @@ namespace Burger_Station.Data
         {
         }
 
-        public DbSet<Burger_Station.Models.MenuItem> MenuItem { get; set; }
+        public DbSet<Burger_Station.Models.Item> MenuItem { get; set; }
     }
 }
