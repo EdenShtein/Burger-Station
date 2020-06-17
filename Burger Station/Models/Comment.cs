@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,16 +11,27 @@ namespace Burger_Station.Models
     {
         public int Id { get; set; }
 
+        [Required]
+        [DisplayName("Author")]
+        [StringLength(50, MinimumLength = 2)]
         public User PostBy { get; set; }
 
+        [Required]
         public Item Item { get; set; }
 
+        [Required]
+        [DisplayName("Date of Post")]
+        [DataType(DataType.Date)]
         public DateTime PostDate { get; set; }
 
+        [Required]
+        [DisplayName("Title of the Post")]
+        [StringLength(70, MinimumLength = 2)]
         public String PostTitle { get; set; }
 
+        [Required]
+        [DisplayName("Post")]
+        [StringLength(250, MinimumLength = 2)]
         public String PostBody { get; set; }
-    
-        public int ReviewScore { get; set; }
     }
 }
