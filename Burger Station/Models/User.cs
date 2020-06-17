@@ -33,7 +33,6 @@ namespace Burger_Station.Models
         [Required(ErrorMessage = "The email address is required")]
         [Display(Name = "Email Address")]
         [DataType(DataType.EmailAddress)]
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public String Email { get; set; }
 
         [Required(ErrorMessage = "The password is required")]

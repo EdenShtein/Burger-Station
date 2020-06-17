@@ -21,9 +21,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.PostBody)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostBy)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -38,9 +35,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PostBody)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostBy)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
