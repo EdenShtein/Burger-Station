@@ -13,17 +13,20 @@ namespace Burger_Station.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(50, MinimumLength =2)]
+        [StringLength(50, MinimumLength = 2)]
         [DisplayName("First Name")]
+        [RegularExpression(@"^[A-Za-z\s]*$")]
         public String FirstName { get; set; }
 
         [Required]
         [StringLength(50, MinimumLength = 2)]
         [DisplayName("Last Name")]
+        [RegularExpression(@"^[A-Za-z\s]*$")]
         public String LastName { get; set; }
 
         [Required]
         [StringLength(70, MinimumLength = 11)] // X@gmail.com
+        [RegularExpression(@"^[A-Za-z0-9\s]*$")]
         public String Email { get; set; }
 
         [Required]

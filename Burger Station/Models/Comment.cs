@@ -14,6 +14,7 @@ namespace Burger_Station.Models
         [Required]
         [DisplayName("Author")]
         [StringLength(50, MinimumLength = 2)]
+        [RegularExpression(@"^[A-Za-z\s]*$")]
         public User PostBy { get; set; }
 
         [Required]
@@ -26,11 +27,13 @@ namespace Burger_Station.Models
 
         [Required]
         [DisplayName("Title of the Post")]
+        [RegularExpression(@"^[A-Za-z\s]*$")]
         [StringLength(70, MinimumLength = 2)]
         public String PostTitle { get; set; }
 
         [Required]
         [DisplayName("Post")]
+        [RegularExpression(@"^[A-Za-z0-9\s]*$")]
         [StringLength(250, MinimumLength = 2)]
         public String PostBody { get; set; }
     }

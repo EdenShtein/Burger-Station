@@ -10,12 +10,10 @@ namespace Burger_Station.Models
     {
         public int ItemId { get; set; }
 
-        [Required]
         public Item Item { get; set; }
 
         public int OrderId { get; set; }
 
-        [Required]
-        public Order Orders { get; set; }
+        public Order Order { get; set; }
     }
 }
