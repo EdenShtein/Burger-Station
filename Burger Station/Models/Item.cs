@@ -7,19 +7,28 @@ using System.Threading.Tasks;
 
 namespace Burger_Station.Models
 {
+    public enum ItemType
+    {
+        Food,
+        Drink
+    }
+
     public class Item
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "The name is required")]
         [StringLength(50, MinimumLength = 2)]
         [RegularExpression(@"^[A-Za-z\s]*$")]
         public String Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "The price is required")]
         [Range(0, int.MaxValue)]
         [DataType(DataType.Currency)]
         public double Price { get; set; }
+
+        [Required(ErrorMessage = "The type of the item is required")]
+        public ItemType Type { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
 

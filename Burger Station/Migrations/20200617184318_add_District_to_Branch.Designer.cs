@@ -4,14 +4,16 @@ using Burger_Station.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Burger_Station.Migrations
 {
     [DbContext(typeof(Burger_StationContext))]
-    partial class Burger_StationContextModelSnapshot : ModelSnapshot
+    [Migration("20200617184318_add_District_to_Branch")]
+    partial class add_District_to_Branch
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -158,7 +160,8 @@ namespace Burger_Station.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(70)")
+                        .HasMaxLength(70);
 
                     b.Property<int?>("FavoriteBranchId")
                         .HasColumnType("int");

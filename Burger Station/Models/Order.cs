@@ -11,7 +11,7 @@ namespace Burger_Station.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "The total price is required")]
         [DisplayName("Total Price")]
         [Range(0, int.MaxValue)]
         [DataType(DataType.Currency)]
