@@ -11,8 +11,6 @@ namespace Burger_Station.Models
     public enum District
     {
         North,
-        West,
-        East, 
         South,
         Center
     }
@@ -20,11 +18,6 @@ namespace Burger_Station.Models
     public class Branch
     {
         public int Id { get; set; }
-
-        [Required(ErrorMessage = "The name is required")]
-        [StringLength(50, MinimumLength = 2)]
-        [RegularExpression(@"^[A-Za-z\s]*$")]
-        public String Name { get; set; }
 
         [Required(ErrorMessage = "The address is required")]
         [StringLength(50, MinimumLength = 2)]

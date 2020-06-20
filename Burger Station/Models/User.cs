@@ -11,7 +11,7 @@ namespace Burger_Station.Models
     public enum UserType
     {
         Admin,
-        Membership
+        Guest
     }
 
     public class User
