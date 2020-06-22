@@ -29,8 +29,7 @@ namespace Burger_Station.Models
         [RegularExpression(@"^[A-Za-z\s]*$")]
         public String City { get; set; }
 
-        [Required]
-        [Range(1, 3, ErrorMessage = "Select a district")]
+        [Required(ErrorMessage = "The District of the branch is required")]
         public District District { get; set; }
 
         [Required(ErrorMessage = "The phone number is required")]

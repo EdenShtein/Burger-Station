@@ -46,15 +46,6 @@ namespace Burger_Station.Controllers
         // GET: Branches/Create
         public IActionResult Create()
         {
-            var majorList = Enum.GetValues(typeof(District))
-                    .Cast<District>()
-                    .Select(e => new SelectListItem
-                    {
-                        Value = e.ToString(),
-                        Text = e.ToString()
-                    });
-            ViewBag.MajorList = majorList;
-
             return View();
         }
 
