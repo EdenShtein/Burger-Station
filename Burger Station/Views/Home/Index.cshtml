@@ -17,9 +17,9 @@
                 <div class="col-lg-6">
                     <h1>Burger Station</h1>
                     <h2>The best restaurant in the world!</h2>
-                  <a href="~/images/CS.jpg" button type="button" class="btn btn-dark btn-lg download-button"><i class="fab fa-apple"></i> Download</button></a>
-                  <a href="~/images/CS.jpg" button type="button" class="btn btn-outline-light btn-lg download-button"><i class="fab fa-google-play"></i> Download </button></a>
-</div>
+                    <a href="~/images/CS.jpg" button type="button" class="btn btn-dark btn-lg download-button"><i class="fab fa-apple"></i> Download</button></a>
+                    <a href="~/images/CS.jpg" button type="button" class="btn btn-outline-light btn-lg download-button"><i class="fab fa-google-play"></i> Download </button></a>
+                </div>
 
 
                 <div class="col-lg-6">
@@ -169,6 +169,40 @@
             <a href="~/images/CS.jpg" button type="button" class="btn btn-outline-light btn-lg download-button"><i class="fab fa-google-play"></i> Download </button></a>
         </div>
     </section>
+
+    <!-- Map  -->
+    <div class="container-fluid">
+        <h3>Find Your Nearest Branch!</h3>
+    </div>    
+    <!--The div element for the map -->
+    <div id="map"></div>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            // The location of Uluru
+            var telaviv = { lat: 32.071451, lng: 34.787015 };
+            var rishon = { lat: 31.963577, lng: 34.801143 };
+            var haifa = { lat: 32.810248, lng: 34.999509 };
+            var jerus = { lat: 31.784954, lng: 35.211610 };
+            // The map, centered at Uluru
+            var map = new google.maps.Map(
+                document.getElementById('map'), { zoom: 10, center: telaviv });
+            // The marker, positioned at Uluru
+            var marker1 = new google.maps.Marker({ position: telaviv, map: map });
+            var marker2 = new google.maps.Marker({ position: rishon, map: map });
+            var marker3 = new google.maps.Marker({ position: haifa, map: map });
+            var marker4 = new google.maps.Marker({ position: jerus, map: map });
+        }
+    </script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjMifr6wCKEOSrMRySDervSd8q6kFAnW4&callback=initMap">
+    </script>
+
 
 
     <!-- Footer -->
