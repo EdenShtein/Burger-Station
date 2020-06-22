@@ -54,7 +54,7 @@ namespace Burger_Station.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Address,City,PhoneNumber")] Branch branch)
+        public async Task<IActionResult> Create([Bind("Id,Address,City,District,PhoneNumber")] Branch branch)
         {
             if (ModelState.IsValid)
             {

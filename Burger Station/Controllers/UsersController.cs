@@ -63,11 +63,11 @@ namespace Burger_Station.Controllers
 
             return View();
         }
-        
 
 
 
-        /*
+
+
         // GET: Users
         public async Task<IActionResult> Index()
         {
@@ -197,6 +197,6 @@ namespace Burger_Station.Controllers
         private bool UserExists(int id)
         {
             return _context.User.Any(e => e.Id == id);
-        }*/
+        }
     }
 }

@@ -10,8 +10,8 @@ namespace Burger_Station.Models
 {
     public enum UserType
     {
-        Admin,
-        Guest
+        Member,
+        Admin
     }
 
     public class User
@@ -33,6 +33,7 @@ namespace Burger_Station.Models
         [Required(ErrorMessage = "The email address is required")]
         [Display(Name = "Email Address")]
         [DataType(DataType.EmailAddress)]
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$")]
         public String Email { get; set; }
 
         [Required(ErrorMessage = "The password is required")]
@@ -46,6 +47,7 @@ namespace Burger_Station.Models
         [Required(ErrorMessage = "The phone number is required")]
         [DataType(DataType.PhoneNumber)]
         [DisplayName("Phone Number")]
+        [RegularExpression(@"^([0|\+[0-9]{1,5})?([0-9][0-9]{8})$")]
         public String PhoneNumber { get; set; }
 
         [DisplayName("Favorite Branch")]

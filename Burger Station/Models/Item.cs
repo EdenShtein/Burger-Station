@@ -19,7 +19,7 @@ namespace Burger_Station.Models
 
         [Required(ErrorMessage = "The name is required")]
         [StringLength(50, MinimumLength = 2)]
-        [RegularExpression(@"^[A-Za-z\s]*$")]
+        [RegularExpression(@"^[a-zA-Z][a-zA-Z ]+")]
         public String Name { get; set; }
 
         [Required(ErrorMessage = "The price is required")]

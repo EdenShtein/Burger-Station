@@ -27,14 +27,12 @@ namespace Burger_Station.Models
 
         [Required(ErrorMessage = "The title of the post is required")]
         [DisplayName("Title of the Post")]
-        [RegularExpression(@"^[A-Za-z\s]*$")]
         [StringLength(70, MinimumLength = 2)]
         public String PostTitle { get; set; }
 
         [Required(ErrorMessage = "The body of the post is required")]
         [DisplayName("Post")]
-        [RegularExpression(@"^[A-Za-z0-9\s]*$")]
-        [StringLength(250, MinimumLength = 2)]
+        [StringLength(300, MinimumLength = 2)]
         public String PostBody { get; set; }
     }
 }

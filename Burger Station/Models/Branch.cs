@@ -12,7 +12,7 @@ namespace Burger_Station.Models
     {
         North,
         South,
-        Center
+        Center,
     }
 
     public class Branch
@@ -21,12 +21,12 @@ namespace Burger_Station.Models
 
         [Required(ErrorMessage = "The address is required")]
         [StringLength(50, MinimumLength = 2)]
-        [RegularExpression(@"^[A-Za-z0-9\s]*$")]
+        [RegularExpression(@"^[a-zA-Z0-9 ][a-zA-Z0-9 ]+")]
         public String Address { get; set; }
 
         [Required(ErrorMessage = "The city is required")]
         [StringLength(50, MinimumLength = 2)]
-        [RegularExpression(@"^[A-Za-z\s]*$")]
+        [RegularExpression(@"^[a-zA-Z][a-zA-Z ]+")]
         public String City { get; set; }
 
         [Required(ErrorMessage = "The District of the branch is required")]
@@ -35,6 +35,7 @@ namespace Burger_Station.Models
         [Required(ErrorMessage = "The phone number is required")]
         [DataType(DataType.PhoneNumber)]
         [DisplayName("Phone Number")]
+        [RegularExpression(@"^([0|\+[0-9]{1,5})?([0-9][0-9]{8})$")]
         public String PhoneNumber { get; set; }
 
         public ICollection<User> UsersFavorite { get; set; }
