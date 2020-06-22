@@ -8,7 +8,6 @@
   <ItemGroup>
     <None Include="wwwroot\images\.DS_Store" />
     <None Include="wwwroot\images\bizinsider.png" />
-    <None Include="wwwroot\images\dog-img.jpg" />
     <None Include="wwwroot\images\lady-img.jpg" />
     <None Include="wwwroot\images\mashable.png" />
     <None Include="wwwroot\images\TechCrunch.png" />
