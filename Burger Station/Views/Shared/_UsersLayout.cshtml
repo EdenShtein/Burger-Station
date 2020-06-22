@@ -70,14 +70,19 @@
         </div>
     </nav>
 
+    <!-- Body -->
+
     <div class="container">
         <div class="d-flex justify-content-center h-100">
+
             @RenderBody()
+
         </div>
     </div>
 
-            @RenderSection("Scripts", required: false)
-            @RenderSection("Styles", required: false)
+
+    @RenderSection("Scripts", required: false)
+    @RenderSection("Styles", required: false)
 
 </body>
 </html>

@@ -21,19 +21,14 @@ namespace Burger_Station.Controllers
         public IActionResult Login()
         {
             string user = HttpContext.Session.GetString("Type");
-            if (user == null || user != "Admin")
+            /*if (user == null || user != "Admin")
             {
                 return RedirectToAction("Login", "Users");
-            }
+            }*/
             return View();
         }
         public IActionResult Signup()
         {
-            string user = HttpContext.Session.GetString("Type");
-            if (user == null || user != "Admin")
-            {
-                return RedirectToAction("Signup", "Users");
-            }
             return View();
         }
 
