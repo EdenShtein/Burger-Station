@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Burger_Station.Data;
 using Burger_Station.Models;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
 namespace Burger_Station.Controllers
 {
@@ -19,6 +20,12 @@ namespace Burger_Station.Controllers
             _context = context;
         }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+    
         /*
         // GET: Users
         public async Task<IActionResult> Index()
