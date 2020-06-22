@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Burger_Station.Data;
 using Burger_Station.Models;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using Microsoft.AspNetCore.Http;
 
 namespace Burger_Station.Controllers
 {
@@ -25,7 +26,47 @@ namespace Burger_Station.Controllers
             return View();
         }
 
-    
+        [HttpPost]
+        public IActionResult Login(string email, string password)
+        {
+            var user = _context.User.FirstOrDefault(u => u.Email == email && u.Password == password);
+
+            if (user != null)
+            {
+                HttpContext.Session.SetString("Type", user.Type.ToString());
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+        
+
+        public IActionResult Signup()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Signup(string firstname, string lastname, string email, string password, DateTime birthday, string phoneNumber)
+        {
+            User user = new User()
+            {
+                FirstName = firstname,
+                LastName = lastname,
+                Email = email,
+                Password = password,
+                Birthday = birthday,
+                PhoneNumber = phoneNumber
+
+            };
+
+            _context.Add(user);
+            await _context.SaveChangesAsync();
+
+            return View();
+        }
+        
+
+
+
         /*
         // GET: Users
         public async Task<IActionResult> Index()

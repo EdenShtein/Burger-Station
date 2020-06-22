@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Burger_Station.Data;
+using System;
 
 namespace Burger_Station
 {
@@ -24,6 +25,11 @@ namespace Burger_Station
 
             services.AddDbContext<Burger_StationContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Burger_StationContext")));
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,13 +50,15 @@ namespace Burger_Station
 
             app.UseRouting();
 
+            app.UseSession();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Branches}/{action=Create}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
