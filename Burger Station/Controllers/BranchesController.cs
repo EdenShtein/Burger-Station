@@ -46,6 +46,15 @@ namespace Burger_Station.Controllers
         // GET: Branches/Create
         public IActionResult Create()
         {
+            var majorList = Enum.GetValues(typeof(District))
+                    .Cast<District>()
+                    .Select(e => new SelectListItem
+                    {
+                        Value = e.ToString(),
+                        Text = e.ToString()
+                    });
+            ViewBag.MajorList = majorList;
+
             return View();
         }
 
@@ -54,7 +63,7 @@ namespace Burger_Station.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Address,City,District,PhoneNumber")] Branch branch)
+        public async Task<IActionResult> Create([Bind("Id,Address,City,PhoneNumber")] Branch branch)
         {
             if (ModelState.IsValid)
             {
