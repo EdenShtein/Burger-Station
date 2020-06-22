@@ -21,6 +21,10 @@ namespace Burger_Station.Controllers
         {
             return View();
         }
+        public IActionResult Signup()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
