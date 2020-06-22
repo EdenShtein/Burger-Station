@@ -24,17 +24,13 @@ namespace Burger_Station.Models
         [RegularExpression(@"^[A-Za-z0-9\s]*$")]
         public String Address { get; set; }
 
-        [Required(ErrorMessage = "The name is required")]
-        [StringLength(50, MinimumLength = 2)]
-        [RegularExpression(@"^[A-Za-z\s]*$")]
-        public String Name { get; set; }
-
         [Required(ErrorMessage = "The city is required")]
         [StringLength(50, MinimumLength = 2)]
         [RegularExpression(@"^[A-Za-z\s]*$")]
         public String City { get; set; }
 
-        [Required(ErrorMessage = "The district is required")]
+        [Required]
+        [Range(1, 3, ErrorMessage = "Select a district")]
         public District District { get; set; }
 
         [Required(ErrorMessage = "The phone number is required")]
