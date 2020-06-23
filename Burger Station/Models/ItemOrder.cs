@@ -15,5 +15,9 @@ namespace Burger_Station.Models
         public int OrderId { get; set; }
 
         public Order Order { get; set; }
+
+        public int BranchId { get; set; }
+
+        public Branch Branch { get; set; }
     }
 }

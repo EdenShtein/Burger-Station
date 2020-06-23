@@ -22,7 +22,7 @@ namespace Burger_Station.Controllers
         // GET: ItemOrders
         public async Task<IActionResult> Index()
         {
-            var burger_StationContext = _context.ItemOrder.Include(i => i.Item).Include(i => i.Order);
+            var burger_StationContext = _context.ItemOrder.Include(i => i.Item).Include(i => i.Order).Include(i => i.Branch);
             return View(await burger_StationContext.ToListAsync());
         }
 
@@ -37,6 +37,7 @@ namespace Burger_Station.Controllers
             var itemOrder = await _context.ItemOrder
                 .Include(i => i.Item)
                 .Include(i => i.Order)
+                .Include(i => i.Branch)
                 .FirstOrDefaultAsync(m => m.ItemId == id);
             if (itemOrder == null)
             {
@@ -51,6 +52,7 @@ namespace Burger_Station.Controllers
         {
             ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Name");
             ViewData["OrderId"] = new SelectList(_context.Order, "Id", "Id");
+            ViewData["BranchId"] = new SelectList(_context.Branch, "Id", "Address");
             return View();
         }
 
@@ -59,7 +61,7 @@ namespace Burger_Station.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ItemId,OrderId")] ItemOrder itemOrder)
+        public async Task<IActionResult> Create([Bind("ItemId,OrderId,BranchId")] ItemOrder itemOrder)
         {
             if (ModelState.IsValid)
             {
@@ -69,6 +71,7 @@ namespace Burger_Station.Controllers
             }
             ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Name", itemOrder.ItemId);
             ViewData["OrderId"] = new SelectList(_context.Order, "Id", "Id", itemOrder.OrderId);
+            ViewData["BranchId"] = new SelectList(_context.Branch, "Id", "Address", itemOrder.BranchId);
             return View(itemOrder);
         }
 
@@ -87,6 +90,7 @@ namespace Burger_Station.Controllers
             }
             ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Name", itemOrder.ItemId);
             ViewData["OrderId"] = new SelectList(_context.Order, "Id", "Id", itemOrder.OrderId);
+            ViewData["BranchId"] = new SelectList(_context.Branch, "Id", "Address", itemOrder.BranchId);
             return View(itemOrder);
         }
 
@@ -95,7 +99,7 @@ namespace Burger_Station.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemId,OrderId")] ItemOrder itemOrder)
+        public async Task<IActionResult> Edit(int id, [Bind("ItemId,OrderId,BranchId")] ItemOrder itemOrder)
         {
             if (id != itemOrder.ItemId)
             {
@@ -124,6 +128,7 @@ namespace Burger_Station.Controllers
             }
             ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Name", itemOrder.ItemId);
             ViewData["OrderId"] = new SelectList(_context.Order, "Id", "Id", itemOrder.OrderId);
+            ViewData["BranchId"] = new SelectList(_context.Branch, "Id", "Address", itemOrder.BranchId);
             return View(itemOrder);
         }
 
@@ -138,6 +143,7 @@ namespace Burger_Station.Controllers
             var itemOrder = await _context.ItemOrder
                 .Include(i => i.Item)
                 .Include(i => i.Order)
+                .Include(i => i.Branch)
                 .FirstOrDefaultAsync(m => m.ItemId == id);
             if (itemOrder == null)
             {

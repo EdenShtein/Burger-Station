@@ -18,6 +18,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Order)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Branch)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -29,6 +32,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Order.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Branch.Address)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
