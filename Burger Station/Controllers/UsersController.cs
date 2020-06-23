@@ -9,6 +9,7 @@ using Burger_Station.Data;
 using Burger_Station.Models;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.AspNetCore.Http;
+using System.Text.RegularExpressions;
 
 namespace Burger_Station.Controllers
 {
@@ -21,74 +22,6 @@ namespace Burger_Station.Controllers
             _context = context;
         }
 
-        public IActionResult Login()
-        {
-            string user = HttpContext.Session.GetString("Type");
-            if (user != null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Login(string email, string password)
-        {
-            var user = _context.User.FirstOrDefault(u => u.Email == email && u.Password == password);
-
-            if (user != null)
-            {
-                SignIn(user);
-                return RedirectToAction("Index", "Home");
-            }
-            return View();
-        }
-        
-        ////
-        //[HttpPost]
-        //public IActionResult Logout()
-        //{
-        //    HttpContext.Session.Clear();
-        //    return RedirectToAction("Index", "Home");
-        //}
-        ////
-
-        private void SignIn(User user)
-        {
-            HttpContext.Session.SetString("Type", user.Type.ToString());
-        }
-
-        public IActionResult Signup()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Signup(string firstname, string lastname, string email, string password, DateTime birthday, string phoneNumber)
-        {
-            //
-
-            User user = new User()
-            {
-                FirstName = firstname,
-                LastName = lastname,
-                Email = email,
-                Password = password,
-                Birthday = birthday,
-                PhoneNumber = phoneNumber
-
-            };
-
-
-            _context.Add(user);
-            await _context.SaveChangesAsync();
-
-            SignIn(user);
-            return RedirectToAction("Index", "Home");
-
-        }
-
-
         // GET: Users
         public async Task<IActionResult> Index()
         {
@@ -97,6 +30,7 @@ namespace Burger_Station.Controllers
             {
                 return RedirectToAction("Login", "Users");
             }
+
             return View(await _context.User.ToListAsync());
         }
 
@@ -121,6 +55,13 @@ namespace Burger_Station.Controllers
         // GET: Users/Create
         public IActionResult Create()
         {
+            string type = HttpContext.Session.GetString("Type");
+
+            if (type != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 
@@ -129,7 +70,7 @@ namespace Burger_Station.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Email,Password,Birthday,PhoneNumber,Type")] User user)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Email,Password,Birthday,PhoneNumber")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -153,6 +94,7 @@ namespace Burger_Station.Controllers
             {
                 return NotFound();
             }
+
             return View(user);
         }
 
@@ -186,8 +128,10 @@ namespace Burger_Station.Controllers
                         throw;
                     }
                 }
+            
                 return RedirectToAction(nameof(Index));
             }
+
             return View(user);
         }
 
@@ -206,6 +150,13 @@ namespace Burger_Station.Controllers
                 return NotFound();
             }
 
+            string type = HttpContext.Session.GetString("Type");
+
+            if (type != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View(user);
         }
 
@@ -220,9 +171,96 @@ namespace Burger_Station.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // Returns TRUE if user exists in the DB.
         private bool UserExists(int id)
         {
             return _context.User.Any(e => e.Id == id);
+        }
+
+        // GET: Users/Login
+        public IActionResult Login()
+        {
+            string user = HttpContext.Session.GetString("Type");
+            
+            if (user != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View();
+        }
+
+        // POST: Users/Login
+        [HttpPost]
+        public IActionResult Login(string email, string password)
+        {
+            var user = _context.User.FirstOrDefault(u => u.Email == email && u.Password == password);
+
+            if (user != null)
+            {
+                SignIn(user);
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+
+        // Signin user and starts the session.
+        private void SignIn(User user)
+        {
+            HttpContext.Session.SetString("Type", user.Type.ToString());
+        }
+
+        // GET: Users/Signup
+        public IActionResult Signup()
+        {
+            return View();
+        }
+
+        // POST: Users/Signup
+        [HttpPost]
+        public async Task<IActionResult> Signup(string firstname, string lastname, string email, string password, DateTime birthday, string phoneNumber)
+        {
+            if (firstname.Length > 50 || firstname.Length < 2) { return RedirectToAction("Signup", "Users"); }
+
+            Regex regex = new Regex(@"^[a-z]+$");
+            Match match = regex.Match(firstname.ToLower());
+
+            if(!match.Success) { return RedirectToAction("Signup", "Users"); }
+
+            if (lastname.Length > 50 || lastname.Length < 2) { return RedirectToAction("Signup", "Users"); }
+
+            match = regex.Match(lastname.ToLower());
+            if (!match.Success) { return RedirectToAction("Signup", "Users"); }
+
+            if (new System.Net.Mail.MailAddress(email).Address != email) { return RedirectToAction("Signup", "Users"); }
+
+            if (password.Length > 10 || password.Length < 5) { return RedirectToAction("Signup", "Users"); }
+
+            regex = new Regex(@"(^[0-9]{10}$)|(^\+[0-9]{2}\s+[0-9]{ 2}[0 - 9]{ 8}$)| (^[0 - 9]{ 3}-[0 - 9]{ 4}-[0 - 9]{ 4}$)");
+            // Class Regex Repesents an 
+            // immutable regular expression. 
+            //   Format                Pattern 
+            // xxxxxxxxxx           ^[0 - 9]{ 10}$ 
+            // +xx xx xxxxxxxx     ^\+[0 - 9]{ 2}\s +[0 - 9]{ 2}\s +[0 - 9]{ 8}$ 
+            // xxx - xxxx - xxxx   ^[0 - 9]{ 3} -[0 - 9]{ 4}-[0 - 9]{ 4
+
+            if (!regex.IsMatch(phoneNumber)) { return RedirectToAction("Signup", "Users"); }
+
+            User user = new User()
+            {
+                FirstName = firstname,
+                LastName = lastname,
+                Email = email,
+                Password = password,
+                Birthday = birthday,
+                PhoneNumber = phoneNumber
+            };
+
+            _context.Add(user);
+            await _context.SaveChangesAsync();
+
+            SignIn(user);
+            return RedirectToAction("Index", "Home");
         }
     }
 }
