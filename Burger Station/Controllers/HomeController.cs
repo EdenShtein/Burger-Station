@@ -18,25 +18,12 @@ namespace Burger_Station.Controllers
         {
             return View();
         }
-        public IActionResult Login()
-        {
-            string user = HttpContext.Session.GetString("Type");
-            /*if (user == null || user != "Admin")
-            {
-                return RedirectToAction("Login", "Users");
-            }*/
-            return View();
-        }
-        public IActionResult Signup()
-        {
-            return View();
-        }
-
+       /*
         public IActionResult Privacy()
         {
             return View();
         }
-
+       */
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -23,6 +23,11 @@ namespace Burger_Station.Controllers
 
         public IActionResult Login()
         {
+            string user = HttpContext.Session.GetString("Type");
+            if (user != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
@@ -33,17 +38,22 @@ namespace Burger_Station.Controllers
 
             if (user != null)
             {
-                HttpContext.Session.SetString("Type", user.Type.ToString());
+                SignIn(user);
                 return RedirectToAction("Index", "Home");
             }
             return View();
         }
         
+        private void SignIn(User user)
+        {
+            HttpContext.Session.SetString("Type", user.Type.ToString());
+        }
 
         public IActionResult Signup()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Signup(string firstname, string lastname, string email, string password, DateTime birthday, string phoneNumber)
         {
@@ -58,19 +68,24 @@ namespace Burger_Station.Controllers
 
             };
 
+
             _context.Add(user);
             await _context.SaveChangesAsync();
 
-            return View();
+            SignIn(user);
+            return RedirectToAction("Index", "Home");
+
         }
-
-
-
 
 
         // GET: Users
         public async Task<IActionResult> Index()
         {
+            string user = HttpContext.Session.GetString("Type");
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Users");
+            }
             return View(await _context.User.ToListAsync());
         }
 
