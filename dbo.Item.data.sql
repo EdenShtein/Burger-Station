@@ -1,0 +1,15 @@
+﻿SET IDENTITY_INSERT [dbo].[Item] ON
+INSERT INTO [dbo].[Item] ([Id], [Name], [Price], [Type]) VALUES (11, N'Cheeseburger', 17, 0)
+INSERT INTO [dbo].[Item] ([Id], [Name], [Price], [Type]) VALUES (12, N'Bacon cheeseburger', 19, 0)
+INSERT INTO [dbo].[Item] ([Id], [Name], [Price], [Type]) VALUES (13, N'California burger', 16.5, 0)
+INSERT INTO [dbo].[Item] ([Id], [Name], [Price], [Type]) VALUES (14, N'Buffalo burger', 13, 0)
+INSERT INTO [dbo].[Item] ([Id], [Name], [Price], [Type]) VALUES (15, N'Chili burger', 15.5, 0)
+INSERT INTO [dbo].[Item] ([Id], [Name], [Price], [Type]) VALUES (16, N'Barbecue', 16, 0)
+INSERT INTO [dbo].[Item] ([Id], [Name], [Price], [Type]) VALUES (17, N'Hawaii burger', 17, 0)
+INSERT INTO [dbo].[Item] ([Id], [Name], [Price], [Type]) VALUES (18, N'Coca Cola', 4, 1)
+INSERT INTO [dbo].[Item] ([Id], [Name], [Price], [Type]) VALUES (19, N'Coca Cola Zero', 4, 1)
+INSERT INTO [dbo].[Item] ([Id], [Name], [Price], [Type]) VALUES (20, N'Sprite', 4, 1)
+INSERT INTO [dbo].[Item] ([Id], [Name], [Price], [Type]) VALUES (21, N'Sprite Zero', 4, 1)
+INSERT INTO [dbo].[Item] ([Id], [Name], [Price], [Type]) VALUES (22, N'Caramel Fudge Milkshake', 6, 1)
+INSERT INTO [dbo].[Item] ([Id], [Name], [Price], [Type]) VALUES (23, N'Iced tea', 3, 1)
+SET IDENTITY_INSERT [dbo].[Item] OFF
