@@ -44,6 +44,15 @@ namespace Burger_Station.Controllers
             return View();
         }
         
+        ////
+        //[HttpPost]
+        //public IActionResult Logout()
+        //{
+        //    HttpContext.Session.Clear();
+        //    return RedirectToAction("Index", "Home");
+        //}
+        ////
+
         private void SignIn(User user)
         {
             HttpContext.Session.SetString("Type", user.Type.ToString());
@@ -57,6 +66,8 @@ namespace Burger_Station.Controllers
         [HttpPost]
         public async Task<IActionResult> Signup(string firstname, string lastname, string email, string password, DateTime birthday, string phoneNumber)
         {
+            //
+
             User user = new User()
             {
                 FirstName = firstname,
