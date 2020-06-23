@@ -60,9 +60,9 @@ namespace Burger_Station.Controllers
         {
             string type = HttpContext.Session.GetString("Type");
 
-            if (type != "Admin")
+            if (type == null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Users");
             }
 
             ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Name");
