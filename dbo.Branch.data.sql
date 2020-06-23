@@ -1,0 +1,15 @@
+﻿SET IDENTITY_INSERT [dbo].[Branch] ON
+INSERT INTO [dbo].[Branch] ([Id], [Address], [City], [PhoneNumber], [District]) VALUES (13, N'HaBanaim St 4', N'Ashdod', N'088539797', 1)
+INSERT INTO [dbo].[Branch] ([Id], [Address], [City], [PhoneNumber], [District]) VALUES (14, N'Globus Center ', N'Ashkelon', N'083159999', 1)
+INSERT INTO [dbo].[Branch] ([Id], [Address], [City], [PhoneNumber], [District]) VALUES (15, N'Heil Handasa St 1', N'Beer Sheva', N'086655601', 1)
+INSERT INTO [dbo].[Branch] ([Id], [Address], [City], [PhoneNumber], [District]) VALUES (16, N'Shaul HaMelech St 80', N'Beer Sheva', N'089855771', 1)
+INSERT INTO [dbo].[Branch] ([Id], [Address], [City], [PhoneNumber], [District]) VALUES (17, N'Tarshish St 19', N'Eilat', N'086342404', 1)
+INSERT INTO [dbo].[Branch] ([Id], [Address], [City], [PhoneNumber], [District]) VALUES (18, N'Elie Wiesel St 2', N'Rishon LeTsiyon', N'039634140', 2)
+INSERT INTO [dbo].[Branch] ([Id], [Address], [City], [PhoneNumber], [District]) VALUES (19, N'Moshe Beker St 9', N'Rishon LeTsiyon', N'036899597', 2)
+INSERT INTO [dbo].[Branch] ([Id], [Address], [City], [PhoneNumber], [District]) VALUES (20, N'HaBarzel St 19', N'Tel Aviv Yafo', N'087261118', 2)
+INSERT INTO [dbo].[Branch] ([Id], [Address], [City], [PhoneNumber], [District]) VALUES (21, N'Herzl St 8', N'Tel Aviv Yafo', N'088539797', 2)
+INSERT INTO [dbo].[Branch] ([Id], [Address], [City], [PhoneNumber], [District]) VALUES (22, N'Dizengoff St 166', N'Tel Aviv Yafo', N'089732459', 2)
+INSERT INTO [dbo].[Branch] ([Id], [Address], [City], [PhoneNumber], [District]) VALUES (23, N'Arieh Shenkar St 11', N'Herzliya', N'089958787', 2)
+INSERT INTO [dbo].[Branch] ([Id], [Address], [City], [PhoneNumber], [District]) VALUES (24, N'Sderot Achi Eilat 60', N'Haifa', N'046668080', 0)
+INSERT INTO [dbo].[Branch] ([Id], [Address], [City], [PhoneNumber], [District]) VALUES (25, N'Moriah Ave 110', N'Haifa', N'048422400', 0)
+SET IDENTITY_INSERT [dbo].[Branch] OFF
