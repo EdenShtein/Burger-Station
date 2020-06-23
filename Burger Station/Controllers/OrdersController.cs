@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Burger_Station.Data;
 using Burger_Station.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Burger_Station.Controllers
 {
@@ -46,6 +47,13 @@ namespace Burger_Station.Controllers
         // GET: Orders/Create
         public IActionResult Create()
         {
+            string type = HttpContext.Session.GetString("Type");
+
+            if (type != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 

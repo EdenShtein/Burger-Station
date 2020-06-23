@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Burger_Station.Data;
 using Burger_Station.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Burger_Station.Controllers
 {
@@ -34,6 +35,13 @@ namespace Burger_Station.Controllers
                 return NotFound();
             }
 
+            string type = HttpContext.Session.GetString("Type");
+
+            if (type != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             var itemOrder = await _context.ItemOrder
                 .Include(i => i.Item)
                 .Include(i => i.Order)
@@ -49,6 +57,13 @@ namespace Burger_Station.Controllers
         // GET: ItemOrders/Create
         public IActionResult Create()
         {
+            string type = HttpContext.Session.GetString("Type");
+
+            if (type != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Name");
             ViewData["OrderId"] = new SelectList(_context.Order, "Id", "Id");
             return View();
@@ -78,6 +93,13 @@ namespace Burger_Station.Controllers
             if (id == null)
             {
                 return NotFound();
+            }
+
+            string type = HttpContext.Session.GetString("Type");
+
+            if (type != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
             }
 
             var itemOrder = await _context.ItemOrder.FindAsync(id);
@@ -133,6 +155,13 @@ namespace Burger_Station.Controllers
             if (id == null)
             {
                 return NotFound();
+            }
+
+            string type = HttpContext.Session.GetString("Type");
+
+            if (type != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
             }
 
             var itemOrder = await _context.ItemOrder

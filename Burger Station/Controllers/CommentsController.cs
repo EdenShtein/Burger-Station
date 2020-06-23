@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Burger_Station.Data;
 using Burger_Station.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Burger_Station.Controllers
 {
@@ -31,6 +32,13 @@ namespace Burger_Station.Controllers
             if (id == null)
             {
                 return NotFound();
+            }
+
+            string type = HttpContext.Session.GetString("Type");
+
+            if (type != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
             }
 
             var comment = await _context.Comment
@@ -71,6 +79,13 @@ namespace Burger_Station.Controllers
             if (id == null)
             {
                 return NotFound();
+            }
+
+            string type = HttpContext.Session.GetString("Type");
+
+            if (type != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
             }
 
             var comment = await _context.Comment.FindAsync(id);
@@ -122,6 +137,13 @@ namespace Burger_Station.Controllers
             if (id == null)
             {
                 return NotFound();
+            }
+
+            string type = HttpContext.Session.GetString("Type");
+
+            if (type != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
             }
 
             var comment = await _context.Comment
