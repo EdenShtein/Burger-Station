@@ -30,7 +30,8 @@ namespace TestShop.Controllers
                 return RedirectToAction("Login", "Users");
             }
 
-            return View(await _context.User.ToListAsync());
+            return View(await _context.User
+                .Include(c=>c.FavoriteItem).ToListAsync());
         }
 
         // GET: Users/Details/5
@@ -41,22 +42,32 @@ namespace TestShop.Controllers
                 return NotFound();
             }
 
-            var user = await _context.User
+            string type = HttpContext.Session.GetString("Type");
+            int userId = (int)HttpContext.Session.GetInt32("Id");
+
+            if (userId == id || type == "Admin")
+            {
+                var user = await _context.User
                 .Include(u => u.FavoriteItem)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
-            {
-                return NotFound();
+
+                if (user == null)
+                {
+                    return NotFound();
+                }
+
+                if (user.FavoriteItem == null)
+                {
+                    user.FavoriteItem = _context.Item.First();
+                }
+
+                ViewBag.FavoriteItem = user.FavoriteItem.Name;
+
+                return View(user);
+
             }
 
-            if (user.FavoriteItem == null)
-            {
-                user.FavoriteItem = _context.Item.First();
-            }
-
-            ViewBag.FavoriteItem = user.FavoriteItem.Name;
-
-            return View(user);
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Users/Create
@@ -99,15 +110,26 @@ namespace TestShop.Controllers
                 return NotFound();
             }
 
-            var user = await _context.User.FindAsync(id);
-            if (user == null)
+            string type = HttpContext.Session.GetString("Type");
+            int userId = (int)HttpContext.Session.GetInt32("Id");
+
+            if (userId == id || type == "Admin")
             {
-                return NotFound();
+                var user = await _context.User.FindAsync(id);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+
+                ViewBag.Items = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
+
+                return View(user);
+
             }
 
-            ViewBag.Items = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
+            return RedirectToAction("Index" , "Home");
 
-            return View(user);
+
         }
 
         // POST: Users/Edit/5
@@ -117,6 +139,7 @@ namespace TestShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Type,FirstName,LastName,Email,Password,Birthday")] User user, int itemId)
         {
+
             if (id != user.Id)
             {
                 return NotFound();
@@ -230,6 +253,8 @@ namespace TestShop.Controllers
         {
             HttpContext.Session.SetString("Type", user.Type.ToString());
             HttpContext.Session.SetString("FullName", user.FirstName + " " + user.LastName );
+            HttpContext.Session.SetInt32("Id", user.Id);
+
         }
 
         // GET: Users/Login

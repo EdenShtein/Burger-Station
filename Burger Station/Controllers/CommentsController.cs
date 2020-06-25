@@ -26,10 +26,10 @@ namespace TestShop.Controllers
         {
             string type = HttpContext.Session.GetString("Type");
 
-            if (type == null || type=="Member")
-            {
-                return RedirectToAction("index", "home");
-            }
+            //if (type == null || type=="Member")
+            //{
+            //    return RedirectToAction("index", "home");
+            //}
 
             return View(await _context.Comment.
                 Include(c=> c.Item).ToListAsync());
@@ -88,20 +88,30 @@ namespace TestShop.Controllers
         // GET: Comments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            
             if (id == null)
             {
                 return NotFound();
             }
+
+            string type = HttpContext.Session.GetString("Type");
 
             var comment = await _context.Comment.FindAsync(id);
             if (comment == null)
             {
                 return NotFound();
             }
+            string userName = HttpContext.Session.GetString("FullName");
 
-            ViewBag.Items = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
+            if (userName.Equals(comment.PostedBy) || type == "Admin")
+            {
 
-            return View(comment);
+                ViewBag.Items = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
+
+                return View(comment);
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: Comments/Edit/5
@@ -148,15 +158,23 @@ namespace TestShop.Controllers
             {
                 return NotFound();
             }
+            string type = HttpContext.Session.GetString("Type");
 
             var comment = await _context.Comment
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (comment == null)
             {
                 return NotFound();
             }
+            string userName = HttpContext.Session.GetString("FullName");
 
-            return View(comment);
+            if (userName.Equals(comment.PostedBy) || type == "Admin")
+            {
+                return View(comment);
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: Comments/Delete/5
