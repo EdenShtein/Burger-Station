@@ -13,23 +13,26 @@ namespace TestShop.Controllers
     public class CommentsController : Controller
     {
         private readonly Burger_StationContext _context;
+    
 
         public CommentsController(Burger_StationContext context)
         {
             _context = context;
         }
 
+
         // GET: Comments
         public async Task<IActionResult> Index()
         {
             string type = HttpContext.Session.GetString("Type");
 
-            if (type != "Admin")
+            if (type == null || type=="Member")
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("index", "home");
             }
 
-            return View(await _context.Comment.ToListAsync());
+            return View(await _context.Comment.
+                Include(c=> c.Item).ToListAsync());
         }
 
         // GET: Comments/Details/5
@@ -57,6 +60,7 @@ namespace TestShop.Controllers
         public async Task<IActionResult> Create()
         {
             ViewBag.Items = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
+            ViewBag.userName = HttpContext.Session.GetString("FullName");
             return View();
         }
 
@@ -71,6 +75,8 @@ namespace TestShop.Controllers
             {
                 comment.PostDate = DateTime.Now;
                 comment.Item = await _context.Item.FirstOrDefaultAsync(i => (i.Id == ItemId));
+                comment.PostedBy = HttpContext.Session.GetString("FullName");
+                
 
                 _context.Add(comment);
                 await _context.SaveChangesAsync();

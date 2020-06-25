@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Burger_Station.Data;
 using Burger_Station.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -228,6 +229,7 @@ namespace TestShop.Controllers
         private void SignIn(User user)
         {
             HttpContext.Session.SetString("Type", user.Type.ToString());
+            HttpContext.Session.SetString("FullName", user.FirstName + " " + user.LastName );
         }
 
         // GET: Users/Login
