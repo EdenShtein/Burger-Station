@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Burger_Station.Data;
 using Burger_Station.Models;
-using Microsoft.AspNetCore.Http;
 
 namespace Burger_Station.Controllers
 {
@@ -47,13 +46,6 @@ namespace Burger_Station.Controllers
         // GET: Items/Create
         public IActionResult Create()
         {
-            string type = HttpContext.Session.GetString("Type");
-
-            if (type != "Admin")
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
             return View();
         }
 
@@ -62,7 +54,7 @@ namespace Burger_Station.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,Type")] Item item)
+        public async Task<IActionResult> Create([Bind("Id,Type,Name,Price")] Item item)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +86,7 @@ namespace Burger_Station.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Type")] Item item)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Name,Price")] Item item)
         {
             if (id != item.Id)
             {

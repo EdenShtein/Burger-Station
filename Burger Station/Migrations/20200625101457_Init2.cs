@@ -2,7 +2,7 @@
 
 namespace Burger_Station.Migrations
 {
-    public partial class AddOrder : Migration
+    public partial class Init2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
