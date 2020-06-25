@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Burger_Station.Models.Item>
+﻿@model IEnumerable<Burger_Station.Models.Branch>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,24 +9,17 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-
-<form asp-action="Search">
-    <input name="name" placeholder="Enter Name" />
-    <input name="price" placeholder="Enter Maximum Price" autocomplete="off" />
-    <input type="submit" />
-</form>
-
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Type)
+                @Html.DisplayNameFor(model => model.Address)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.City)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.District)
             </th>
             <th></th>
         </tr>
@@ -36,13 +29,13 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Type)
+                    @Html.DisplayFor(modelItem => item.Address)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.City)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    @Html.DisplayFor(modelItem => item.District)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

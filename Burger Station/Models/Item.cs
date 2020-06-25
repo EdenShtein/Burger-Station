@@ -23,13 +23,13 @@ namespace Burger_Station.Models
         [Range(0, 50)]
         [DataType(DataType.Currency)]
         public double Price { get; set; }
-/*
+
         public ICollection<Comment> Comments { get; set; }
 
         [DisplayName("Satisfied Users")]
         public ICollection<User> SatisfiedUsers { get; set; }
 
         [DisplayName("List of Branches that have the Item")]
-        public ICollection<BranchItem> BranchItems { get; set; }*/
+        public ICollection<BranchItem> BranchItems { get; set; }
     }
 }

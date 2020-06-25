@@ -10,27 +10,110 @@
     <h4>Item</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Type)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Type)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Price)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
     </dl>
 </div>
+
 <div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comments.First().PostTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comments.First().PostBody)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comments.First().PostDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comments.First().PostedBy)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Comments)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostBody)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostedBy)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.BranchItems.First().Branch.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BranchItems.First().Branch.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BranchItems.First().Branch.District)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.BranchItems)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Branch.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Branch.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Branch.District)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a asp-controller="Comments" asp-action="Create">Create new Comment on the Item</a> |
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

@@ -1,24 +1,24 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Burger_Station.Data;
 using Burger_Station.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace TestShop.Controllers
 {
-    public class ItemsController : Controller
+    public class BranchItemsController : Controller
     {
         private readonly Burger_StationContext _context;
 
-        public ItemsController(Burger_StationContext context)
+        public BranchItemsController(Burger_StationContext context)
         {
             _context = context;
         }
 
-        // GET: Items
+        // GET: BranchItems
         public async Task<IActionResult> Index()
         {
             string type = HttpContext.Session.GetString("Type");
@@ -28,10 +28,11 @@ namespace TestShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return View(await _context.Item.ToListAsync());
+            var testShopContext = _context.BranchItem.Include(b => b.Branch).Include(b => b.Item);
+            return View(await testShopContext.ToListAsync());
         }
 
-        // GET: Items/Details/5
+        // GET: BranchItems/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -39,24 +40,26 @@ namespace TestShop.Controllers
                 return NotFound();
             }
 
-            var item = await _context.Item
-                .Include(i => i.Comments)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            string type = HttpContext.Session.GetString("Type");
 
-            item = await _context.Item
-                .Include(bi => bi.BranchItems)
-                .ThenInclude(b => b.Branch)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            if (type != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
-            if (item == null)
+            var branchItem = await _context.BranchItem
+                .Include(b => b.Branch)
+                .Include(b => b.Item)
+                .FirstOrDefaultAsync(m => m.BranchId == id);
+            if (branchItem == null)
             {
                 return NotFound();
             }
 
-            return View(item);
+            return View(branchItem);
         }
 
-        // GET: Items/Create
+        // GET: BranchItems/Create
         public IActionResult Create()
         {
             string type = HttpContext.Session.GetString("Type");
@@ -66,26 +69,30 @@ namespace TestShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+            ViewData["BranchId"] = new SelectList(_context.Set<Branch>(), "Id", "Id");
+            ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Id");
             return View();
         }
 
-        // POST: Items/Create
+        // POST: BranchItems/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Type,Name,Price")] Item item)
+        public async Task<IActionResult> Create([Bind("BranchId,ItemId")] BranchItem branchItem)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(item);
+                _context.Add(branchItem);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(item);
+            ViewData["BranchId"] = new SelectList(_context.Set<Branch>(), "Id", "Id", branchItem.BranchId);
+            ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Id", branchItem.ItemId);
+            return View(branchItem);
         }
 
-        // GET: Items/Edit/5
+        // GET: BranchItems/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -100,22 +107,24 @@ namespace TestShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var item = await _context.Item.FindAsync(id);
-            if (item == null)
+            var branchItem = await _context.BranchItem.FindAsync(id);
+            if (branchItem == null)
             {
                 return NotFound();
             }
-            return View(item);
+            ViewData["BranchId"] = new SelectList(_context.Set<Branch>(), "Id", "Id", branchItem.BranchId);
+            ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Id", branchItem.ItemId);
+            return View(branchItem);
         }
 
-        // POST: Items/Edit/5
+        // POST: BranchItems/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Name,Price")] Item item)
+        public async Task<IActionResult> Edit(int id, [Bind("BranchId,ItemId")] BranchItem branchItem)
         {
-            if (id != item.Id)
+            if (id != branchItem.BranchId)
             {
                 return NotFound();
             }
@@ -124,12 +133,12 @@ namespace TestShop.Controllers
             {
                 try
                 {
-                    _context.Update(item);
+                    _context.Update(branchItem);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ItemExists(item.Id))
+                    if (!BranchItemExists(branchItem.BranchId))
                     {
                         return NotFound();
                     }
@@ -140,10 +149,12 @@ namespace TestShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(item);
+            ViewData["BranchId"] = new SelectList(_context.Set<Branch>(), "Id", "Id", branchItem.BranchId);
+            ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Id", branchItem.ItemId);
+            return View(branchItem);
         }
 
-        // GET: Items/Delete/5
+        // GET: BranchItems/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -158,41 +169,32 @@ namespace TestShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var item = await _context.Item
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (item == null)
+            var branchItem = await _context.BranchItem
+                .Include(b => b.Branch)
+                .Include(b => b.Item)
+                .FirstOrDefaultAsync(m => m.BranchId == id);
+            if (branchItem == null)
             {
                 return NotFound();
             }
 
-            return View(item);
+            return View(branchItem);
         }
 
-        // POST: Items/Delete/5
+        // POST: BranchItems/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var item = await _context.Item.FindAsync(id);
-            _context.Item.Remove(item);
+            var branchItem = await _context.BranchItem.FindAsync(id);
+            _context.BranchItem.Remove(branchItem);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ItemExists(int id)
+        private bool BranchItemExists(int id)
         {
-            return _context.Item.Any(e => e.Id == id);
-        }
-
-        public async Task<IActionResult> Search(String name, double price)
-        {
-            var itemsResults = from item in _context.Item
-                               where item.Name.Contains(name) || item.Price <= price
-                               orderby item.Name
-                               select item;
-
-
-            return View("Index", await itemsResults.ToListAsync());
+            return _context.BranchItem.Any(e => e.BranchId == id);
         }
     }
 }

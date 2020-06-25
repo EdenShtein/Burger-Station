@@ -5,20 +5,21 @@ using Burger_Station.Data;
 using Burger_Station.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace TestShop.Controllers
 {
-    public class ItemsController : Controller
+    public class CommentsController : Controller
     {
         private readonly Burger_StationContext _context;
 
-        public ItemsController(Burger_StationContext context)
+        public CommentsController(Burger_StationContext context)
         {
             _context = context;
         }
 
-        // GET: Items
+        // GET: Comments
         public async Task<IActionResult> Index()
         {
             string type = HttpContext.Session.GetString("Type");
@@ -28,10 +29,10 @@ namespace TestShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return View(await _context.Item.ToListAsync());
+            return View(await _context.Comment.ToListAsync());
         }
 
-        // GET: Items/Details/5
+        // GET: Comments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -39,53 +40,46 @@ namespace TestShop.Controllers
                 return NotFound();
             }
 
-            var item = await _context.Item
-                .Include(i => i.Comments)
+            var comment = await _context.Comment
+                .Include(c => c.Item)
                 .FirstOrDefaultAsync(m => m.Id == id);
-
-            item = await _context.Item
-                .Include(bi => bi.BranchItems)
-                .ThenInclude(b => b.Branch)
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (item == null)
+            if (comment == null)
             {
                 return NotFound();
             }
 
-            return View(item);
+            ViewBag.Item = comment.Item.Name;
+
+            return View(comment);
         }
 
-        // GET: Items/Create
-        public IActionResult Create()
+        // GET: Comments/Create
+        public async Task<IActionResult> Create()
         {
-            string type = HttpContext.Session.GetString("Type");
-
-            if (type != "Admin")
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
+            ViewBag.Items = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
             return View();
         }
 
-        // POST: Items/Create
+        // POST: Comments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Type,Name,Price")] Item item)
+        public async Task<IActionResult> Create([Bind("Id,PostTitle,PostBody,PostDate,PostedBy")] Comment comment, int ItemId)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(item);
+                comment.PostDate = DateTime.Now;
+                comment.Item = await _context.Item.FirstOrDefaultAsync(i => (i.Id == ItemId));
+
+                _context.Add(comment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(item);
+            return View(comment);
         }
 
-        // GET: Items/Edit/5
+        // GET: Comments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -93,29 +87,25 @@ namespace TestShop.Controllers
                 return NotFound();
             }
 
-            string type = HttpContext.Session.GetString("Type");
-
-            if (type != "Admin")
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            var item = await _context.Item.FindAsync(id);
-            if (item == null)
+            var comment = await _context.Comment.FindAsync(id);
+            if (comment == null)
             {
                 return NotFound();
             }
-            return View(item);
+
+            ViewBag.Items = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
+
+            return View(comment);
         }
 
-        // POST: Items/Edit/5
+        // POST: Comments/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Name,Price")] Item item)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PostTitle,PostBody,PostDate,PostedBy")] Comment comment, int itemId)
         {
-            if (id != item.Id)
+            if (id != comment.Id)
             {
                 return NotFound();
             }
@@ -124,12 +114,14 @@ namespace TestShop.Controllers
             {
                 try
                 {
-                    _context.Update(item);
+                    comment.Item = await _context.Item.FirstOrDefaultAsync(i => (i.Id == itemId));
+
+                    _context.Update(comment);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ItemExists(item.Id))
+                    if (!CommentExists(comment.Id))
                     {
                         return NotFound();
                     }
@@ -140,10 +132,10 @@ namespace TestShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(item);
+            return View(comment);
         }
 
-        // GET: Items/Delete/5
+        // GET: Comments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -151,48 +143,30 @@ namespace TestShop.Controllers
                 return NotFound();
             }
 
-            string type = HttpContext.Session.GetString("Type");
-
-            if (type != "Admin")
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            var item = await _context.Item
+            var comment = await _context.Comment
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (item == null)
+            if (comment == null)
             {
                 return NotFound();
             }
 
-            return View(item);
+            return View(comment);
         }
 
-        // POST: Items/Delete/5
+        // POST: Comments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var item = await _context.Item.FindAsync(id);
-            _context.Item.Remove(item);
+            var comment = await _context.Comment.FindAsync(id);
+            _context.Comment.Remove(comment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ItemExists(int id)
+        private bool CommentExists(int id)
         {
-            return _context.Item.Any(e => e.Id == id);
-        }
-
-        public async Task<IActionResult> Search(String name, double price)
-        {
-            var itemsResults = from item in _context.Item
-                               where item.Name.Contains(name) || item.Price <= price
-                               orderby item.Name
-                               select item;
-
-
-            return View("Index", await itemsResults.ToListAsync());
+            return _context.Comment.Any(e => e.Id == id);
         }
     }
 }

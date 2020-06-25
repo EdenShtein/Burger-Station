@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Burger_Station.Models.Item>
+﻿@model IEnumerable<Burger_Station.Models.Comment>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,24 +9,20 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-
-<form asp-action="Search">
-    <input name="name" placeholder="Enter Name" />
-    <input name="price" placeholder="Enter Maximum Price" autocomplete="off" />
-    <input type="submit" />
-</form>
-
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Type)
+                @Html.DisplayNameFor(model => model.PostTitle)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.PostBody)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.PostDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostedBy)
             </th>
             <th></th>
         </tr>
@@ -36,13 +32,16 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Type)
+                    @Html.DisplayFor(modelItem => item.PostTitle)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.PostBody)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    @Html.DisplayFor(modelItem => item.PostDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostedBy)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

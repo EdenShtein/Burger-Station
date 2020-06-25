@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Diagnostics;
+using Burger_Station.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Diagnostics;
 
-namespace Burger_Station.Controllers
+namespace TestShop.Controllers
 {
     public class HomeController : Controller
     {
@@ -18,16 +18,16 @@ namespace Burger_Station.Controllers
         {
             return View();
         }
-       /*
+
         public IActionResult Privacy()
         {
             return View();
         }
-       */
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View();
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
