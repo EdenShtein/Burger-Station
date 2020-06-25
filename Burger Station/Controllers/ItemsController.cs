@@ -21,13 +21,6 @@ namespace TestShop.Controllers
         // GET: Items
         public async Task<IActionResult> Index()
         {
-            string type = HttpContext.Session.GetString("Type");
-
-            if (type != "Admin")
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
             return View(await _context.Item.ToListAsync());
         }
 

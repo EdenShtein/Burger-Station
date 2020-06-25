@@ -24,12 +24,6 @@ namespace TestShop.Controllers
         // GET: Comments
         public async Task<IActionResult> Index()
         {
-            string type = HttpContext.Session.GetString("Type");
-
-            //if (type == null || type=="Member")
-            //{
-            //    return RedirectToAction("index", "home");
-            //}
 
             return View(await _context.Comment.
                 Include(c=> c.Item).ToListAsync());
@@ -59,6 +53,13 @@ namespace TestShop.Controllers
         // GET: Comments/Create
         public async Task<IActionResult> Create()
         {
+            string type = HttpContext.Session.GetString("Type");
+
+            if (type == null)
+            {
+                return RedirectToAction("index", "home");
+            }
+
             ViewBag.Items = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
             ViewBag.userName = HttpContext.Session.GetString("FullName");
             return View();
