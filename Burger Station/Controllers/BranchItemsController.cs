@@ -29,6 +29,7 @@ namespace TestShop.Controllers
             }
 
             var testShopContext = _context.BranchItem.Include(b => b.Branch).Include(b => b.Item);
+
             return View(await testShopContext.ToListAsync());
         }
 
@@ -51,6 +52,7 @@ namespace TestShop.Controllers
                 .Include(b => b.Branch)
                 .Include(b => b.Item)
                 .FirstOrDefaultAsync(m => m.BranchId == id);
+
             if (branchItem == null)
             {
                 return NotFound();
@@ -71,6 +73,7 @@ namespace TestShop.Controllers
 
             ViewData["BranchId"] = new SelectList(_context.Set<Branch>(), "Id", "Id");
             ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Id");
+
             return View();
         }
 
@@ -87,8 +90,10 @@ namespace TestShop.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["BranchId"] = new SelectList(_context.Set<Branch>(), "Id", "Id", branchItem.BranchId);
             ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Id", branchItem.ItemId);
+            
             return View(branchItem);
         }
 
@@ -114,6 +119,7 @@ namespace TestShop.Controllers
             }
             ViewData["BranchId"] = new SelectList(_context.Set<Branch>(), "Id", "Id", branchItem.BranchId);
             ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Id", branchItem.ItemId);
+            
             return View(branchItem);
         }
 
@@ -147,10 +153,13 @@ namespace TestShop.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["BranchId"] = new SelectList(_context.Set<Branch>(), "Id", "Id", branchItem.BranchId);
             ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Id", branchItem.ItemId);
+            
             return View(branchItem);
         }
 
@@ -173,6 +182,7 @@ namespace TestShop.Controllers
                 .Include(b => b.Branch)
                 .Include(b => b.Item)
                 .FirstOrDefaultAsync(m => m.BranchId == id);
+           
             if (branchItem == null)
             {
                 return NotFound();
@@ -187,6 +197,7 @@ namespace TestShop.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var branchItem = await _context.BranchItem.FindAsync(id);
+            
             _context.BranchItem.Remove(branchItem);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

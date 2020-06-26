@@ -26,8 +26,10 @@ namespace TestShop.Controllers
         {
             ViewBag.FullName = HttpContext.Session.GetString("FullName");
             ViewBag.userType = HttpContext.Session.GetString("Type");
-            return View(await _context.Comment.
-                Include(c=> c.Item).ToListAsync());
+
+            return View(await _context.Comment
+                .Include(c=> c.Item)
+                .ToListAsync());
         }
 
         // GET: Comments/Details/5
@@ -41,6 +43,7 @@ namespace TestShop.Controllers
             var comment = await _context.Comment
                 .Include(c => c.Item)
                 .FirstOrDefaultAsync(m => m.Id == id);
+            
             if (comment == null)
             {
                 return NotFound();
@@ -63,6 +66,7 @@ namespace TestShop.Controllers
 
             ViewBag.Items = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
             ViewBag.userName = HttpContext.Session.GetString("FullName");
+            
             return View();
         }
 
@@ -84,13 +88,13 @@ namespace TestShop.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            
             return View(comment);
         }
 
         // GET: Comments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            
             if (id == null)
             {
                 return NotFound();
@@ -99,10 +103,12 @@ namespace TestShop.Controllers
             string type = HttpContext.Session.GetString("Type");
 
             var comment = await _context.Comment.FindAsync(id);
+            
             if (comment == null)
             {
                 return NotFound();
             }
+            
             string userName = HttpContext.Session.GetString("FullName");
 
             if (userName == null)
@@ -153,8 +159,10 @@ namespace TestShop.Controllers
                         throw;
                     }
                 }
+            
                 return RedirectToAction(nameof(Index));
             }
+            
             return View(comment);
         }
 
@@ -174,6 +182,7 @@ namespace TestShop.Controllers
             {
                 return NotFound();
             }
+            
             string userName = HttpContext.Session.GetString("FullName");
 
             if(userName == null)
@@ -195,6 +204,7 @@ namespace TestShop.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var comment = await _context.Comment.FindAsync(id);
+            
             _context.Comment.Remove(comment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

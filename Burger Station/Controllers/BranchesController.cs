@@ -51,7 +51,6 @@ namespace TestShop.Controllers
         public async Task<IActionResult> Create()
         {
             string type = HttpContext.Session.GetString("Type");
-
             if (type != "Admin")
             {
                 return RedirectToAction("Index", "Branches");
@@ -81,6 +80,7 @@ namespace TestShop.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(branch);
         }
 
@@ -100,6 +100,7 @@ namespace TestShop.Controllers
             }
 
             var branch = await _context.Branch.FindAsync(id);
+
             if (branch == null)
             {
                 return NotFound();
@@ -182,6 +183,7 @@ namespace TestShop.Controllers
 
             var branch = await _context.Branch
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (branch == null)
             {
                 return NotFound();
@@ -196,6 +198,7 @@ namespace TestShop.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var branch = await _context.Branch.FindAsync(id);
+
             _context.Branch.Remove(branch);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

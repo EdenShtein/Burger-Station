@@ -35,18 +35,13 @@ namespace TestShop.Controllers
             if (user == "Member")
             {
                 int userId = (int)HttpContext.Session.GetInt32("Id");
+                
                 return RedirectToAction("Details", "Users", new { @id = userId });
             }
 
-            //if (user == "Admin")
-            //{
-            //    int userId = (int)HttpContext.Session.GetInt32("Id");
-            //    return RedirectToAction("DetailsAdmin", "Users", new { @id = userId });
-            //}
-
-
             return View(await _context.User
-                .Include(c=>c.FavoriteItem).ToListAsync());
+                .Include(c=>c.FavoriteItem)
+                .ToListAsync());
         }
 
 
@@ -70,14 +65,10 @@ namespace TestShop.Controllers
                 return NotFound();
             }
 
-            
-
             if (user.FavoriteItem == null)
             {
                 user.FavoriteItem = _context.Item.First();
             }
-
-            //ViewBag.FavoriteItem = user.FavoriteItem.Name;
 
             if (type == "Member")
             {
@@ -85,7 +76,6 @@ namespace TestShop.Controllers
             }
 
             return RedirectToAction("DetailsAdmin", "Users", new { @id = userId });
-
         }
 
 
@@ -121,7 +111,6 @@ namespace TestShop.Controllers
 
             ViewBag.FavoriteItem = user.FavoriteItem.Name;
 
-           
             return View(user);
         }
 
@@ -171,6 +160,7 @@ namespace TestShop.Controllers
             }
 
             ViewBag.Items = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
+         
             return View();
         }
 
@@ -189,6 +179,7 @@ namespace TestShop.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            
             return View(user);
         }
 
@@ -208,6 +199,7 @@ namespace TestShop.Controllers
             if (userId == id || type == "Admin")
             {
                 var user = await _context.User.FindAsync(id);
+            
                 if (user == null)
                 {
                     return NotFound();
@@ -216,12 +208,9 @@ namespace TestShop.Controllers
                 ViewBag.Items = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
 
                 return View(user);
-
             }
 
             return RedirectToAction("Index" , "Home");
-
-
         }
 
         // POST: Users/Edit/5
@@ -231,7 +220,6 @@ namespace TestShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Type,FirstName,LastName,Email,Password,Birthday")] User user, int itemId)
         {
-
             if (id != user.Id)
             {
                 return NotFound();
@@ -241,7 +229,9 @@ namespace TestShop.Controllers
             {
                 try
                 {
-                    user.FavoriteItem = await _context.Item.FirstOrDefaultAsync(i => (i.Id == itemId));
+                    user.FavoriteItem = await _context.Item
+                        .FirstOrDefaultAsync(i => (i.Id == itemId));
+            
                     _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
@@ -256,8 +246,10 @@ namespace TestShop.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(user);
         }
 
@@ -278,6 +270,7 @@ namespace TestShop.Controllers
 
             var user = await _context.User
                 .FirstOrDefaultAsync(m => m.Id == id);
+            
             if (user == null)
             {
                 return NotFound();
@@ -292,6 +285,7 @@ namespace TestShop.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var user = await _context.User.FindAsync(id);
+            
             _context.User.Remove(user);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -317,17 +311,26 @@ namespace TestShop.Controllers
                 return View("Signup", "Users");
             }
             
-            if (firstName.Length > 50 || firstName.Length < 2) { return RedirectToAction("Signup", "Users"); }
+            if (firstName.Length > 50 || firstName.Length < 2) 
+            { 
+                return RedirectToAction("Signup", "Users"); 
+            }
 
             Regex regex = new Regex(@"^[a-z]+$");
             Match match = regex.Match(firstName.ToLower());
 
-            if (!match.Success) { return RedirectToAction("Signup", "Users"); }
+            if (!match.Success) 
+            { 
+                return RedirectToAction("Signup", "Users"); 
+            }
 
             match = regex.Match(lastName.ToLower());
             if (!match.Success) { return RedirectToAction("Signup", "Users"); }
 
-            if (new System.Net.Mail.MailAddress(email).Address != email) { return RedirectToAction("Signup", "Users"); }
+            if (new System.Net.Mail.MailAddress(email).Address != email) 
+            {
+                return RedirectToAction("Signup", "Users"); 
+            }
 
             User user = new User()
             {
@@ -378,6 +381,7 @@ namespace TestShop.Controllers
                 SignIn(user);
                 return RedirectToAction("Index", "Home");
             }
+
             return View("Login", "Users");
         }
 

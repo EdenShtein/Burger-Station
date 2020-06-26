@@ -22,6 +22,7 @@ namespace TestShop.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.userType = HttpContext.Session.GetString("Type");
+
             return View(await _context.Item.ToListAsync());
 
         }
@@ -96,10 +97,12 @@ namespace TestShop.Controllers
             }
 
             var item = await _context.Item.FindAsync(id);
+            
             if (item == null)
             {
                 return NotFound();
             }
+            
             return View(item);
         }
 
@@ -133,8 +136,10 @@ namespace TestShop.Controllers
                         throw;
                     }
                 }
+            
                 return RedirectToAction(nameof(Index));
             }
+            
             return View(item);
         }
 
@@ -155,6 +160,7 @@ namespace TestShop.Controllers
 
             var item = await _context.Item
                 .FirstOrDefaultAsync(m => m.Id == id);
+           
             if (item == null)
             {
                 return NotFound();
@@ -169,6 +175,7 @@ namespace TestShop.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var item = await _context.Item.FindAsync(id);
+            
             _context.Item.Remove(item);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -185,7 +192,6 @@ namespace TestShop.Controllers
                                where item.Name.Contains(name) || item.Price <= price
                                orderby item.Name
                                select item;
-
 
             return View("Index", await itemsResults.ToListAsync());
         }
