@@ -17,6 +17,7 @@ namespace Burger_Station.Models
 
         public ItemType Type { get; set; }
 
+        [DisplayName("Item Name")]
         [RegularExpression(@"^[a-zA-Z][a-zA-Z ]+")]
         public String Name { get; set; }
 

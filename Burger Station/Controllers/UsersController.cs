@@ -25,11 +25,18 @@ namespace TestShop.Controllers
         public async Task<IActionResult> Index()
         {
             string user = HttpContext.Session.GetString("Type");
+            
             if (user == null)
             {
                 return RedirectToAction("Login", "Users");
             }
 
+            if (user == "Member")
+            {
+                int userId = (int)HttpContext.Session.GetInt32("Id");
+                return RedirectToAction("Details", "Users", new { @id = userId });
+            }
+            
             return View(await _context.User
                 .Include(c=>c.FavoriteItem).ToListAsync());
         }

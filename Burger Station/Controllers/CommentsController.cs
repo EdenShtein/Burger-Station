@@ -104,7 +104,12 @@ namespace TestShop.Controllers
             }
             string userName = HttpContext.Session.GetString("FullName");
 
-            if (userName.Equals(comment.PostedBy) || type == "Admin")
+            if (userName == null)
+            {
+                return RedirectToAction("Index", "Comments");
+            }
+
+            else if (userName.Equals(comment.PostedBy) || type == "Admin")
             {
 
                 ViewBag.Items = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
@@ -170,7 +175,12 @@ namespace TestShop.Controllers
             }
             string userName = HttpContext.Session.GetString("FullName");
 
-            if (userName.Equals(comment.PostedBy) || type == "Admin")
+            if(userName == null)
+            {
+                return RedirectToAction("Index", "Comments");
+            }
+            
+            else if (userName.Equals(comment.PostedBy) || type == "Admin")
             {
                 return View(comment);
             }
