@@ -57,7 +57,7 @@ namespace TestShop.Controllers
 
             if (type == null)
             {
-                return RedirectToAction("index", "home");
+                return RedirectToAction("index", "Comments");
             }
 
             ViewBag.Items = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
@@ -112,7 +112,7 @@ namespace TestShop.Controllers
                 return View(comment);
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Comments");
         }
 
         // POST: Comments/Edit/5
@@ -175,7 +175,7 @@ namespace TestShop.Controllers
                 return View(comment);
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Comments");
         }
 
         // POST: Comments/Delete/5

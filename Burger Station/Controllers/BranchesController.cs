@@ -53,7 +53,7 @@ namespace TestShop.Controllers
 
             if (type != "Admin")
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Branches");
             }
 
             ViewBag.ItemsId = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
@@ -89,6 +89,13 @@ namespace TestShop.Controllers
             if (id == null)
             {
                 return NotFound();
+            }
+            
+            string type = HttpContext.Session.GetString("Type");
+
+            if (type != "Admin")
+            {
+                return RedirectToAction("Index", "Branches");
             }
 
             var branch = await _context.Branch.FindAsync(id);
@@ -169,7 +176,7 @@ namespace TestShop.Controllers
 
             if (type != "Admin")
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Branches");
             }
 
             var branch = await _context.Branch

@@ -56,7 +56,7 @@ namespace TestShop.Controllers
 
             if (type != "Admin")
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Items");
             }
 
             return View();
@@ -90,7 +90,7 @@ namespace TestShop.Controllers
 
             if (type != "Admin")
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Items");
             }
 
             var item = await _context.Item.FindAsync(id);
@@ -148,7 +148,7 @@ namespace TestShop.Controllers
 
             if (type != "Admin")
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Items");
             }
 
             var item = await _context.Item
