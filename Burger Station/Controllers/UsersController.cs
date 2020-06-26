@@ -159,7 +159,7 @@ namespace TestShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            ViewBag.Items = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
+            ViewBag.Items = new SelectList(await _context.Item.Where(i => i.Type == ItemType.Food).ToListAsync(), "Id", "Name");
          
             return View();
         }

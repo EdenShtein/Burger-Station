@@ -22,7 +22,7 @@ namespace TestShop.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.userType = HttpContext.Session.GetString("Type");
-
+            
             return View(await _context.Item.ToListAsync());
 
         }
@@ -48,6 +48,8 @@ namespace TestShop.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.ItemName = item.Name;
 
             return View(item);
         }
@@ -186,10 +188,10 @@ namespace TestShop.Controllers
             return _context.Item.Any(e => e.Id == id);
         }
 
-        public async Task<IActionResult> Search(String name, double price)
+        public async Task<IActionResult> Search(String name, double price, ItemType itemType)
         {
             var itemsResults = from item in _context.Item
-                               where item.Name.Contains(name) || item.Price <= price
+                               where item.Name.Contains(name) || item.Price <= price || item.Type == itemType
                                orderby item.Name
                                select item;
 
