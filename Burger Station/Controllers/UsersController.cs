@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace TestShop.Controllers
 {
@@ -36,13 +37,60 @@ namespace TestShop.Controllers
                 int userId = (int)HttpContext.Session.GetInt32("Id");
                 return RedirectToAction("Details", "Users", new { @id = userId });
             }
-            
+
+            //if (user == "Admin")
+            //{
+            //    int userId = (int)HttpContext.Session.GetInt32("Id");
+            //    return RedirectToAction("DetailsAdmin", "Users", new { @id = userId });
+            //}
+
+
             return View(await _context.User
                 .Include(c=>c.FavoriteItem).ToListAsync());
         }
 
-        // GET: Users/Details/5
-        public async Task<IActionResult> Details(int? id)
+
+        // GET: Users/Details/
+        public async Task<IActionResult> Details()
+        {
+            string type = HttpContext.Session.GetString("Type");
+
+            if(type == null)
+            {
+                return RedirectToAction("Login", "Users");
+            }
+
+            int userId = (int)HttpContext.Session.GetInt32("Id");
+            var user = await _context.User
+               .Include(u => u.FavoriteItem)
+               .FirstOrDefaultAsync(i=> i.Id == userId);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            
+
+            if (user.FavoriteItem == null)
+            {
+                user.FavoriteItem = _context.Item.First();
+            }
+
+            //ViewBag.FavoriteItem = user.FavoriteItem.Name;
+
+            if (type == "Member")
+            {
+                return RedirectToAction("DetailsMember", "Users", new { @id = userId });
+            }
+
+            return RedirectToAction("DetailsAdmin", "Users", new { @id = userId });
+
+        }
+
+
+        // GET: Users/DetailsMember/5
+        public async Task<IActionResult> DetailsMember(int? id)
         {
             if (id == null)
             {
@@ -52,29 +100,64 @@ namespace TestShop.Controllers
             string type = HttpContext.Session.GetString("Type");
             int userId = (int)HttpContext.Session.GetInt32("Id");
 
-            if (userId == id || type == "Admin")
+            if(userId != id)
             {
-                var user = await _context.User
-                .Include(u => u.FavoriteItem)
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-                if (user == null)
-                {
-                    return NotFound();
-                }
-
-                if (user.FavoriteItem == null)
-                {
-                    user.FavoriteItem = _context.Item.First();
-                }
-
-                ViewBag.FavoriteItem = user.FavoriteItem.Name;
-
-                return View(user);
-
+                return RedirectToAction("DetailsMember", "Users", new { @id = userId });
             }
 
-            return RedirectToAction("Index", "Home");
+            var user = await _context.User
+               .Include(u => u.FavoriteItem)
+               .FirstOrDefaultAsync(m => m.Id == id);
+            
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            if (user.FavoriteItem == null)
+            {
+                user.FavoriteItem = _context.Item.First();
+            }
+
+            ViewBag.FavoriteItem = user.FavoriteItem.Name;
+
+           
+            return View(user);
+        }
+
+
+        public async Task<IActionResult> DetailsAdmin(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            string type = HttpContext.Session.GetString("Type");
+            int userId = (int)HttpContext.Session.GetInt32("Id");
+
+            if(type == "Member")
+            {
+                return RedirectToAction("DetailsMember", "Users", new { @id = userId });
+            }
+
+            var user = await _context.User
+               .Include(u => u.FavoriteItem)
+               .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            if (user.FavoriteItem == null)
+            {
+                user.FavoriteItem = _context.Item.First();
+            }
+
+            ViewBag.FavoriteItem = user.FavoriteItem.Name;
+
+            return View(user);
         }
 
         // GET: Users/Create
@@ -119,6 +202,8 @@ namespace TestShop.Controllers
 
             string type = HttpContext.Session.GetString("Type");
             int userId = (int)HttpContext.Session.GetInt32("Id");
+
+            ViewBag.userType = type;
 
             if (userId == id || type == "Admin")
             {
@@ -227,6 +312,11 @@ namespace TestShop.Controllers
         [HttpPost]
         public async Task<IActionResult> Signup(string firstName, string lastName, string email, string password, DateTime birthday)
         {
+            if(firstName == null || lastName == null|| email == null|| password == null|| birthday == null)
+            {
+                return View("Signup", "Users");
+            }
+            
             if (firstName.Length > 50 || firstName.Length < 2) { return RedirectToAction("Signup", "Users"); }
 
             Regex regex = new Regex(@"^[a-z]+$");
@@ -288,7 +378,19 @@ namespace TestShop.Controllers
                 SignIn(user);
                 return RedirectToAction("Index", "Home");
             }
-            return View("Index", "Users");
+            return View("Login", "Users");
+        }
+
+        public IActionResult Logout()
+        {
+            string user = HttpContext.Session.GetString("Type");
+
+            if (user != null)
+            {
+                HttpContext.Session.Clear();
+            }
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

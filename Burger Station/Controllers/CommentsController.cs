@@ -24,7 +24,8 @@ namespace TestShop.Controllers
         // GET: Comments
         public async Task<IActionResult> Index()
         {
-
+            ViewBag.FullName = HttpContext.Session.GetString("FullName");
+            ViewBag.userType = HttpContext.Session.GetString("Type");
             return View(await _context.Comment.
                 Include(c=> c.Item).ToListAsync());
         }

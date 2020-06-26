@@ -21,7 +21,9 @@ namespace TestShop.Controllers
         // GET: Items
         public async Task<IActionResult> Index()
         {
+            ViewBag.userType = HttpContext.Session.GetString("Type");
             return View(await _context.Item.ToListAsync());
+
         }
 
         // GET: Items/Details/5

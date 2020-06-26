@@ -22,6 +22,7 @@ namespace TestShop.Controllers
         // GET: Branches
         public async Task<IActionResult> Index()
         {
+            ViewBag.userType = HttpContext.Session.GetString("Type");
             return View(await _context.Branch.ToListAsync());
         }
 

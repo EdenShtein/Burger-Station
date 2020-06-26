@@ -7,7 +7,10 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @if (ViewBag.userType == "Admin")
+    {
+        <a asp-action="Create">Create New</a>
+    }
 </p>
 <table class="table">
     <thead>
@@ -38,9 +41,12 @@
                     @Html.DisplayFor(modelItem => item.District)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @if (ViewBag.userType == "Admin")
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
+                    }
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
                 </td>
             </tr>
         }
