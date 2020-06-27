@@ -11,4 +11,12 @@ INSERT INTO [dbo].[User] ([Id], [Type], [FirstName], [LastName], [Email], [Passw
 INSERT INTO [dbo].[User] ([Id], [Type], [FirstName], [LastName], [Email], [Password], [Birthday], [FavoriteItemId]) VALUES (10, 0, N'Gal', N'Gadot', N'ggal@gmail.com', N'ggll55', N'1985-04-03 00:00:00', 1)
 INSERT INTO [dbo].[User] ([Id], [Type], [FirstName], [LastName], [Email], [Password], [Birthday], [FavoriteItemId]) VALUES (11, 0, N'Steven', N'Gerrard', N'stevenG@gmail.com', N'888sg', N'1980-05-30 00:00:00', 4)
 INSERT INTO [dbo].[User] ([Id], [Type], [FirstName], [LastName], [Email], [Password], [Birthday], [FavoriteItemId]) VALUES (12, 0, N'Audra', N'Miller', N'adr1@gmail.com', N'1amam1', N'1998-06-12 00:00:00', 5)
+INSERT INTO [dbo].[User] ([Id], [Type], [FirstName], [LastName], [Email], [Password], [Birthday], [FavoriteItemId]) VALUES (13, 0, N'Donald', N'Trump', N'dnlT@gmail.com', N'11111111', N'2046-06-14 00:00:00', 2)
+INSERT INTO [dbo].[User] ([Id], [Type], [FirstName], [LastName], [Email], [Password], [Birthday], [FavoriteItemId]) VALUES (14, 0, N'Nicolas', N'Cage', N'nicoC@gmail.com', N'65789', N'1964-01-07 00:00:00', 16)
+INSERT INTO [dbo].[User] ([Id], [Type], [FirstName], [LastName], [Email], [Password], [Birthday], [FavoriteItemId]) VALUES (15, 0, N'Ben', N'Affleck', N'nenFleck@gmail.com', N'159753', N'1972-08-15 00:00:00', 14)
+INSERT INTO [dbo].[User] ([Id], [Type], [FirstName], [LastName], [Email], [Password], [Birthday], [FavoriteItemId]) VALUES (16, 0, N'Bruce ', N'Wayne', N'batman@gmail.com', N'nanana', N'2015-04-17 00:00:00', 16)
+INSERT INTO [dbo].[User] ([Id], [Type], [FirstName], [LastName], [Email], [Password], [Birthday], [FavoriteItemId]) VALUES (17, 0, N'Barry', N'Allen', N'theflash@gmail.com', N'vroom', N'1989-03-14 00:00:00', 17)
+INSERT INTO [dbo].[User] ([Id], [Type], [FirstName], [LastName], [Email], [Password], [Birthday], [FavoriteItemId]) VALUES (18, 0, N'Terry', N'Crews', N'plc99@gmail.com', N'99!99', N'1968-07-30 00:00:00', 18)
+INSERT INTO [dbo].[User] ([Id], [Type], [FirstName], [LastName], [Email], [Password], [Birthday], [FavoriteItemId]) VALUES (19, 0, N'Andre', N'Braugher', N'gy69@gmail.com', N'gybl5', N'1962-07-01 00:00:00', 5)
+INSERT INTO [dbo].[User] ([Id], [Type], [FirstName], [LastName], [Email], [Password], [Birthday], [FavoriteItemId]) VALUES (20, 0, N'Paul', N'McCartney', N'thebeatles@gmail.com', N'help!', N'2042-06-18 00:00:00', 4)
 SET IDENTITY_INSERT [dbo].[User] OFF
