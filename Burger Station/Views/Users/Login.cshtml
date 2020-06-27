@@ -18,13 +18,50 @@
     <link rel="stylesheet" type="text/css" href="~/css/login.css">
 </head>
 <body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/he_IL/sdk.js#xfbml=1&version=v7.0&appId=306609874076362&autoLogAppEvents=1" nonce="OgsbEYzQ"></script>
     <div class="container">
         <div class="d-flex justify-content-center h-100">
             <div class="card">
                 <div class="card-header">
                     <h3>Sign In</h3>
                     <div class="d-flex justify-content-end social_icon">
-                        @*<a href="~/Home/Index"><span><i class="fab fa-facebook-square"></i></span></a>*@
+                        @*<span><i class="fab fa-facebook-square"></i></span>*@
+                        @*<fb:login-button scope="public_profile,email"
+                                             onlogin="checkLoginState();">
+
+                        </fb:login-button>*@
+                        <script>
+                            window.fbAsyncInit = function () {
+                                FB.init({
+                                    appId: '{306609874076362}',
+                                    cookie: true,
+                                    xfbml: true,
+                                    version: '{7.0}'
+                                });
+                                FB.login(function (response) {
+                                    console.log(response);
+                                }, { scope: 'email' });
+                                FB.AppEvents.logPageView();
+                            };
+
+                            (function (d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0];
+                                if (d.getElementById(id)) { return; }
+                                js = d.createElement(s); js.id = id;
+                                js.src = "https://connect.facebook.net/en_US/sdk.js";
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }(document, 'script', 'facebook-jssdk'));
+
+                            function checkLoginState() {
+                                FB.getLoginStatus(function (response) {
+                                    statusChangeCallback(response);
+                                });
+                            }
+                            
+
+                        </script>
+
                         <!--<span><i class="fab fa-google-plus-square"></i></span>
                         <span><i class="fab fa-twitter-square"></i></span> -->
 
@@ -45,6 +82,7 @@
                             </div>
                             <input type="password" class="form-control" placeholder="Password" name="password">
                         </div>
+                        <div class="fb-login-button" data-size="medium" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="true" data-width=""></div>
                         <div class="form-group">
                             <input type="submit" value="Login" class="btn float-right login_btn">
                         </div>
