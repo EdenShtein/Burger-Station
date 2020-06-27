@@ -129,21 +129,23 @@ namespace TestShop.Controllers
                     // NOT WORKING TODO
                     //branch.BranchItems = await _context.BranchItem.Where(bi => (bi.BranchId == branch.Id)).ToListAsync();
 
-                    branch.BranchItems = await _context.BranchItem
-                        .Where(bi => (bi.BranchId == branch.Id))
-                        .Include(bi => bi.Item)
-                        .ToListAsync();
+                    //branch.BranchItems = await _context.BranchItem
+                    //    .Where(bi => (bi.BranchId == branch.Id))
+                    //    .Include(bi => bi.ItemId)
+                    //    .ToListAsync();
+
+                    branch.BranchItems = new List<BranchItem>();
 
                     foreach (var i in ItemId)
                     {
-                        if (branch.BranchItems.Any(bi => (bi.ItemId == i)))
-                        {
-                            continue;
-                        }
+                        //if (branch.BranchItems.Any(bi => (bi.ItemId == i)))
+                        //{
+                        //    continue;
+                        //}
 
                         var item = await _context.Item.Where(item => item.Id == i).FirstOrDefaultAsync();
 
-                        branch.BranchItems.Add(new BranchItem() { BranchId = branch.Id, ItemId = i, Item = item });
+                        branch.BranchItems.Add(new BranchItem() { BranchId = branch.Id, ItemId = id });
                     }
                     // NOT WORKING TODO
 

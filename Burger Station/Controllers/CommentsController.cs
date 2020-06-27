@@ -119,7 +119,8 @@ namespace TestShop.Controllers
             else if (userName.Equals(comment.PostedBy) || type == "Admin")
             {
 
-                ViewBag.Items = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
+                ViewBag.Items = new SelectList(await _context.Item
+                    .ToListAsync(), "Id", "Name");
 
                 return View(comment);
             }

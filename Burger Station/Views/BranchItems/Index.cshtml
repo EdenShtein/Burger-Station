@@ -24,19 +24,25 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+              <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Branch.Id)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Branch.Address)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item.Name)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                 </td>
-            </tr>
+               </tr>
         }
     </tbody>
 </table>
