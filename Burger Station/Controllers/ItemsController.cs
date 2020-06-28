@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace TestShop.Controllers
+namespace Burger_Station.Controllers
 {
     public class ItemsController : Controller
     {

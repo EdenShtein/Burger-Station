@@ -3,7 +3,7 @@ using Burger_Station.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace TestShop.Controllers
+namespace Burger_Station.Controllers
 {
     public class HomeController : Controller
     {

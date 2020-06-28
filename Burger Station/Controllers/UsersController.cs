@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 
-namespace TestShop.Controllers
+namespace Burger_Station.Controllers
 {
     public class UsersController : Controller
     {

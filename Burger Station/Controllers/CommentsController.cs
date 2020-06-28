@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace TestShop.Controllers
+namespace Burger_Station.Controllers
 {
     public class CommentsController : Controller
     {
