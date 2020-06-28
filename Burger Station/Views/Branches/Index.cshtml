@@ -23,8 +23,7 @@
             <a asp-action="Create">Create New</a>
         }
     </p>
-    @foreach (var group in Model.GroupBy(item => item.District))
-    {
+   
     <table class="table">
         <thead>
             <tr>
@@ -41,29 +40,32 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in group)
+            @foreach (var group in Model.GroupBy(item => item.District))
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.City)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.District)
-                    </td>
-                    <td>
-                        @if (ViewBag.userType == "Admin")
-                        {
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
-                        }
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    </td>
-                </tr>
+                @foreach (var item in group)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.City)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.District)
+                        </td>
+                        <td>
+                            @if (ViewBag.userType == "Admin")
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
+                            }
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </td>
+                    </tr>
+                }
             }
-        </tbody>
+            </tbody>
     </table>
     }
 </body>
