@@ -90,7 +90,7 @@ namespace TestShop.Controllers
             string type = HttpContext.Session.GetString("Type");
             int userId = (int)HttpContext.Session.GetInt32("Id");
 
-            if(userId != id)
+            if(userId != id && type != "Admin")
             {
                 return RedirectToAction("DetailsMember", "Users", new { @id = userId });
             }
