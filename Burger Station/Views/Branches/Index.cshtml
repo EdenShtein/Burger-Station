@@ -3,52 +3,68 @@
 @{
     ViewData["Title"] = "Index";
 }
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 
-<h1>Index</h1>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento" rel="stylesheet">
 
-<p>
-    @if (ViewBag.userType == "Admin")
-    {
-        <a asp-action="Create">Create New</a>
-    }
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.District)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
+</head>
+<body>
+    <section id="title">
+        <div class="container-fluid">
+            <h1>Branches</h1>
+        </div>
+    </section>
+
+    <p>
+        @if (ViewBag.userType == "Admin")
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.City)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.District)
-                </td>
-                <td>
-                    @if (ViewBag.userType == "Admin")
-                    {
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
-                    }
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                </td>
-            </tr>
+            <a asp-action="Create">Create New</a>
         }
-    </tbody>
-</table>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.District)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.District)
+                    </td>
+                    <td>
+                        @if (ViewBag.userType == "Admin")
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
+                        }
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
+@section Styles {
+    <link rel="stylesheet" href="~/css/branch.css" />
+}
