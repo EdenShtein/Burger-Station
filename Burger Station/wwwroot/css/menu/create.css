@@ -2,18 +2,31 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html, body {
-    background-image: url('http://getwallpapers.com/wallpaper/full/5/e/a/755323-download-free-hamburger-wallpapers-2508x1672-for-iphone-7.jpg');
+    background-image: url('https://sifu.unileversolutions.com/image/he-IL/recipe-topvisual/2/1260-709/%D7%94%D7%9E%D7%91%D7%95%D7%A8%D7%92%D7%A8-%D7%94-4-%D7%91%D7%99%D7%95%D7%9C%D7%99-50280788.jpg');
     background-color: #cccccc;
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
     font-family: 'Numans', sans-serif;
 }
-.fab{
-    margin-top:30px;
+
+
+h1 {
+    color: #FFF;
+    font-size: 8rem;
+    /*16px=100%=1em*/
+    margin: 50px auto 0 auto;
+    font-family: 'Sacramento', cursive;
+    text-align: center;
+    font-weight: 900;
 }
+
+.fab {
+    margin-top: 30px;
+}
+
 .container {
-    margin-top:30px;
+    margin-top: 30px;
     height: 100%;
     align-content: center;
 }
@@ -70,13 +83,13 @@ input:focus {
         margin-right: 5px;
     }
 
-.login_btn {
+.create_btn {
     color: black;
     background-color: #FFC312;
     width: 100px;
 }
 
-    .login_btn:hover {
+    .create_btn:hover {
         color: black;
         background-color: white;
     }
