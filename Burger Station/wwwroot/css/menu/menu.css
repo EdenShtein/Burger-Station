@@ -18,11 +18,8 @@ h1 {
 }
 
 h2 {
-    font-family: "Montserrat";
-    font-size: 2rem;
-    font-weight: 300;
-    line-height: 1.5;
-    
+    font-family: cursive;
+    font-size: 22px;
 }
 .searchbox{
     text-align:center;
@@ -49,3 +46,14 @@ img{
     border-style:none;
 }
 
+.ser-icon figure img {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+.ser-icon figure:hover img {
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+}
