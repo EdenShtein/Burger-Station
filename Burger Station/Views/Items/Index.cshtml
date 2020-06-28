@@ -27,7 +27,7 @@
 
             <div class="searchbox">
                 <form asp-action="Search">
-                    <input name="name" placeholder="Enter Name" />
+                    <input name="name" placeholder="Enter Name" autocomplete="off" />
                     <input name="price" placeholder="Enter Maximum Price" autocomplete="off" />
                     @*<input name="itemType" placeholder="Enter type of item" autocomplete="off" />*@
                     <select name="itemType" size="2">
@@ -44,25 +44,58 @@
                 @foreach (var item in Model)
                 {
 
-                    <div class="col-md-3">
-                        <div class="services-inner-box">
-                            <a asp-action="Details" asp-route-id="@item.Id">
-                                <div class="ser-icon">
-                                    <figure>
-                                        <img src="\images\burgers\@(item.Name).png" alt="item-img" class="img-fluid" />
-                                    </figure>
-                                </div>
-                            </a>
+                    if (item.Type == ItemType.Food)
+                    {
+                        <div class="col-md-3">
+                            <div class="services-inner-box">
+                                <a asp-action="Details" asp-route-id="@item.Id">
+                                    <div class="ser-icon">
+                                        <figure>
+                                            <img src="\images\burgers\@(item.Name).png" alt="item-img" class="img-fluid" />
+                                        </figure>
+                                    </div>
+                                </a>
 
-                            <h2> @Html.DisplayFor(modelItem => item.Name)</h2>
-                            <h2> @Html.DisplayFor(modelItem => item.Price)</h2>
-                            @if (ViewBag.userType == "Admin")
-                            {
-                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
-                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
-                            }
+                                <h2> @Html.DisplayFor(modelItem => item.Name)</h2>
+                                <h2> @Html.DisplayFor(modelItem => item.Price)</h2>
+                                @if (ViewBag.userType == "Admin")
+                                {
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
+                                }
+                            </div>
                         </div>
-                    </div>
+                    }
+
+                }
+            </div>
+
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    if (item.Type == ItemType.Drink)
+                    {
+
+                        <div class="col-md-3">
+                            <div class="services-inner-box">
+                                <a asp-action="Details" asp-route-id="@item.Id">
+                                    <div class="ser-icon">
+                                        <figure>
+                                            <img src="\images\burgers\@(item.Name).png" alt="item-img" class="img-fluid" />
+                                        </figure>
+                                    </div>
+                                </a>
+
+                                <h2> @Html.DisplayFor(modelItem => item.Name)</h2>
+                                <h2> @Html.DisplayFor(modelItem => item.Price)</h2>
+                                @if (ViewBag.userType == "Admin")
+                                {
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
+                                }
+                            </div>
+                        </div>
+                    }
 
                 }
             </div>

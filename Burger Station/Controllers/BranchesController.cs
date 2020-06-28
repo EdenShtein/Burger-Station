@@ -126,28 +126,29 @@ namespace Burger_Station.Controllers
             {
                 try
                 {
-                    // NOT WORKING TODO
-                    //branch.BranchItems = await _context.BranchItem.Where(bi => (bi.BranchId == branch.Id)).ToListAsync();
-
-                    //branch.BranchItems = await _context.BranchItem
-                    //    .Where(bi => (bi.BranchId == branch.Id))
-                    //    .Include(bi => bi.ItemId)
-                    //    .ToListAsync();
-
                     branch.BranchItems = new List<BranchItem>();
+
+                    branch.BranchItems = await _context.BranchItem
+                        .Where(bi => bi.BranchId == branch.Id)
+                        .Include(bi => bi.Item)
+                        .ToListAsync();
 
                     foreach (var i in ItemId)
                     {
-                        //if (branch.BranchItems.Any(bi => (bi.ItemId == i)))
-                        //{
-                        //    continue;
-                        //}
+                        if (branch.BranchItems.FirstOrDefault(bi => bi.ItemId == i) != null)
+                        {
+                            continue;
+                        }
 
-                        var item = await _context.Item.Where(item => item.Id == i).FirstOrDefaultAsync();
+                        var branchItem =  new BranchItem() { BranchId = branch.Id, ItemId = i };
+                        branch.BranchItems.Add(branchItem);
 
-                        branch.BranchItems.Add(new BranchItem() { BranchId = branch.Id, ItemId = id });
+                        var item = await _context.Item.Include(x => x.BranchItems).FirstOrDefaultAsync(x => x.Id == i);
+                        item.BranchItems.Add(branchItem);
+
+                        _context.Update(item);
+                        _context.Add(branchItem);
                     }
-                    // NOT WORKING TODO
 
                     _context.Update(branch);
                     await _context.SaveChangesAsync();

@@ -77,15 +77,20 @@ namespace Burger_Station.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,PostTitle,PostBody,PostDate,PostedBy")] Comment comment, int ItemId)
+        public async Task<IActionResult> Create([Bind("Id,PostTitle,PostBody,PostDate,PostedBy")] Comment comment, int itemId)
         {
             if (ModelState.IsValid)
             {
                 comment.PostDate = DateTime.Now;
-                comment.Item = await _context.Item.FirstOrDefaultAsync(i => (i.Id == ItemId));
+                comment.Item = await _context.Item.FirstOrDefaultAsync(i => (i.Id == itemId));
                 comment.PostedBy = HttpContext.Session.GetString("FullName");
-                
 
+                var item = await _context.Item
+                    .Include(x => x.Comments)
+                    .FirstOrDefaultAsync(x => x.Id == itemId);
+                item.Comments.Add(comment);
+
+                _context.Update(item);
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

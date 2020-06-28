@@ -171,12 +171,19 @@ namespace Burger_Station.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Type,FirstName,LastName,Email,Password,Birthday")] User user, int ItemId)
+        public async Task<IActionResult> Create([Bind("Id,Type,FirstName,LastName,Email,Password,Birthday")] User user, int itemId)
         {
             if (ModelState.IsValid)
             {
-                user.FavoriteItem = await _context.Item.FirstOrDefaultAsync(i => (i.Id == ItemId));
+                user.FavoriteItem = await _context.Item.FirstOrDefaultAsync(i => (i.Id == itemId));
 
+                var item = await _context.Item
+                    .Include(x => x.SatisfiedUsers)
+                    .FirstOrDefaultAsync(x => x.Id == itemId);
+                
+                item.SatisfiedUsers.Add(user);
+
+                _context.Update(item);
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
