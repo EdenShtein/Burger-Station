@@ -64,7 +64,9 @@ namespace TestShop.Controllers
                 return RedirectToAction("index", "Comments");
             }
 
-            ViewBag.Items = new SelectList(await _context.Item.Where(i => i.Type == ItemType.Food).ToListAsync(), "Id", "Name");
+            ViewBag.Items = new SelectList(await _context.Item
+                .Where(i => i.Type == ItemType.Food)
+                .ToListAsync(), "Id", "Name");
             ViewBag.userName = HttpContext.Session.GetString("FullName");
             
             return View();
@@ -120,6 +122,7 @@ namespace TestShop.Controllers
             {
 
                 ViewBag.Items = new SelectList(await _context.Item
+                    .Where(i => i.Type == ItemType.Food)
                     .ToListAsync(), "Id", "Name");
 
                 return View(comment);
