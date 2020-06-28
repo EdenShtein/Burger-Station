@@ -9,13 +9,43 @@
 
 h1 {
     color: #FFF;
-    font-size: 5.625rem;
+    font-size: 8rem;
     /*16px=100%=1em*/
     margin: 50px auto 0 auto;
     font-family: 'Sacramento', cursive;
     text-align:center;
     font-weight:900;
 }
+
+h2 {
+    font-family: "Montserrat";
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.5;
+    
+}
+.searchbox{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+#menu {
+    background-color: #c9d6df;
+}
 .container-fluid {
     padding: 3% 15% 7%;
 }
+
+.img-fluid {
+    float: none;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+img{
+    vertical-align:middle;
+    border-style:none;
+}
+

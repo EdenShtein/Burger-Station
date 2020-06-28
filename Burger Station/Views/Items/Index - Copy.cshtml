@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Burger_Station.Models.Item>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento" rel="stylesheet">
+
+</head>
+<body>
+    <section id="title">
+        <div class="container-fluid">
+            <h1>Menu</h1>
+        </div>
+    </section>
+
+        <p>
+            @if (ViewBag.userType == "Admin")
+            {
+                <a asp-action="Create">Create New</a>
+            }
+        </p>
+
+        <form asp-action="Search">
+            <input name="name" placeholder="Enter Name" />
+            <input name="price" placeholder="Enter Maximum Price" autocomplete="off" />
+            @*<input name="itemType" placeholder="Enter type of item" autocomplete="off" />*@
+            <select name="itemType" size="2">
+                <option value="Food">Food</option>
+                <option value="Drink">Drink</option>
+            </select>
+            <input type="submit">
+        </form>
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @if (ViewBag.userType == "Admin")
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
+                            }
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</body>
+</html>
+
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/menu.css" />
+}
