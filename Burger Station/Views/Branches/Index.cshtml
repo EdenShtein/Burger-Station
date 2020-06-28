@@ -23,6 +23,8 @@
             <a asp-action="Create">Create New</a>
         }
     </p>
+    @foreach (var group in Model.GroupBy(item => item.District))
+    {
     <table class="table">
         <thead>
             <tr>
@@ -39,7 +41,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in group)
             {
                 <tr>
                     <td>
@@ -63,6 +65,7 @@
             }
         </tbody>
     </table>
+    }
 </body>
 </html>
 @section Styles {
