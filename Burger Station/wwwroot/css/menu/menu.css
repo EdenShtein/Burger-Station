@@ -1,6 +1,6 @@
 ﻿
 #title {
-    background-image: url("~/images/backgrounds/background-menu.jpg");
+    background-image: url("../../images/backgrounds/background-menu.jpg");
     background-color: #cccccc;
     background-size: cover;
     background-repeat: no-repeat;
@@ -54,6 +54,6 @@ img{
 }
 
 .ser-icon figure:hover img {
-    -webkit-transform: scale(1.3);
-    transform: scale(1.3);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }
