@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html, body {
-    background-image: url('https://sifu.unileversolutions.com/image/he-IL/recipe-topvisual/2/1260-709/%D7%94%D7%9E%D7%91%D7%95%D7%A8%D7%92%D7%A8-%D7%94-4-%D7%91%D7%99%D7%95%D7%9C%D7%99-50280788.jpg');
+   background-image: url("~/images/backgrounds/background-create.jpg");
     background-color: #cccccc;
     background-size: cover;
     background-repeat: no-repeat;
@@ -33,7 +33,7 @@ h1 {
 }
 
 .card {
-    height: 500px;
+    height: 400px;
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
@@ -86,8 +86,9 @@ input:focus {
 
 .create_btn {
     color: black;
-    background-color: #FFC312;
+    background-color: #165bb8;
     width: 100px;
+    text-align:center;
 }
 
     .create_btn:hover {
@@ -102,3 +103,14 @@ input:focus {
     .links a {
         margin-left: 4px;
     }
+
+label{
+    color:white;
+}
+.form-group{
+    text-align:center;
+}
+
+.card-body{
+    text-align:center;
+}
