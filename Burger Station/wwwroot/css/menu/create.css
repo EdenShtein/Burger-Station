@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html, body {
-   background-image: url("~/images/backgrounds/background-create.jpg");
+    background-image: url("~/images/backgrounds/background-create.jpg");
     background-color: #cccccc;
     background-size: cover;
     background-repeat: no-repeat;
@@ -72,6 +72,9 @@ input:focus {
     outline: 0 0 0 0 !important;
     box-shadow: 0 0 0 0 !important;
 }
+.btn-c {
+    text-align: center;
+}
 
 .remember {
     color: white;
@@ -88,29 +91,25 @@ input:focus {
     color: black;
     background-color: #165bb8;
     width: 100px;
-    text-align:center;
+    text-align: center;
 }
 
-    .create_btn:hover {
+.create_btn:hover {
         color: black;
         background-color: white;
-    }
+ }
 
 .links {
     color: white;
 }
 
-    .links a {
-        margin-left: 4px;
-    }
+.links a {
+   margin-left: 4px;
 
-label{
-    color:white;
-}
-.form-group{
-    text-align:center;
 }
 
-.card-body{
-    text-align:center;
+label {
+    color: white;
 }
+
+
