@@ -23,7 +23,15 @@ h1 {
     padding: 3% 15% 7%;
 }body {
 }
-  table{
+table {
+    text-align: left;
+    font-size: 24px;
 
-      text-align : left;
-  }
+}
+
+mytable {
+    font-size: 30px;
+}
+head-text{
+    color:  black ;
+}
