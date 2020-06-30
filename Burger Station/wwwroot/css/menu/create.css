@@ -110,6 +110,9 @@ input:focus {
 
 label {
     color: white;
+    
 }
 
-
+.form-control{
+    padding-right:10px;
+}

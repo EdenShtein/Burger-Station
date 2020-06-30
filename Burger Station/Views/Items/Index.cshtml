@@ -85,9 +85,10 @@
                                         </figure>
                                     </div>
                                 </a>
-
-                                <h2> @Html.DisplayFor(modelItem => item.Name)</h2>
-                                <h2> @Html.DisplayFor(modelItem => item.Price)</h2>
+                                <div class="text">
+                                    <h2> @Html.DisplayFor(modelItem => item.Name)</h2>
+                                    <h2> @Html.DisplayFor(modelItem => item.Price)</h2>
+                                </div>
                                 @if (ViewBag.userType == "Admin")
                                 {
                                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
