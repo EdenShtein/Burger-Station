@@ -34,6 +34,8 @@ namespace Burger_Station
                 options.IdleTimeout = TimeSpan.FromMinutes(10);
             });
 
+            services.AddControllersWithViews(x => x.SuppressAsyncSuffixInActionNames = false).AddRazorRuntimeCompilation(); //You need to install nuget packgage 
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
