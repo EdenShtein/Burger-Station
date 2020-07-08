@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Burger_Station.Data;
 using Burger_Station.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -65,10 +64,10 @@ namespace Burger_Station.Controllers
                 return NotFound();
             }
 
-            if (user.FavoriteItem == null)
-            {
-                user.FavoriteItem = _context.Item.First();
-            }
+            //if (user.FavoriteItem == null)
+            //{
+            //    user.FavoriteItem = _context.Item.First();
+            //}
 
             if (type == "Member")
             {
@@ -106,10 +105,12 @@ namespace Burger_Station.Controllers
 
             if (user.FavoriteItem == null)
             {
-                user.FavoriteItem = _context.Item.First();
+                ViewBag.FavoriteItem = " ";
             }
-
-            ViewBag.FavoriteItem = user.FavoriteItem.Name;
+            else
+            {
+                ViewBag.FavoriteItem = user.FavoriteItem.Name;
+            }
 
             return View(user);
         }
@@ -141,10 +142,12 @@ namespace Burger_Station.Controllers
 
             if (user.FavoriteItem == null)
             {
-                user.FavoriteItem = _context.Item.First();
+                ViewBag.FavoriteItem = " ";
             }
-
-            ViewBag.FavoriteItem = user.FavoriteItem.Name;
+            else
+            {
+                ViewBag.FavoriteItem = user.FavoriteItem.Name;
+            }
 
             return View(user);
         }
@@ -183,7 +186,7 @@ namespace Burger_Station.Controllers
                 
                 item.SatisfiedUsers.Add(user);
 
-                _context.Update(item);
+                _context.Item.Update(item);
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -239,9 +242,42 @@ namespace Burger_Station.Controllers
             {
                 try
                 {
-                    user.FavoriteItem = await _context.Item
-                        .FirstOrDefaultAsync(i => (i.Id == itemId));
-            
+                    if(user.FavoriteItem == null)
+                    {
+                        user.FavoriteItem = await _context.Item
+                            .FirstOrDefaultAsync(i => (i.Id == itemId));
+
+                        var item = await _context.Item
+                            .Include(x => x.SatisfiedUsers)
+                            .FirstOrDefaultAsync(i => (i.Id == itemId));
+
+                        item.SatisfiedUsers.Add(user);
+
+                        _context.Item.Update(item);
+                    }
+                    else
+                    {
+                        if (user.FavoriteItem.Id != itemId)
+                        {
+                            var item = await _context.Item
+                                .Include(x => x.SatisfiedUsers)
+                                .FirstOrDefaultAsync(i => (i.Id == user.FavoriteItem.Id));
+
+                            item.SatisfiedUsers.Remove(user);
+
+                            user.FavoriteItem = await _context.Item
+                                .FirstOrDefaultAsync(i => (i.Id == itemId));
+
+                            item = await _context.Item
+                                .Include(x => x.SatisfiedUsers)
+                                .FirstOrDefaultAsync(i => (i.Id == itemId));
+
+                            item.SatisfiedUsers.Add(user);
+
+                            _context.Item.Update(item);
+                        }
+                    }
+
                     _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
@@ -295,7 +331,14 @@ namespace Burger_Station.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var user = await _context.User.FindAsync(id);
-            
+
+            var item = await _context.Item
+                 .Include(x => x.SatisfiedUsers)
+                 .FirstOrDefaultAsync(i => (i.Id == user.FavoriteItem.Id));
+
+            item.SatisfiedUsers.Remove(user);
+
+            _context.Item.Update(item);
             _context.User.Remove(user);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

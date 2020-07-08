@@ -176,8 +176,57 @@ namespace Burger_Station.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var item = await _context.Item.FindAsync(id);
-            
+            var item = await _context.Item
+                    .Include(x => x.SatisfiedUsers)
+                    .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (item.SatisfiedUsers.Count() != 0)
+            {
+                var users = await _context.User
+                .Include(u => u.FavoriteItem)
+                .ToListAsync();
+              
+                foreach (var user in users)
+                {
+                    if(user.FavoriteItem == null)
+                    {
+                        continue;
+                    }
+
+                    if (user.FavoriteItem.Id == id)
+                    {
+                        user.FavoriteItem = null;
+                        _context.User.Update(user);
+
+                    }
+                }
+            }
+
+            item = await _context.Item
+                .Include(x => x.Comments)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            if(item.Comments.Count() !=0)
+            {
+                var comments = await _context.Comment
+                    .Include(x => x.Item)
+                    .ToListAsync();
+                
+                foreach(var comment in comments)
+                {
+                    if (comment.Item == null)
+                    {
+                        continue;
+                    }
+
+                    if(comment.Item.Id == id)
+                    {
+                        _context.Comment.Remove(comment);
+                    }
+
+                }
+            }
+
             _context.Item.Remove(item);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

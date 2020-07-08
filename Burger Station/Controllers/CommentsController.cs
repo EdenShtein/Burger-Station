@@ -67,6 +67,7 @@ namespace Burger_Station.Controllers
             ViewBag.Items = new SelectList(await _context.Item
                 .Where(i => i.Type == ItemType.Food)
                 .ToListAsync(), "Id", "Name");
+
             ViewBag.userName = HttpContext.Session.GetString("FullName");
             
             return View();
@@ -88,9 +89,10 @@ namespace Burger_Station.Controllers
                 var item = await _context.Item
                     .Include(x => x.Comments)
                     .FirstOrDefaultAsync(x => x.Id == itemId);
+
                 item.Comments.Add(comment);
 
-                _context.Update(item);
+                _context.Item.Update(item);
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -153,6 +155,7 @@ namespace Burger_Station.Controllers
                 try
                 {
                     comment.Item = await _context.Item.FirstOrDefaultAsync(i => (i.Id == itemId));
+                    comment.PostedBy = HttpContext.Session.GetString("FullName");
 
                     _context.Update(comment);
                     await _context.SaveChangesAsync();
