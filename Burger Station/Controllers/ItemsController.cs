@@ -30,6 +30,8 @@ namespace Burger_Station.Controllers
         // GET: Items/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            ViewBag.userType = HttpContext.Session.GetString("Type");
+
             if (id == null)
             {
                 return NotFound();
@@ -58,6 +60,7 @@ namespace Burger_Station.Controllers
         public IActionResult Create()
         {
             string type = HttpContext.Session.GetString("Type");
+            ViewBag.userType = HttpContext.Session.GetString("Type");
 
             if (type != "Admin")
             {
@@ -86,6 +89,8 @@ namespace Burger_Station.Controllers
         // GET: Items/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.userType = HttpContext.Session.GetString("Type");
+
             if (id == null)
             {
                 return NotFound();
@@ -115,6 +120,8 @@ namespace Burger_Station.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Name,Price")] Item item)
         {
+            ViewBag.userType = HttpContext.Session.GetString("Type");
+
             if (id != item.Id)
             {
                 return NotFound();
@@ -148,6 +155,8 @@ namespace Burger_Station.Controllers
         // GET: Items/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewBag.userType = HttpContext.Session.GetString("Type");
+
             if (id == null)
             {
                 return NotFound();

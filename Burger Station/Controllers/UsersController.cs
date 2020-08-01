@@ -16,8 +16,8 @@ namespace Burger_Station.Controllers
     {
         private readonly Burger_StationContext _context;
 
-        public UsersController(Burger_StationContext context)
-        {
+        public UsersController(Burger_StationContext context) 
+        { 
             _context = context;
         }
 
@@ -25,7 +25,9 @@ namespace Burger_Station.Controllers
         public async Task<IActionResult> Index()
         {
             string user = HttpContext.Session.GetString("Type");
-            
+            ViewBag.FullName = HttpContext.Session.GetString("FullName");
+            ViewBag.userType = user;
+
             if (user == null)
             {
                 return RedirectToAction("Login", "Users");
@@ -48,8 +50,9 @@ namespace Burger_Station.Controllers
         public async Task<IActionResult> Details()
         {
             string type = HttpContext.Session.GetString("Type");
+            ViewBag.userType = HttpContext.Session.GetString("Type");
 
-            if(type == null)
+            if (type == null)
             {
                 return RedirectToAction("Login", "Users");
             }
@@ -81,6 +84,8 @@ namespace Burger_Station.Controllers
         // GET: Users/DetailsMember/5
         public async Task<IActionResult> DetailsMember(int? id)
         {
+            ViewBag.userType = HttpContext.Session.GetString("Type");
+
             if (id == null)
             {
                 return NotFound();
@@ -118,6 +123,8 @@ namespace Burger_Station.Controllers
 
         public async Task<IActionResult> DetailsAdmin(int? id)
         {
+            ViewBag.userType = HttpContext.Session.GetString("Type");
+
             if (id == null)
             {
                 return NotFound();
@@ -155,6 +162,7 @@ namespace Burger_Station.Controllers
         // GET: Users/Create
         public async Task<IActionResult> Create()
         {
+            ViewBag.userType = HttpContext.Session.GetString("Type");
             string type = HttpContext.Session.GetString("Type");
 
             if (type != "Admin")
@@ -198,6 +206,8 @@ namespace Burger_Station.Controllers
         // GET: Users/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.userType = HttpContext.Session.GetString("Type");
+
             if (id == null)
             {
                 return NotFound();
@@ -302,6 +312,8 @@ namespace Burger_Station.Controllers
         // GET: Users/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewBag.userType = HttpContext.Session.GetString("Type");
+
             if (id == null)
             {
                 return NotFound();

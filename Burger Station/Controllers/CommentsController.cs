@@ -35,6 +35,8 @@ namespace Burger_Station.Controllers
         // GET: Comments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            ViewBag.userType = HttpContext.Session.GetString("Type");
+
             if (id == null)
             {
                 return NotFound();
@@ -57,6 +59,7 @@ namespace Burger_Station.Controllers
         // GET: Comments/Create
         public async Task<IActionResult> Create()
         {
+            ViewBag.userType = HttpContext.Session.GetString("Type");
             string type = HttpContext.Session.GetString("Type");
 
             if (type == null)
@@ -104,6 +107,8 @@ namespace Burger_Station.Controllers
         // GET: Comments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.userType = HttpContext.Session.GetString("Type");
+
             if (id == null)
             {
                 return NotFound();
@@ -181,6 +186,8 @@ namespace Burger_Station.Controllers
         // GET: Comments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewBag.userType = HttpContext.Session.GetString("Type");
+
             if (id == null)
             {
                 return NotFound();

@@ -49,20 +49,28 @@
                     <a class="nav-link" asp-controller="Branches" asp-action="Index">Branches</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Users" asp-action="Details" >My Profile</a>
+                    <a class="nav-link" asp-controller="Users" asp-action="Details">My Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Users" asp-action="Login">Login</a>
+                    @if (ViewBag.userType == null)
+                    {
+                        <a class="nav-link" asp-controller="Users" asp-action="Login">Login</a>
+                    }
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Users" asp-action="Logout">Logout</a>
+                    @if (ViewBag.userType == "Member" || ViewBag.userType == "Admin")
+                    {
+                        <a class="nav-link" asp-controller="Users" asp-action="Logout">Logout</a>
+                    }
                 </li>
                 @*<li class="nav-item">
-            <a class="nav-link" asp-controller="Users" asp-action="Index">Users</a>
-        </li>*@
+                    <a class="nav-link" asp-controller="Users" asp-action="Index">Users</a>
+                </li>*@
             </ul>
         </div>
     </nav>
+
+    
 
 
     <main role="main" class="pb-3">

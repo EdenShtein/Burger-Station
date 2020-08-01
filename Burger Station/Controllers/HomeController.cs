@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Burger_Station.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -16,6 +17,7 @@ namespace Burger_Station.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.userType = HttpContext.Session.GetString("Type");
             return View();
         }
 
