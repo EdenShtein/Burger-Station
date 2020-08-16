@@ -59,3 +59,8 @@ img{
     transform: scale(1.1);
 }
 
+.videodiv {
+    text-align: center;
+    background-color: #ececec;
+    
+}
