@@ -3,7 +3,10 @@
     background-color: #eee;
     border-radius: 5px;
     padding: 16px;
-    margin: 16px 0;
+    margin-bottom: 30px;
+    align-self: center;
+    text-align-last: center;
+    justify-content: center;
 }
 
     /* Clear floats after containers */
@@ -16,24 +19,31 @@
     /* Float images inside the container to the left. Add a right margin, and style the image as a circle */
     .container img {
         float: left;
-        margin-right: 20px;
+        margin-right: 30px;
+        margin-bottom: 20px;
         border-radius: 50%;
     }
-
+   
     /* Increase the font-size of a span element */
     .container span {
-        font-size: 20px;
+        font-size: 35px;
         margin-right: 15px;
+       
     }
+    .container p{
+        font-size: 25px;
+    }
+    
 
 /* Add media queries for responsiveness. This will center both the text and the image inside the container */
 @media (max-width: 500px) {
     .container {
-        text-align: center;
+        text-align: left;
     }
 
         .container img {
             margin: auto;
+            margin-bottom : 20px;
             float: none;
             display: block;
         }
