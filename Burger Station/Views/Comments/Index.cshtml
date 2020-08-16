@@ -13,15 +13,24 @@
     }
 </p>
 
-
+int sign=1;
 @foreach (var item in Model)
 {
 
-    <div class="container">
-        <img src="~/images/img_avatar2.png" alt="Avatar" style="width:90px">
-        <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span>  @Html.DisplayFor(modelItem => item.PostedBy)</p>
-        <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
-    </div>
+<div class="container">
+    if (sign==1)
+    {
+    <img src="~/images/img_avatar2.png" alt="Avatar" style="width:90px">
+    sign=0;
+    }
+    else
+    {
+    <img src="~/images/flat-faces-icons-circle-man-1.png" alt="Avatar" style="width:90px">
+    sign=1;
+    }
+    <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span>  @Html.DisplayFor(modelItem => item.PostedBy)</p>
+    <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
+</div>
 }
 @section Styles {
     <link rel="stylesheet" href="~/css/comments.css" />
