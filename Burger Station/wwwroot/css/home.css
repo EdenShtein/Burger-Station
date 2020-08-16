@@ -7,9 +7,11 @@
 
 
 #title {
-   
-    background-color: #fbd46d;
-    color: #FFF;
+    background-image: url("../../images/backgrounds/background-create.jpg");
+    background-color: #cccccc;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
     
 }
 
