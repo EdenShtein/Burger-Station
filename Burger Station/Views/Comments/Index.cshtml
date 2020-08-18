@@ -3,16 +3,16 @@
 @{
     ViewData["Title"] = "";
 }
+    <div class="head">
+        <h1 id="index title">Index</h1>
 
-<h1>Index</h1>
-
-<p>
-    @if (ViewBag.userType != null)
-    {
-        <a asp-action="Create">Create New</a>
-    }
-</p>
-
+        <p>
+            @if (ViewBag.userType == "Admin")
+            {
+                <a asp-action="Create">Create New</a>
+            }
+        </p>
+    </div>
 @{int sign = 1; }
 @foreach (var item in Model)
 {
