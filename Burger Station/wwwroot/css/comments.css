@@ -9,6 +9,16 @@
     justify-content: center;
 }
 
+head {
+    align-content:center;
+    align-items: center;
+    text-align: center;
+    align-self: center;
+}
+
+{
+
+}
     /* Clear floats after containers */
     .container::after {
         content: "";
