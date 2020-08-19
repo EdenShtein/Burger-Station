@@ -52,7 +52,8 @@
 
         </dl>
     </div>
-
+@if (ViewBag.itemType == "Food")
+{
     <div>
         <table class="table">
             <thead>
@@ -96,7 +97,7 @@
             </tbody>
         </table>
     </div>
- 
+}
     <div>
         <a asp-action="Index">Back to List</a>
     </div>
