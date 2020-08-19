@@ -5,115 +5,104 @@
 }
 
 <h1>Details</h1>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-<div>
-    <h4>Item</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dd>
-            <img src="\images\burgers\@(ViewBag.ItemName).png" alt="item-img" />
-        </dd>
+<!DOCTYPE html>
+<html>
+<head>
 
-    </dl>
-</div>
+    <!--Bootsrap 4 CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-<div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Comments.First().PostTitle)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Comments.First().PostBody)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Comments.First().PostDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Comments.First().PostedBy)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Comments)
-            {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PostTitle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PostBody)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PostDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PostedBy)
-                </td>
-                                <td>
-                    <a asp-action="Details" asp-controller="Comments" asp-route-id="@item.Id">Details</a>
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
-</div>
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-<div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.BranchItems.First().Branch.Address)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.BranchItems.First().Branch.City)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.BranchItems.First().Branch.District)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.BranchItems)
-            {
+    <!--Custom styles-->
+    <link rel="stylesheet" type="text/css" href="~/css/menu/details.css">
+</head>
+<body>
+    <div class="container">
+        <h3> @Html.DisplayFor(model => model.Name)</h3>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dd>
+                <img class="plate-image" src="\images\burgers\@(ViewBag.ItemName).png" alt="item-img" />
+            </dd>
+
+        </dl>
+    </div>
+
+    <div>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Branch.Address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Branch.City)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Branch.District)
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Comments.First().PostTitle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Comments.First().PostBody)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Comments.First().PostDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Comments.First().PostedBy)
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Comments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PostTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PostBody)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PostDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PostedBy)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-controller="Comments" asp-route-id="@item.Id">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+ 
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</body>
+</html>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
