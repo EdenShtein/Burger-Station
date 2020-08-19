@@ -38,7 +38,9 @@
                 </form>
             </div>
 
-
+            <div class="videodiv">
+                <iframe width="560" height="390" src="https://www.youtube.com/embed/xptZKlEjg0A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
 
             <div class="row">
                 @foreach (var item in Model)
@@ -85,10 +87,10 @@
                                         </figure>
                                     </div>
                                 </a>
-                                
-                                    <h2> @Html.DisplayFor(modelItem => item.Name)</h2>
-                                     <h2> @Html.DisplayFor(modelItem => item.Price)</h2>
-                                
+
+                                <h2> @Html.DisplayFor(modelItem => item.Name)</h2>
+                                <h2> @Html.DisplayFor(modelItem => item.Price)</h2>
+
                                 @if (ViewBag.userType == "Admin")
                                 {
                                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
@@ -103,9 +105,7 @@
 
         </div>
     </div>
-    <div class="videodiv">
-        <iframe width="560" height="390" src="https://www.youtube.com/embed/xptZKlEjg0A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+    
 
 </body>
 </html>
