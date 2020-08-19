@@ -54,49 +54,7 @@
     </div>
     @if (ViewBag.itemType == "Food")
     {
-        <div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Comments.First().PostTitle)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Comments.First().PostBody)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Comments.First().PostDate)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Comments.First().PostedBy)
-                        </th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Comments)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PostTitle)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PostBody)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PostDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PostedBy)
-                            </td>
-                            <td>
-                                <a asp-action="Details" asp-controller="Comments" asp-route-id="@item.Id">Details</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+       
     }
     <div id="menu" class="section lb">
         <div class="container-fluid">
