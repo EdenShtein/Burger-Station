@@ -21,7 +21,7 @@
         sign = 0;
 <div class="container">
     <img src="~/images/img_avatar2.png" alt="Avatar" style="width:90px">
-    <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span>  @Html.DisplayFor(modelItem => item.PostedBy)</p>
+    <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
     <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
     <div class="editadd">
         @if (ViewBag.userType == "Admin")
@@ -38,7 +38,7 @@
         sign = 1;
         <div class="container">
             <img src="~/images/flat-faces-icons-circle-man-1.png" alt="Avatar" style="width:90px">
-            <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span>  @Html.DisplayFor(modelItem => item.PostedBy)</p>
+            <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
             <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
             <div class="editadd">
                 @if (ViewBag.userType == "Admin")
