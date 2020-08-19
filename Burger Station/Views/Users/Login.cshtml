@@ -31,18 +31,21 @@
                                              onlogin="checkLoginState();">
 
                         </fb:login-button>*@
-                        <script>
+                        @*<script>
                             window.fbAsyncInit = function () {
                                 FB.init({
                                     appId: '{306609874076362}',
                                     cookie: true,
                                     xfbml: true,
-                                    version: '{7.0}'
+                                    version: '{8.0}'
                                 });
+
                                 FB.login(function (response) {
                                     console.log(response);
                                 }, { scope: 'email' });
+
                                 FB.AppEvents.logPageView();
+
                             };
 
                             (function (d, s, id) {
@@ -58,12 +61,8 @@
                                     statusChangeCallback(response);
                                 });
                             }
-                            
 
-                        </script>
-
-                        <!--<span><i class="fab fa-google-plus-square"></i></span>
-                        <span><i class="fab fa-twitter-square"></i></span> -->
+                        </script>*@
 
                     </div>
                 </div>
