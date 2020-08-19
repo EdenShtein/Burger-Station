@@ -67,11 +67,6 @@ namespace Burger_Station.Controllers
                 return NotFound();
             }
 
-            //if (user.FavoriteItem == null)
-            //{
-            //    user.FavoriteItem = _context.Item.First();
-            //}
-
             if (type == "Member")
             {
                 return RedirectToAction("DetailsMember", "Users", new { @id = userId });
@@ -261,9 +256,12 @@ namespace Burger_Station.Controllers
                             .Include(x => x.SatisfiedUsers)
                             .FirstOrDefaultAsync(i => (i.Id == itemId));
 
-                        item.SatisfiedUsers.Add(user);
+                        if (item != null)
+                        {
+                            item.SatisfiedUsers.Add(user);
+                            _context.Item.Update(item);
+                        }
 
-                        _context.Item.Update(item);
                     }
                     else
                     {
@@ -342,15 +340,20 @@ namespace Burger_Station.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var user = await _context.User.FindAsync(id);
+            var user = await _context.User
+                .Include(u => u.FavoriteItem)
+                .FirstOrDefaultAsync(u => u.Id == id);
 
-            var item = await _context.Item
-                 .Include(x => x.SatisfiedUsers)
-                 .FirstOrDefaultAsync(i => (i.Id == user.FavoriteItem.Id));
+            if(user.FavoriteItem != null)
+            {
+                var item = await _context.Item
+                .Include(x => x.SatisfiedUsers)
+                .FirstOrDefaultAsync(i => (i.Id == user.FavoriteItem.Id));
 
-            item.SatisfiedUsers.Remove(user);
+                item.SatisfiedUsers.Remove(user);
+                _context.Item.Update(item);
+            }
 
-            _context.Item.Update(item);
             _context.User.Remove(user);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
