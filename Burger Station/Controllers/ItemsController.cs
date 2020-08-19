@@ -46,13 +46,16 @@ namespace Burger_Station.Controllers
                 .ThenInclude(b => b.Branch)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
+
+
             if (item == null)
             {
                 return NotFound();
             }
 
             ViewBag.ItemName = item.Name;
-
+            ViewBag.itemType = item.Type.ToString();
+       
             return View(item);
         }
 

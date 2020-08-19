@@ -35,7 +35,8 @@
     </dl>
 </div>
 
-<div>
+@if(ViewBag.itemType == "Food") {
+    <div>
     <table class="table">
         <thead>
             <tr>
@@ -57,27 +58,28 @@
         <tbody>
             @foreach (var item in Model.Comments)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PostTitle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PostBody)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PostDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PostedBy)
-                </td>
-                                <td>
-                    <a asp-action="Details" asp-controller="Comments" asp-route-id="@item.Id">Details</a>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostBody)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostedBy)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-controller="Comments" asp-route-id="@item.Id">Details</a>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
 </div>
+}
 
 <div>
     <table class="table">
