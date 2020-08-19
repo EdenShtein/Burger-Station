@@ -16,11 +16,12 @@
                 <div id="menu" class="section lb">
                     <div class="container-fluid">
                         <p>
-                            @if (ViewBag.userType == "Admin")
+
+                            @if (ViewBag.userType == "Member" || ViewBag.userType == "Admin")
                             {
                                 <a asp-action="Create">Create New</a>
                             }
-                           <p>
+<p>
 
 
                             @{int sign = 1; }
