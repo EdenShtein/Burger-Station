@@ -3,64 +3,66 @@
 @{
     ViewData["Title"] = "";
 }
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="~/css/menu/menu.css">
+    </head>
+    <body>
+        <section id="title">
+            <div class="container-fluid">
+                <h1>Comments</h1>
+            </div>
+            </section>
+                <div id="menu" class="section lb">
+                    <div class="container-fluid">
+                        <p>
+                            @if (ViewBag.userType == "Admin")
+                            {
+                                <a asp-action="Create">Create New</a>
+                            }
+                           <p>
 
-<h1>Index</h1>
 
-<p>
-    @if (ViewBag.userType != null)
-    {
-        <a asp-action="Create">Create New</a>
-    }
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PostTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostBody)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Item.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostedBy)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostBody)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostedBy)
-            </td>
-            <td>
-                @if (ViewBag.FullName == item.PostedBy || ViewBag.userType == "Admin")
-                {
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
-                }
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+                            @{int sign = 1; }
+                            @foreach (var item in Model)
+                            {
+                                @if (sign == 1)
+                                {
+                                    sign = 0;
+                                    <div class="container">
+                                        <img src="~/images/img_avatar2.png" alt="Avatar" style="width:90px">
+                                <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
+                                <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
+                                <div class="editadd">
+                                    @if (ViewBag.userType == "Admin")
+                                    {
+                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
+                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
+                                    }
+                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            sign = 1;
+                            <div class="container">
+                                <img src="~/images/flat-faces-icons-circle-man-1.png" alt="Avatar" style="width:90px">
+                                <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
+                                <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
+                                <div class="editadd">
+                                    @if (ViewBag.userType == "Admin")
+                                    {
+                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
+                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
+                                    }
+                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                </div>
+                            </div>
+                        }
+                            }
+                            @section Styles {
+                                <link rel="stylesheet" href="~/css/comments.css" />
+                            }
+                    </div>
+</body>
