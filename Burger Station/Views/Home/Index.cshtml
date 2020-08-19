@@ -207,6 +207,40 @@
     </section>
 
 
+    <center>
+        <h3> Check the weather in your City ;) </h3>
+        <input type="text" id="city" placeholder="City name" />
+        <input type="button" id="getWeather" value="Get Weather Data" />
+        <br />
+        <div id="result-div"></div>
+    </center>
+
+    <br />
+    <br />
+   
+    <script type="text/javascript">
+        if (typeof jQuery !== 'undefined') {
+            $(document).ready(function () {
+                $('#getWeather').click(function () {
+                    var requestData = $('#city').val();
+                    var result = $('#result-div');
+                    $.ajax({
+                        url: 'https://api.openweathermap.org/data/2.5/weather',
+                        method: 'get',
+                        data: { q: requestData, appid: 'b8dfe71c14a54f4a98e710d2674bdc85' },
+                        dataType: 'json',
+                        success: function (data) {
+                            result.html('The weather is ' + data.weather[0].main + '<br/>' + 'Description: ' + data.weather[0].description);
+                        }
+                    });
+                });
+            });
+        }
+        else {
+            console.log('problem with loading jquery');
+        }
+    </script>
+
     <!-- Footer -->
 
     <footer class="white-section" id="footer">
