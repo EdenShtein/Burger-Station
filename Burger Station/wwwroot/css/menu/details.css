@@ -5,10 +5,12 @@
     text-align:center;
 }
 
-.container-head{
-    text-align:center;
-    align-content:center;
-    align-content:center;
-    text-align:center;
-    align-self:center;
+.container-head {
+    text-align: center;
+    align-content: center;
+    align-content: center;
+    text-align: center;
+    align-self: center;
+    width: 655px;
+    margin: auto;
 }
