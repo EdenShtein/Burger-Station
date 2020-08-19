@@ -1,0 +1,10 @@
+﻿.plate-image {
+    border-radius: 8px; 
+    width:350px; 
+    height:350px; 
+    text-align:center;
+}
+
+.container{
+    text-align:center;
+}
