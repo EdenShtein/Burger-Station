@@ -443,7 +443,7 @@ namespace Burger_Station.Controllers
         public IActionResult Login(string email, string password)
         {
             var user = _context.User.FirstOrDefault(u => u.Email == email && u.Password == password);
-
+            
             if (user != null)
             {
                 SignIn(user);
@@ -451,6 +451,21 @@ namespace Burger_Station.Controllers
             }
 
             return View("Login", "Users");
+        }
+
+        // Facebook Login, no password needed
+        [HttpPost]
+        public IActionResult FacebookLogin(string data)
+        {
+            var user = _context.User.FirstOrDefault(u => u.Email == data);
+
+            if (user != null)
+            {
+                SignIn(user);
+                return Content("Success");
+            }
+
+            return Content("Wrong");
         }
 
         public IActionResult Logout()
