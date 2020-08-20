@@ -2,3 +2,7 @@
      $("h1").css("color","#dddddd");
  });
 
+/*
+$("h2").click(function () {
+    alert("Hello");
+});*/

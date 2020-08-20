@@ -24,7 +24,7 @@
     <link rel="stylesheet" type="text/css" href="~/css/menu/details.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container-head">
         <h3> @Html.DisplayFor(model => model.Name)</h3>
         <hr />
         <dl class="row">
@@ -52,55 +52,59 @@
 
         </dl>
     </div>
-@if (ViewBag.itemType == "Food")
-{
-    <div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Comments.First().PostTitle)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Comments.First().PostBody)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Comments.First().PostDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Comments.First().PostedBy)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Comments)
+    @if (ViewBag.itemType == "Food")
+    {
+       
+    }
+    <div id="menu" class="section lb">
+        <div class="container-fluid">
+            @{int sign = 1; }
+            @foreach (var item in Model.Comments)
+            {
+                @if (sign == 1)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PostTitle)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PostBody)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PostDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PostedBy)
-                        </td>
-                        <td>
-                            <a asp-action="Details" asp-controller="Comments" asp-route-id="@item.Id">Details</a>
-                        </td>
-                    </tr>
+                    sign = 0;
+                    <div class="container">
+                        <img src="~/images/img_avatar2.png" alt="Avatar" style="width:90px">
+                        <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
+                        <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
+                        <div class="editadd">
+                            @if (ViewBag.userType == "Admin")
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
+                            }
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </div>
+                    </div>
                 }
-            </tbody>
-        </table>
-    </div>
-}
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
+                else
+                {
+                    sign = 1;
+                    <div class="container">
+                        <img src="~/images/flat-faces-icons-circle-man-1.png" alt="Avatar" style="width:90px">
+                        <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
+                        <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
+                        <div class="editadd">
+                            @if (ViewBag.userType == "Admin")
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
+                            }
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </div>
+                    </div>
+                }
+            }
+            @section Styles {
+                <link rel="stylesheet" href="~/css/comments.css" />
+            }
+        </div>
+
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
 </body>
 </html>
 
