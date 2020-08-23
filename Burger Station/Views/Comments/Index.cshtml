@@ -51,7 +51,7 @@
             </div>
         </section>
         <div id="menu" class="section lb">
-            <div class="container-fluid">
+            <v class="container-fluid">
                 <p>
 
                     @if (ViewBag.userType == "Member" || ViewBag.userType == "Admin")
@@ -79,7 +79,8 @@
                             }
                             <a asp-action="Details" asp-route-id="@item.Id">Details</a>
                         </div>
-                    </div>
+             
+        </div>
                 }
                 else
                 {
