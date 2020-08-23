@@ -17,11 +17,15 @@
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
 
-        <div class="container text-right">
+        <div class="container text-left">
             @if (ViewBag.userType == "Member" || ViewBag.userType == "Admin")
             {
-                <i class="text-light"><a asp-controller="Users" asp-action="Details">My Profile</a></i>
+                <b>Hello,</b>
+                <i class="text-light"><a asp-controller="Users" asp-action="Details">@ViewBag.userName</a></i>
             }
+        </div>
+
+        <div class="container text-right">
             <i class="icofont-phone"></i> +1 5589 55488 55
             <i class="icofont-clock-time icofont-rotate-180"></i> Sun-Sat: 11:00 AM - 00:00 PM
         </div>
@@ -83,7 +87,6 @@
                                     The best restaurant in the world! <br>
                                     A new burger bar, a place that brings with it a different level.
                                     Premium hamburger with selected fresh meat that is ground on the spot every day, without manners, without filters, just eat..
-                                </p>
                                 </p>
                                 <div>
                                     <a href="\Items\Index" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
