@@ -3,15 +3,14 @@
     background-color: #eee;
     border-radius: 5px;
     padding: 16px;
-    padding-bottom: 100px;
+    padding-bottom: 0px;
     margin-bottom: 30px;
     margin-left: 550px;
     margin-right: 550px;
     align-self: center;
     text-align-last: center;
     justify-content: center;
-    background-image: url('../assets/img/comment-back.jpg');
-    background-size: 100% 100%;
+  
 }
 
 head {
