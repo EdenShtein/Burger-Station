@@ -18,6 +18,7 @@ namespace Burger_Station.Controllers
         public IActionResult Index()
         {
             ViewBag.userType = HttpContext.Session.GetString("Type");
+            ViewBag.userName = HttpContext.Session.GetString("FullName");
             return View();
         }
 
