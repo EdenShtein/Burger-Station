@@ -52,14 +52,6 @@
         </section>
         <div id="menu" class="section lb">
             <v class="container-fluid">
-                <p>
-
-                    @if (ViewBag.userType == "Member" || ViewBag.userType == "Admin")
-                    {
-                        <a asp-action="Create">Create New</a>
-                    }
-                <p>
-
 
                     @{int sign = 1; }
                     @foreach (var item in Model)

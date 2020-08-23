@@ -4,42 +4,80 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<html>
+<head>
 
-<h4>Branch</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="City" class="control-label"></label>
-                <select class="form-control" asp-for="City" asp-items="@Html.GetEnumSelectList<City>()"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="District" class="control-label"></label>
-                <select class="form-control" asp-for="District" asp-items="@Html.GetEnumSelectList<District>()"></select>
-            </div>
-            <div class="form-group">
-                <label for="ItemId" class="control-label"></label>
-                <select name="ItemId" class="form-control" asp-items="ViewBag.ItemsId" multiple></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+        <!--Custom styles-->
+        <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="~/assets/css/Create_Delete.css">
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</head>
+<body>
 
+        <!-- ======= Top Bar ======= -->
+        <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
+            <div class="container text-right">
+            </div>
+        </section>
+
+        <!-- ======= Header ======= -->
+        <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+            <div class="container d-flex align-items-center">
+
+                <div class="logo mr-auto">
+                    <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
+                </div>
+
+                <nav class="nav-menu d-none d-lg-block">
+                    <ul>
+                        <li class="book-a-table text-center"><a href="\Branches\Index">Back</a></li>
+                    </ul>
+                </nav><!-- .nav-menu -->
+
+            </div>
+        </header><!-- End Header -->
+
+        <section></section>
+        <section></section>
+
+        <div class="container">
+            <div class="d-flex justify-content-center h-100">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Create a new Item</h3>
+                    </div>
+                    <div class="card-body">
+                        
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Address" class="control-label"></label>
+                                <input asp-for="Address" class="form-control" />
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="City" class="control-label"></label>
+                                <select class="form-control" asp-for="City" asp-items="@Html.GetEnumSelectList<City>()"></select>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="District" class="control-label"></label>
+                                <select class="form-control" asp-for="District" asp-items="@Html.GetEnumSelectList<District>()"></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="ItemId" class="control-label"></label>
+                                <select name="ItemId" class="form-control" asp-items="ViewBag.ItemsId" multiple></select>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</body>
+</html>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
