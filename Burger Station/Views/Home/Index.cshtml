@@ -86,7 +86,7 @@
                                 </p>
                                 </p>
                                 <div>
-                                    <a href="\Items\Index" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
+                                    <a asp-controller="Items" asp-action="Index" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
                                     <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a>
                                 </div>
                             </div>
@@ -190,35 +190,57 @@
 
                 <div class="section-title">
                     <h2>Why choose <span>Burger Station</span></h2>
-                    <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+                    <p>Simple and affordable price plans for your.</p>
                 </div>
 
                 <div class="row">
 
-                    <div class="col-lg-4">
+                    <div class="pricing-column col-lg-4 col-md-6 mt-4 mt-lg-0">
                         <div class="box">
-                            <span>01</span>
-                            <h4>Lorem Ipsum</h4>
-                            <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
+                            <div class="card-header">
+                                <h3>Mini Station</h3>
+                            </div>
+                            <div class="card-body">
+                                <h2 class="price-text">Free</h2>
+                                <p>1 Free Refill</p>
+                                <p>Unlimited Wi-Fi Usage</p>
+                                <p>By Ordering Burger + Soft Drink</p>
+                                <button class="btn btn-lg btn-block btn-outline-dark" type="button">ORDER NOW</button>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 mt-4 mt-lg-0">
+
+                    <div class="pricing-column col-lg-4 col-md-6 mt-4 mt-lg-0">
                         <div class="box">
-                            <span>02</span>
-                            <h4>Repellat Nihil</h4>
-                            <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
+                            <div class="card-header">
+                                <h3>Medium Station</h3>
+                            </div>
+                            <div class="card-body">
+                                <h2 class="price-text">$27</h2>
+                                <p>2 Free Refills</p>
+                                <p>Unlimited Wi-Fi Usage</p>
+                                <p>By Ordering Burger + Soft Drink</p>
+                                <button class="btn btn-lg btn-block btn-dark" type="button">ORDER NOW</button>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 mt-4 mt-lg-0">
+                    <div class="pricing-column col-lg-4 col-md-6 mt-4 mt-lg-0">
                         <div class="box">
-                            <span>03</span>
-                            <h4> Ad ad velit qui</h4>
-                            <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+                            <div class="card-header">
+                                <h3>Mega Station</h3>
+                            </div>
+                            <div class="card-body">
+                                <h2 class="price-text">$30</h2>
+                                <p>Unlimited Refills</p>
+                                <p>Unlimited Wi-Fi Usage</p>
+                                <p>By Ordering Burger + Soft Drink</p>
+                                <button class="btn btn-lg btn-block btn-dark" type="button">ORDER NOW</button>
+                            </div>
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>
