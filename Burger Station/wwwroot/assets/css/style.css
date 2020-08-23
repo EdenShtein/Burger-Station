@@ -155,7 +155,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Poppins", sans-serif;
 }
 
-.nav-menu a:hover, .nav-menu .active>a, .nav-menu li:hover>a {
+.nav-menu a:hover, .nav-menu .active>a, .nav-menu li:hover>a, .weather {
   color: #ffb03b;
   text-decoration: none;
 }
@@ -1603,7 +1603,7 @@ section {
 }
 
 #footer p {
-  font-size: 15;
+  font-size: 15px;
   font-style: italic;
   padding: 0;
   margin: 0 0 40px 0;
@@ -1643,3 +1643,19 @@ section {
 
 
 
+/*--------------------------------------------------------------
+# Input Button in Weather Branch
+--------------------------------------------------------------*/
+
+.input {
+    background-color: darkorange; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
+
+}

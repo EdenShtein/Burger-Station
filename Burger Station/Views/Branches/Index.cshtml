@@ -34,15 +34,17 @@
                 <ul>
                     @if (ViewBag.userType == "Admin")
                     {
-                        <li class="book-a-table text-center"><a asp-action="Create">Add Item</a></li>
+                        <li class="book-a-table text-center"><a asp-action="Create">Add New Branch</a></li>
                     }
                     <li class="book-a-table text-center"><a href="\Home">Back</a></li>
 
                 </ul>
-            </nav><!-- .nav-menu -->
+            </nav>
+    <!-- .nav-menu -->
 
         </div>
-    </header><!-- End Header -->
+    </header>
+    <!-- End Header -->
 
     <section></section>
 
@@ -58,7 +60,7 @@
                 <center>
                     <h4> Check the <span>Weather</span> in your City </h4>
                     <input type="text" id="city" placeholder="City name" />
-                    <input type="button" id="getWeather" value="Get Weather Data" />
+                    <input class="input" type="button" id="getWeather" value="Get Weather Data" />
                     <br />
                     <div id="result-div"></div>
                 </center>

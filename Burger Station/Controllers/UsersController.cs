@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -150,6 +151,12 @@ namespace Burger_Station.Controllers
             {
                 ViewBag.FavoriteItem = user.FavoriteItem.Name;
             }
+
+            //----------- Count variables for D3------------//
+
+           
+
+
 
             return View(user);
         }
