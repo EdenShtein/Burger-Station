@@ -154,8 +154,18 @@ namespace Burger_Station.Controllers
 
             //----------- Count variables for D3------------//
 
-           
+            var users = await _context.User
+                .ToListAsync();
 
+            //ViewBag.usersType = from userT in users
+            //                group users by userT.Type into userGroup
+            //                select new
+            //                {
+            //                    Type = userGroup.Key,
+            //                    Count = userGroup.Count(),
+            //                };
+
+            ViewBag.usersType = users.GroupBy(u => u.Type).OrderBy(g => g.Key).Select(g => Tuple.Create(g.Key, g.Count()));
 
 
             return View(user);
