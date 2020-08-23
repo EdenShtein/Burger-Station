@@ -5,65 +5,99 @@
 }
     <head>
         <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="~/css/menu/menu.css">
+        <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
     </head>
     <body>
+
+
+        <!-- ======= Top Bar ======= -->
+        <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
+            <div class="container text-right">
+            </div>
+        </section>
+
+        <!-- ======= Header ======= -->
+        <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+            <div class="container d-flex align-items-center">
+
+                <div class="logo mr-auto">
+                    <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
+                </div>
+
+                <nav class="nav-menu d-none d-lg-block">
+                    <ul>
+                        @if (ViewBag.userType != null)
+                        {
+                            <li class="book-a-table text-center"><a asp-action="Create">Comment</a></li>
+                        }
+                        <li class="book-a-table text-center"><a href="\Home">Back</a></li>
+
+                    </ul>
+                </nav><!-- .nav-menu -->
+
+            </div>
+        </header><!-- End Header -->
+
+        <section></section>
+
+
+
         <section id="title">
             <div class="container-fluid">
                 <h1>Comments</h1>
             </div>
-            </section>
-                <div id="menu" class="section lb">
-                    <div class="container-fluid">
-                        <p>
+        </section>
+        <div id="menu" class="section lb">
+            <div class="container-fluid">
+                <p>
 
-                            @if (ViewBag.userType == "Member" || ViewBag.userType == "Admin")
-                            {
-                                <a asp-action="Create">Create New</a>
-                            }
-<p>
+                    @if (ViewBag.userType == "Member" || ViewBag.userType == "Admin")
+                    {
+                        <a asp-action="Create">Create New</a>
+                    }
+                <p>
 
 
-                            @{int sign = 1; }
-                            @foreach (var item in Model)
-                            {
-                                @if (sign == 1)
-                                {
-                                    sign = 0;
-                                    <div class="container">
-                                        <img src="~/images/img_avatar2.png" alt="Avatar" style="width:90px">
-                                <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
-                                <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
-                                <div class="editadd">
-                                    @if (ViewBag.userType == "Admin")
-                                    {
-                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
-                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
-                                    }
-                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                                </div>
-                            </div>
-                        }
-                        else
+                    @{int sign = 1; }
+                    @foreach (var item in Model)
+                    {
+                        @if (sign == 1)
                         {
-                            sign = 1;
+                            sign = 0;
                             <div class="container">
-                                <img src="~/images/flat-faces-icons-circle-man-1.png" alt="Avatar" style="width:90px">
-                                <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
-                                <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
-                                <div class="editadd">
-                                    @if (ViewBag.userType == "Admin")
-                                    {
-                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
-                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
-                                    }
-                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                                </div>
-                            </div>
-                        }
+                                <img src="~/images/img_avatar2.png" alt="Avatar" style="width:90px">
+                        <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
+                        <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
+                        <div class="editadd">
+                            @if (ViewBag.userType == "Admin")
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
                             }
-                            @section Styles {
-                                <link rel="stylesheet" href="~/css/comments.css" />
-                            }
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </div>
                     </div>
-</body>
+                }
+                else
+                {
+                    sign = 1;
+                    <div class="container">
+                        <img src="~/images/flat-faces-icons-circle-man-1.png" alt="Avatar" style="width:90px">
+                        <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
+                        <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
+                        <div class="editadd">
+                            @if (ViewBag.userType == "Admin")
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
+                            }
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </div>
+                    </div>
+                }
+                    }
+                    @section Styles {
+                        <link rel="stylesheet" href="~/assets/css/style.css" />
+                    }
+                </div>
+            </body>

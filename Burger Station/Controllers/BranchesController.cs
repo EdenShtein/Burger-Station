@@ -23,6 +23,7 @@ namespace Burger_Station.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.userType = HttpContext.Session.GetString("Type");
+            ViewBag.Branches = await _context.Branch.ToListAsync();
             return View(await _context.Branch.ToListAsync());
         }
 

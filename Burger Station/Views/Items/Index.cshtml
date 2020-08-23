@@ -11,103 +11,86 @@
     <link rel="stylesheet" type="text/css" href="~/css/menu/menu.css">
 </head>
 <body>
-    <section id="title">
-        <div class="container-fluid">
-            <h1>Menu</h1>
+
+    <!-- ======= Top Bar ======= -->
+    <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
+        <div class="container text-right">
         </div>
     </section>
-    <div id="menu" class="section lb">
-        <div class="container-fluid">
-            <p>
-                @if (ViewBag.userType == "Admin")
-                {
-                    <a asp-action="Create">Create New</a>
-                }
-            </p>
 
-            <div class="searchbox">
-                <form asp-action="Search">
-                    <input name="name" placeholder="Enter Name" autocomplete="off" />
-                    <input name="price" placeholder="Enter Maximum Price" autocomplete="off" />
-                    @*<input name="itemType" placeholder="Enter type of item" autocomplete="off" />*@
-                    <select name="itemType" size="2">
-                        <option value="Food">Food</option>
-                        <option value="Drink">Drink</option>
-                    </select>
-                    <input type="submit">
-                </form>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+        <div class="container d-flex align-items-center">
+
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
 
-            <div class="row">
-                @foreach (var item in Model)
-                {
-
-                    if (item.Type == ItemType.Food)
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    @if (ViewBag.userType == "Admin")
                     {
-                        <div class="col-md-3">
-                            <div class="services-inner-box">
-                                <a asp-action="Details" asp-route-id="@item.Id">
-                                    <div class="ser-icon">
-                                        <figure>
-                                            <img src="\images\burgers\@(item.Name).png" alt="item-img" class="img-fluid" />
-                                        </figure>
-                                    </div>
-                                </a>
-
-                                <h2> @Html.DisplayFor(modelItem => item.Name)</h2>
-                                <h2> @Html.DisplayFor(modelItem => item.Price)</h2>
-                                @if (ViewBag.userType == "Admin")
-                                {
-                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
-                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
-                                }
-                            </div>
-                        </div>
+                        <li class="book-a-table text-center"><a asp-action="Create">Add Item</a></li>
                     }
+                    
+                    <li class="book-a-table text-center"><a href="\Home">Back</a></li>
 
-                }
-            </div>
-
-            <div class="row">
-                @foreach (var item in Model)
-                {
-                    if (item.Type == ItemType.Drink)
-                    {
-
-                        <div class="col-md-3">
-                            <div class="services-inner-box">
-                                <a asp-action="Details" asp-route-id="@item.Id">
-                                    <div class="ser-icon">
-                                        <figure>
-                                            <img src="\images\burgers\@(item.Name).png" alt="item-img" class="img-fluid" />
-                                        </figure>
-                                    </div>
-                                </a>
-
-                                <h2> @Html.DisplayFor(modelItem => item.Name)</h2>
-                                <h2> @Html.DisplayFor(modelItem => item.Price)</h2>
-
-                                @if (ViewBag.userType == "Admin")
-                                {
-                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
-                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
-                                }
-                            </div>
-                        </div>
-                    }
-
-                }
-            </div>
+                </ul>
+            </nav><!-- .nav-menu -->
 
         </div>
-    </div>
-    <div class="videodiv">
-        <iframe width="560" height="390" src="https://www.youtube.com/embed/xptZKlEjg0A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+    </header><!-- End Header -->
+
+    <section></section>
+
+
+    <main id="main">
+        <section id="branches" class="menu">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>What's on our <span>Menu</span></h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 d-flex justify-content-center">
+                        <ul id="menu-flters">
+                            <li data-filter="*" class="filter-active">Show All</li>
+                            <li data-filter=".filter-food">Food</li>
+                            <li data-filter=".filter-drink">Drink</li>
+                            
+                        </ul>
+                    </div>
+                </div>
+
+                @foreach (var group in Model.GroupBy(item => item.Type))
+                {
+                    @foreach (var item in group)
+                    {
+                        <div class="row menu-container">
+
+                            <div class="col-lg-12 menu-item filter-@item.Type.ToString().ToLower()">
+                                <div class="menu-content">
+                                    <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name) </a><span>@Html.DisplayFor(modelItem => item.Price)</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    }
+                }
+
+
+            </div>
+
+        </section>
+    </main>
 
 </body>
 </html>
-
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+}
 
 
 
