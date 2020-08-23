@@ -14,16 +14,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
-
     <!--Custom styles-->
     <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="~/assets/css/Login.css">
 
 </head>
 <body>
-
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
         <div class="container text-right">
@@ -42,10 +38,12 @@
                 <ul>
                     <li class="book-a-table text-center"><a href="\Home">Back</a></li>
                 </ul>
-            </nav><!-- .nav-menu -->
+            </nav>
+            <!-- .nav-menu -->
 
         </div>
-    </header><!-- End Header -->
+    </header>
+    <!-- End Header -->
 
     <section></section>
     <section></section>
@@ -63,14 +61,16 @@
                             <label asp-for="Type" class="control-label">Type  </label>
                             <select class="form-control" asp-for="Type" asp-items="@Html.GetEnumSelectList<ItemType>()"></select>
                         </div>
+
                         <div class="input-group form-group">
                             <label asp-for="Name" class="control-label">Name  </label>
-                            <input asp-for="Name" class="form-control" />
+                            <input asp-for="Name" class="form-control" autocomplete="off" />
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
+
                         <div class="input-group form-group">
                             <label asp-for="Price" class="control-label">Price  </label>
-                            <input asp-for="Price" class="form-control" />
+                            <input asp-for="Price" class="form-control" autocomplete="off" />
                             <span asp-validation-for="Price" class="text-danger"></span>
                         </div>
 
@@ -79,7 +79,6 @@
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>

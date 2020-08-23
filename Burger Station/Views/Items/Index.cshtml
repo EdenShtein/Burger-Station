@@ -36,10 +36,12 @@
                     <li class="book-a-table text-center"><a href="\Home">Back</a></li>
 
                 </ul>
-            </nav><!-- .nav-menu -->
+            </nav>
+            <!-- .nav-menu -->
 
         </div>
-    </header><!-- End Header -->
+    </header>
+    <!-- End Header -->
 
     <section></section>
 
@@ -68,10 +70,10 @@
                     @foreach (var item in group)
                     {
                         <div class="row menu-container">
-
                             <div class="col-lg-12 menu-item filter-@item.Type.ToString().ToLower()">
                                 <div class="menu-content">
-                                    <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name) </a><span>@Html.DisplayFor(modelItem => item.Price)</span>
+                                    <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
+                                    <span>@Html.DisplayFor(modelItem => item.Price)</span>
                                 </div>
                             </div>
                         </div>
