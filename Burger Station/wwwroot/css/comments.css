@@ -1,12 +1,17 @@
-﻿.container {
-    border: 2px solid #ccc;
+﻿.container2 {
+    border: 12px solid #ccc;
     background-color: #eee;
     border-radius: 5px;
     padding: 16px;
+    padding-bottom: 100px;
     margin-bottom: 30px;
+    margin-left: 550px;
+    margin-right: 550px;
     align-self: center;
     text-align-last: center;
     justify-content: center;
+    background-image: url('../assets/img/comment-back.jpg');
+    background-size: 100% 100%;
 }
 
 head {
@@ -16,18 +21,19 @@ head {
     align-self: center;
 }
 
-{
-
+h1{
+    text-align:center;
+    font-size: 50px;
 }
     /* Clear floats after containers */
-    .container::after {
+    .container2::after {
         content: "";
         clear: both;
         display: table;
     }
 
     /* Float images inside the container to the left. Add a right margin, and style the image as a circle */
-    .container img {
+    .container2 img {
         float: left;
         margin-right: 30px;
         margin-bottom: 20px;
@@ -35,23 +41,27 @@ head {
     }
    
     /* Increase the font-size of a span element */
-    .container span {
+    .container2 span {
         font-size: 35px;
         margin-right: 15px;
        
     }
-    .container p{
+    .container2 p{
         font-size: 25px;
+    }
+    
+    section title{
+       align-items: center;
     }
     
 
 /* Add media queries for responsiveness. This will center both the text and the image inside the container */
 @media (max-width: 500px) {
-    .container {
+    .container2 {
         text-align: left;
     }
 
-        .container img {
+        .container2 img {
             margin: auto;
             margin-bottom : 20px;
             float: none;

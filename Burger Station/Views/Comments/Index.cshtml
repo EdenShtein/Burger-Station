@@ -5,10 +5,13 @@
 }
     <head>
         <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+        <link rel="stylesheet" href="~/css/comments.css" />
+        <link rel="stylesheet" href="~/assets/css/style.css" />
+
     </head>
     <body>
 
+        <link rel="stylesheet" href="~/assets/css/comments.css" />
 
         <!-- ======= Top Bar ======= -->
         <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
@@ -64,7 +67,7 @@
                         @if (sign == 1)
                         {
                             sign = 0;
-                            <div class="container">
+                            <div class="container2">
                                 <img src="~/images/img_avatar2.png" alt="Avatar" style="width:90px">
                         <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
                         <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
@@ -81,7 +84,7 @@
                 else
                 {
                     sign = 1;
-                    <div class="container">
+                    <div class="container2">
                         <img src="~/images/flat-faces-icons-circle-man-1.png" alt="Avatar" style="width:90px">
                         <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
                         <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
@@ -97,7 +100,9 @@
                 }
                     }
                     @section Styles {
-                        <link rel="stylesheet" href="~/assets/css/style.css" />
+                        <link rel="stylesheet" href="~/css/comments.css" />
+
+
                     }
                 </div>
             </body>
