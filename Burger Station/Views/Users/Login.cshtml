@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>Login Page</title>
@@ -34,7 +33,7 @@
     <section></section>
     <section></section>
 
-    <!-- ======= Signin box ======= -->
+    <!-- ======= Login box ======= -->
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/he_IL/sdk.js#xfbml=1&version=v8.0&appId=2560600564202212&autoLogAppEvents=1" nonce="Szy4Ng6H"></script>
     <div class="container">
@@ -44,7 +43,7 @@
                     <h3>Sign In</h3>
                     <div class="d-flex justify-content-end social_icon">
 
-                        <!-- Facebook signin script -->
+                        <!-- Facebook login script -->
                         <script>
                             function statusChangeCallback(response) {       // Called with the results from FB.getLoginStatus().
                                 console.log('statusChangeCallback');
@@ -132,11 +131,11 @@
                             }(document, 'script', 'facebook-jssdk'));
 
                         </script>
-                        <!-- End Facebook signin script -->
+                        <!-- End Facebook login script -->
                     </div>
                 </div>
 
-                <!-- Signin without Facebook -->
+                <!-- Login without Facebook -->
                 <div class="card-body">
                     <form class="User" asp-action="Login">
 
@@ -156,7 +155,7 @@
                             <input type="password" class="form-control" placeholder="Password" name="password" autocomplete="off">
                         </div>
 
-                        <!-- Signin using Facebook's email -->
+                        <!-- Login using Facebook's email -->
                         <fb:login-button class="fb-login-button" length="long" size="large" scope="public_profile,email" onlogin="checkLoginState();">
                             <span style="margin-right: 10px;">Connect to Facebook</span>
                         </fb:login-button>
@@ -170,7 +169,7 @@
                     </form>
                 </div>
 
-                <!-- Move to signup section button -->
+                <!-- Move to login section button -->
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">
                         Don't have an account?<a href="~/Users/Signup">Sign Up</a>
@@ -179,7 +178,7 @@
             </div>
         </div>
     </div>
-    <!-- End Signin -->
+    <!-- End Login -->
 
 </body>
 </html>
