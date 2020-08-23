@@ -63,5 +63,10 @@
     </table>
 </div>
 <div>
+    @if (ViewBag.userType == "Admin")
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> @Html.Raw("|")
+        <a asp-action="Delete" asp-route-id="@Model.Id" >Delete</a> @Html.Raw("|")
+    }
     <a asp-action="Index">Back to List</a>
 </div>
