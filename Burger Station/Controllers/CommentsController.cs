@@ -14,12 +14,10 @@ namespace Burger_Station.Controllers
     {
         private readonly Burger_StationContext _context;
     
-
         public CommentsController(Burger_StationContext context)
         {
             _context = context;
         }
-
 
         // GET: Comments
         public async Task<IActionResult> Index()

@@ -167,7 +167,6 @@ namespace Burger_Station.Controllers
 
             ViewBag.usersType = users.GroupBy(u => u.Type).OrderBy(g => g.Key).Select(g => Tuple.Create(g.Key, g.Count()));
 
-
             return View(user);
         }
 
@@ -373,6 +372,7 @@ namespace Burger_Station.Controllers
 
             _context.User.Remove(user);
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -430,6 +430,7 @@ namespace Burger_Station.Controllers
             await _context.SaveChangesAsync();
 
             SignIn(user);
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -439,7 +440,6 @@ namespace Burger_Station.Controllers
             HttpContext.Session.SetString("Type", user.Type.ToString());
             HttpContext.Session.SetString("FullName", user.FirstName + " " + user.LastName );
             HttpContext.Session.SetInt32("Id", user.Id);
-
         }
 
         // GET: Users/Login

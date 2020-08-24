@@ -111,6 +111,7 @@ namespace Burger_Station.Controllers
             }
 
             ViewBag.ItemsId = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
+            
             return View(branch);
         }
 
@@ -170,6 +171,7 @@ namespace Burger_Station.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             return View(branch);
         }
 
