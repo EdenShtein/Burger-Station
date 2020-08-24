@@ -67,7 +67,7 @@
                                 <div class="row menu-container">
                                     <div class="col-lg-12 menu-item filter-@item.Item.Type.ToString().ToLower()">
                                         <div class="menu-content">
-                                            <a asp-action="Details" asp-route-id="@item.Item.Id">@Html.DisplayFor(modelItem => item.Item.Name)</a>
+                                            <a asp-controller="Items" asp-action="Details" asp-route-id="@item.Item.Id">@Html.DisplayFor(modelItem => item.Item.Name)</a>
                                             <span>@Html.DisplayFor(modelItem => item.Item.Price)</span>
                                         </div>
                                     </div>
