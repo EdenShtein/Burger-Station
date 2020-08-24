@@ -2,7 +2,6 @@
 html, body, main {
     margin: 0;
     height: 100%;
-    background-image: url("../../assets/img/backgroundlogin1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -14,7 +13,6 @@ html, body, main {
     background: rgba(26, 24, 22, 0.8);
     color: rgba(255, 255, 255, 0.7);
 }
-
 
 .social_icon span {
     font-size: 60px;
@@ -72,6 +70,7 @@ input:focus {
     color: white;
 }
 
-.links a {
-    margin-left: 4px;
-}
+    .links a {
+        margin-left: 4px;
+    }
+

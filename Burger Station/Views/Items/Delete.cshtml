@@ -24,11 +24,7 @@
                 <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
 
-            <nav class="nav-menu d-none d-lg-block">
-                <ul>
-                    <li class="book-a-table text-center"><a href="\Items\Index">Back</a></li>
-                </ul>
-            </nav><!-- .nav-menu -->
+           
 
         </div>
     </header><!-- End Header -->
@@ -66,7 +62,8 @@
                     </div>
 
                     <nav class="nav-menu d-none d-lg-block">
-                        <form asp-action="Index">
+                        <form asp-action="Details">
+                            <input type="hidden" asp-for="Id" />
                             <input class="btn float-right clicked-btn" type="submit" value="Cancel" />
                         </form>
                         <form asp-action="Delete">
