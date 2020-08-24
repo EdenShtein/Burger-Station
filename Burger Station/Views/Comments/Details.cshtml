@@ -4,44 +4,85 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<html>
+<head>
+    <!--Custom styles-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/Details.css">
+</head>
+<body>
+    <!-- ======= Top Bar ======= -->
+    <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
+        <div class="container text-right">
+        </div>
+    </section>
 
-<div>
-    <h4>Comment</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PostTitle)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PostTitle)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PostBody)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PostBody)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PostDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PostDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PostedBy)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PostedBy)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Item)
-        </dt>
-        <dd class="col-sm-10">
-            @ViewBag.Item
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+        <div class="container d-flex align-items-center">
+
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
+            </div>
+
+            <nav class="nav-menu d-none d-lg-block">
+
+                <ul>
+                    <li class="book-a-table text-center"><a asp-action="Index">Back</a></li>
+                </ul>
+
+            </nav><!-- .nav-menu -->
+
+        </div>
+    </header><!-- End Header -->
+
+    <section></section>
+    <br />
+
+
+    
+    <section id="branches" class="menu">
+        <div class="container">
+
+            <div class="section-title">
+                <h2> <span>Details</span></h2>
+            </div>
+            <div class="section-title">
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @*@Html.DisplayNameFor(model => model.PostTitle)*@
+                    </dt>
+                    <dd class="col-sm-10">
+                        <b><span>@Html.DisplayFor(model => model.PostTitle)</span></b>
+                    </dd>
+                    <dt class="col-sm-2">
+                        @*@Html.DisplayNameFor(model => model.PostBody)*@
+                    </dt>
+                    <dd class="col-sm-10">
+                        <b><span>@Html.DisplayFor(model => model.PostBody)</span></b>
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.PostDate)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.PostDate)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.PostedBy)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.PostedBy)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Item)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @ViewBag.Item
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </section>
+    
+
+</body>
+</html>

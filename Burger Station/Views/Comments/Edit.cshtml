@@ -4,39 +4,117 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
 
-<h4>Comment</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="PostTitle" class="control-label"></label>
-                <input asp-for="PostTitle" class="form-control" />
-                <span asp-validation-for="PostTitle" class="text-danger"></span>
+<html>
+<head>
+    <!--Custom styles-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/Create_Delete.css">
+</head>
+<body>
+    <!-- ======= Top Bar ======= -->
+    <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
+        <div class="container text-right">
+        </div>
+    </section>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+        <div class="container d-flex align-items-center">
+
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
-            <div class="form-group">
-                <label asp-for="PostBody" class="control-label"></label>
-                <input asp-for="PostBody" class="form-control" />
-                <span asp-validation-for="PostBody" class="text-danger"></span>
+
+            <nav class="nav-menu d-none d-lg-block">
+                <form asp-action="Index">
+                    <input type="hidden" asp-for="Id" />
+                    <input class="btn float-right clicked-btn" type="submit" value="Back" />
+                </form>
+            </nav><!-- .nav-menu -->
+
+        </div>
+    </header><!-- End Header -->
+
+    <section></section>
+    <section></section>
+
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3>Edit Comment</h3>
+                    </div>
+                    <form class="Item" asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+
+                            <input asp-for="PostTitle" class="form-control" />
+                            <span asp-validation-for="PostTitle" class="text-danger"></span>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+
+                            <input asp-for="PostedBy" class="form-control" />
+                            <span asp-validation-for="PostedBy" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <select name="ItemId" class="form-control" asp-items="@ViewBag.Items"></select>
+                            </div>
+                        </div>
+                        <div class="btn-c">
+                            <input type="submit" value="Save" class="btn float-right clicked-btn" />
+                        </div>
+
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="Items" class="control-label"></label>
-                <select name="ItemId" class="form-control" asp-items="@ViewBag.Items"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+
+
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+    @*<div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="PostTitle" class="control-label"></label>
+                    <input asp-for="PostTitle" class="form-control" />
+                    <span asp-validation-for="PostTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PostBody" class="control-label"></label>
+                    <input asp-for="PostBody" class="form-control" />
+                    <span asp-validation-for="PostBody" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="Items" class="control-label"></label>
+                    <select name="ItemId" class="form-control" asp-items="@ViewBag.Items"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+</body>
+</html>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
