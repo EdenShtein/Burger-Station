@@ -317,6 +317,18 @@ namespace Burger_Station.Controllers
                     }
                 }
 
+                //if (user == null)
+                //{
+                //    return NotFound();
+                //}
+
+                //if (type == "Member")
+                //{
+                //    return RedirectToAction("DetailsMember", "Users", new { @id = userId });
+                //}
+
+                //return RedirectToAction("DetailsAdmin", "Users", new { @id = userId });
+
                 return RedirectToAction(nameof(Index));
             }
 

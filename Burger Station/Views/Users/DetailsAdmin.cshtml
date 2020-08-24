@@ -7,109 +7,124 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 
-<h1>Details</h1>
+<html>
+<head>
+    <!--Custom styles-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/Details.css">
+</head>
+<body>
+    <!-- ======= Top Bar ======= -->
+    <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
+        <div class="container text-right">
+        </div>
+    </section>
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Birthday)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Birthday)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FavoriteItem)
-        </dt>
-        <dd class="col-sm-10">
-            @ViewBag.FavoriteItem
-        </dd>
-    </dl>
-</div>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+        <div class="container d-flex align-items-center">
 
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
+            </div>
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <!-- All users button -->
+                    <li class="book-a-table text-center">
+                        <a asp-action="Index">All Users</a>
+                    </li>
 
-<!-- Facebook SDK -->
-<script type="text/javascript" src="~/Content/JSFiles/site.js"></script>
-<script>
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '2560600564202212',
-            cookie: true,
-            xfbml: true,
-            version: 'v8.0'
-        });
+                    <!-- Creat new user button -->
+                    <li class="book-a-table text-center">
+                        <a asp-action="Create">Add New User</a>
+                    </li>
 
-        FB.AppEvents.logPageView();
-    };
+                    <!-- Edit button -->
+                    <li class="book-a-table text-center">
+                        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                    </li>
 
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) { return; }
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
+                    <!-- Delete button -->
+                    <li class="book-a-table text-center">
+                        <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+                    </li>
 
+                    <!-- Back to Home button -->
+                    <li class="book-a-table text-center"><a href="\Home">Back</a></li>
+                </ul>
+            </nav>
+            <!-- .nav-menu -->
 
-<!-- Facebook post -->
-<label> Post on our Facebook Page: </label>
-<br />
-<br />
-<textarea style="width:600px; height:100px;" name="text" placeholder="Type your status here!" id="postTxt"></textarea>
-<br />
-<button style="width:600px;" onclick="postAStatus()"> Publish </button>
+        </div>
+    </header>
+    <!-- End Header -->
 
-<br />
-<br />
-<br />
+    <section><br></section>
 
-<!--- D3 Pie Chart--->
-<!-- Load d3.js -->
-<script src="https://d3js.org/d3.v4.js"></script>
+    <!-- ======= Member Info ======= -->
+    <div class="section-title">
+        <h2>
+            <span>Details:</span> @Model.FirstName @Model.LastName, @Model.Type
+        </h2>
+        <hr />
+        <b><span>@Html.DisplayNameFor(model => model.Email):</span></b> @Html.DisplayFor(model => model.Email) <br>
+        <b><span>@Html.DisplayNameFor(model => model.Password):</span></b> @Html.DisplayFor(model => model.Password) <br>
+        <b><span>@Html.DisplayNameFor(model => model.Birthday):</span></b> @Html.DisplayFor(model => model.Birthday) <br>
+        <b><span>@Html.DisplayNameFor(model => model.FavoriteItem):</span></b> @ViewBag.FavoriteItem <br>
+    </div>
+    <!-- End Member Info -->
 
-<!-- Color scale -->
-<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-
-<!-- Add 2 buttons -->
-<button style="float:right" onclick="update(data1)">Members/Admins</button>
-<button style="float:right" onclick="update(data2)">Favorite Item</button>
-
-<!-- Create a div where the graph will take place -->
-<div style="float:right" id="my_dataviz"></div>
-<div>
+    <!-- Facebook SDK -->
+    <script type="text/javascript" src="~/Content/JSFiles/site.js"></script>
     <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '2560600564202212',
+                cookie: true,
+                xfbml: true,
+                version: 'v8.0'
+            });
+
+            FB.AppEvents.logPageView();
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+
+    <!-- Facebook post -->
+    <label> Post on our Facebook Page: </label>
+    <br />
+    <br />
+<textarea style="width:600px; height:100px;" name="text" placeholder="Type your status here!" id="postTxt"></textarea>
+    <br />
+    <button style="width:600px;" onclick="postAStatus()"> Publish </button>
+
+    <br />
+    <br />
+    <br />
+
+    <!--- D3 Pie Chart--->
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+    <!-- Color scale -->
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+    <!-- Add 2 buttons -->
+    <button style="float:right" onclick="update(data1)">Members/Admins</button>
+    <button style="float:right" onclick="update(data2)">Favorite Item</button>
+
+    <!-- Create a div where the graph will take place -->
+    <div style="float:right" id="my_dataviz"></div>
+    <div>
+        <script>
 
         // set the dimensions and margins of the graph
         var width = 450
@@ -177,14 +192,11 @@
         // Initialize the plot with the first dataset
         update(data1)
 
-    </script>
+        </script>
 
-</div>
+    </div>
+</body>
+</html>
 
-
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">All Users</a>
-</div>
 
 
