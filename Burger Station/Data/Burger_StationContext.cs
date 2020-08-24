@@ -9,10 +9,11 @@ namespace Burger_Station.Data
 {
     public class Burger_StationContext : DbContext
     {
-        public Burger_StationContext (DbContextOptions<Burger_StationContext> options)
+        public Burger_StationContext(DbContextOptions<Burger_StationContext> options)
             : base(options)
         {
         }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
