@@ -1,11 +1,11 @@
-﻿html, body, main {
+﻿
+html, body, main {
     margin: 0;
     height: 100%;
     background-image: url("../../assets/img/backgroundlogin.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
-
 
 
 .card {
@@ -76,19 +76,3 @@ input:focus {
         margin-left: 4px;
     }
 
-
-.delete_btn {
-    color: white;
-    background-color: darkred;
-    width: 100px;
-    margin: 3px;
-    padding: 2px;
-}
-
-.cancel_btn {
-    color: white;
-    background-color: darkorange;
-    width: 100px;
-    margin: 3px;
-    padding: 2px;
-}

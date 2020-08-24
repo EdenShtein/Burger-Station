@@ -1657,3 +1657,24 @@ section {
     background-color: #ffa012;
     color: #fff;
 }
+
+
+.clicked-btn-red {
+    background-color: #de200b;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    padding: 8px 16px 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    margin: 0 3px 10px 3px;
+    transition: all ease-in-out 0.3s;
+    border: 2px solid #de200b;
+    border-radius: 50px;
+}
+
+.clicked-btn-red:hover {
+    background-color: #bf1d0b;
+    color: #fff;
+}
