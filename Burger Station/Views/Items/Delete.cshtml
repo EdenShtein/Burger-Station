@@ -66,27 +66,13 @@
                     </div>
 
                     <nav class="nav-menu d-none d-lg-block">
-                        <ul>
-                            <li>
-                                <a></a>
-                            </li>
-
-                            <li>
-                                <form asp-action="Delete">
-                                    <input type="hidden" asp-for="Id" />
-                                    <input class="btn float-left clicked-btn-red" type="submit" value="Delete" />
-                                </form>
-                            </li>
-
-
-                            <li>
-                                <form asp-action="Index">
-                                    <input class="btn float-right clicked-btn" type="submit" value="Cancel" />
-                                </form>
-                            </li>
-
-
-                        </ul>
+                        <form asp-action="Index">
+                            <input class="btn float-right clicked-btn" type="submit" value="Cancel" />
+                        </form>
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="Id" />
+                            <input class="btn float-left clicked-btn-red" type="submit" value="Delete" />
+                        </form>
                     </nav>
                 </div>
             </div>
