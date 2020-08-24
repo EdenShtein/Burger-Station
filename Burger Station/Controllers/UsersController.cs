@@ -164,9 +164,13 @@ namespace Burger_Station.Controllers
             //                    Type = userGroup.Key,
             //                    Count = userGroup.Count(),
             //                };
+            
+            var usersType = users.GroupBy(u => u.Type).OrderBy(g => g.Key).Select(g => Tuple.Create(g.Key, g.Count()));
+            ViewBag.userAdmin = usersType.ElementAt(1).Item2;
 
-            ViewBag.usersType = users.GroupBy(u => u.Type).OrderBy(g => g.Key).Select(g => Tuple.Create(g.Key, g.Count()));
 
+
+            ViewBag.userMember = usersType.ElementAt(0).Item2;
             return View(user);
         }
 
