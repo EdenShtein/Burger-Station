@@ -4,57 +4,84 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
 
-    <!--Bootsrap 4 CDN-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-    <!--Fontawesome CDN-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
     <!--Custom styles-->
-    <link rel="stylesheet" type="text/css" href="~/css/menu/edit.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/Create_Delete.css">
+
 </head>
 <body>
+    <!-- ======= Top Bar ======= -->
+    <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
+        <div class="container text-right">
+        </div>
+    </section>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+        <div class="container d-flex align-items-center">
+
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
+            </div>
+
+            <nav class="nav-menu d-none d-lg-block">
+                <form asp-action="Details">
+                    <input type="hidden" asp-for="Id" />
+                    <input class="btn float-right clicked-btn" type="submit" value="Back" />
+                </form>
+            </nav><!-- .nav-menu -->
+
+        </div>
+    </header><!-- End Header -->
+
+    <section></section>
+    <section></section>
+
     <div class="container">
         <div class="d-flex justify-content-center h-100">
             <div class="card">
                 <div class="card-body">
+                    <div class="card-header">
+                        <h3>Edit Item</h3>
+                    </div>
                     <form class="Item" asp-action="Edit">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="Id" />
                         <div class="input-group form-group">
-                            <label asp-for="Type" class="control-label"></label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            
                             <select class="form-control" asp-for="Type" asp-items="@Html.GetEnumSelectList<ItemType>()"></select>
                         </div>
                         <div class="input-group form-group">
-                            <label asp-for="Name" class="control-label"></label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            
                             <input asp-for="Name" class="form-control" />
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
                         <div class="input-group form-group">
-                            <label asp-for="Price" class="control-label"></label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            
                             <input asp-for="Price" class="form-control" />
                             <span asp-validation-for="Price" class="text-danger"></span>
                         </div>
                         <div class="btn-c">
-                            <input type="submit" value="Save" class="btn btn-primary" />
+                            <input type="submit" value="Save" class="btn float-right clicked-btn" />
                         </div>
-                        <div style="text-align:center">
-                            <a asp-action="Index">Back to Menu</a>
-                        </div>
+                        
                     </form>
                 </div>
             </div>
 
-            
+
         </div>
     </div>
 

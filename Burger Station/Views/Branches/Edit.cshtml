@@ -94,40 +94,6 @@
     </div>
 
 
-    @*<div class="container">
-        <div class="d-flex justify-content-center h-100">
-            <div class="card">
-                <div class="card-body">
-                    <form class="Item" asp-action="Edit">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <input type="hidden" asp-for="Id" />
-                        <div class="input-group form-group">
-                            <label asp-for="Address" class="control-label"></label>
-                            <input asp-for="Address" class="form-control" />
-                            <span asp-validation-for="Address" class="text-danger"></span>
-                        </div>
-                        <div class="input-group form-group">
-                            <label asp-for="City" class="control-label"></label>
-                            <select class="form-control" asp-for="City" asp-items="@Html.GetEnumSelectList<City>()"></select>
-                        </div>
-                        <div class="input-group form-group">
-                            <label asp-for="District" class="control-label"></label>
-                            <select class="form-control" asp-for="District" asp-items="@Html.GetEnumSelectList<District>()"></select>
-                        </div>
-                        <div class="input-group form-group">
-                            <label for="ItemId" class="control-label"></label>
-                            <select name="ItemId" class="form-control" asp-items="ViewBag.ItemsId" multiple></select>
-                        </div>
-                        <div class="btn-c">
-                            <input type="submit" value="Save" class="btn btn-primary" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>*@
-
-
 </body>
 </html>
 

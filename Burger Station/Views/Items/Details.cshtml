@@ -4,37 +4,76 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
 
-<!------ Include the above in your HEAD tag ---------->
 
 <!DOCTYPE html>
 <html>
 <head>
 
     <link rel="stylesheet" href="~/css/comments.css" />
-    <link rel="stylesheet" href="~/assets/css/style.css" />
-
-
+   
 </head>
 <body>
+    <!-- ======= Top Bar ======= -->
+    <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
+        <div class="container text-right">
+        </div>
+    </section>
 
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+        <div class="container d-flex align-items-center">
+
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
+            </div>
+
+
+            <nav class="nav-menu d-none d-lg-block">
+
+                <ul>
+                    @if (ViewBag.userType != null)
+                    {
+                        <li class="book-a-table text-center">
+                            <!-- Edit button -->
+                            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                        </li>
+
+                        <li class="book-a-table text-center">
+                            <!-- Delete button -->
+                            <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+                        </li>
+
+                    }
+
+                    <li class="book-a-table text-center"><a asp-action="Index">Back</a></li>
+                </ul>
+            </nav><!-- .nav-menu -->
+
+        </div>
+    </header><!-- End Header -->
+
+    <section></section>
+
+
+
+    <h1>Details</h1>
     <div class="container">
 
         <!-- Portfolio Item Heading -->
         <h1 class="my-4">
             @Html.DisplayFor(model => model.Name)<br />
-                   <small>
-                     @Html.DisplayFor(model => model.Price)
+            <small>
+                @Html.DisplayFor(model => model.Price)
 
-                      </small>
+            </small>
         </h1>
 
         <!-- Portfolio Item Row -->
         <div class="row">
 
             <div class="col-md-8">
-                <img class="img-fluid img2" src="\images\burgers\@(ViewBag.ItemName).png"  alt="item-img">
+                <img class="img-fluid img2" src="\images\burgers\@(ViewBag.ItemName).png" alt="item-img">
             </div>
 
             <div class="col-md-4">
@@ -51,7 +90,7 @@
 
         </div>
         <!-- /.row -->
-       
+
         @if (ViewBag.itemType == "Food")
         {
 
@@ -96,18 +135,11 @@
                         </div>
                     }
                 }
-              
+
             </div>
 
         </div>
-        <div>
-            @if (ViewBag.userType == "Admin")
-            {
-                <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> @Html.Raw("|")
-                <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a> @Html.Raw("|")
-            }
-            <a asp-action="Index">Back to List</a>
-        </div>
+        
     </div>
 </body>
 </html>
