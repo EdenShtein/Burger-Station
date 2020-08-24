@@ -30,9 +30,13 @@
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
+
+            <!-- Logo -->
             <div class="logo mr-auto">
                 <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
+
+            <!-- nav-menu -->
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li class="active"></li>
@@ -45,6 +49,7 @@
                     <li><a href="\Items\Index">Menu</a></li>
                     <li><a href="\Comments\Index">Comments</a></li>
 
+                    <!-- Login / Logout button -->
                     @if (ViewBag.userType == null)
                     {
                         <li class="book-a-table text-center"><a href="\Users\Login">Login</a></li>
