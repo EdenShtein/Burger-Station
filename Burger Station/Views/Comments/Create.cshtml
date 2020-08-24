@@ -46,7 +46,7 @@
                     <h3>Create a new Comment</h3>
                 </div>
                 <div class="card-body">
-                    <form asp-action="Create">
+                    <form asp-action="Create" display="inline">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
                             <label for="Items" class="control-label"></label>
@@ -68,25 +68,13 @@
                             <input asp-for="PostBody" class="form-control" placeholder="Post" />
                             <span asp-validation-for="PostBody" class="text-danger"></span>
                         </div>
-
-                        @*<div class="form-group">
-                            <label asp-for="PostTitle" class="control-label"></label>
-                            <input asp-for="PostTitle" class="form-control" />
-                            <span asp-validation-for="PostTitle" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="PostBody" class="control-label"></label>
-                            <input asp-for="PostBody" class="form-control" />
-                            <span asp-validation-for="PostBody" class="text-danger"></span>
-                        </div>*@
-
                         <div class="form-group">
                             <label asp-for="PostedBy" class="control-label"></label> 
                             : @ViewBag.userName
                             <span asp-validation-for="PostedBy" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Create" class="btn btn-primary" />
+                            <input type="submit" value="Create" class="btn float-right clicked-btn">
                         </div>
                     </form>
                 </div>

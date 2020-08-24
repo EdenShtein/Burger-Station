@@ -154,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
 }
 
-.nav-menu .book-a-table a {
+.nav-menu .book-a-table a{
   background: #ffb03b;
   color: #fff;
   border-radius: 50px;
@@ -167,7 +167,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.3s;
 }
 
-.nav-menu .book-a-table a:hover {
+.nav-menu .book-a-table a:hover{
   background: #ffa012;
   color: #fff;
 }
@@ -1634,14 +1634,11 @@ section {
   font-size: 13px;
 }
 
-
-
-
 /*--------------------------------------------------------------
-# Input Button in Weather Branch
+# Clicked button for every need.
 --------------------------------------------------------------*/
 
-.weather-btn {
+.clicked-btn{
     background-color: #ffb03b;
     color: #fff;
     cursor: pointer;
@@ -1656,6 +1653,7 @@ section {
     border-radius: 50px;
 }
 
-.weather-btn:hover {
-        background-color: #ffa012
+.clicked-btn:hover {
+    background-color: #ffa012;
+    color: #fff;
 }

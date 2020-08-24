@@ -1,6 +1,4 @@
-﻿
-
-html, body, main {
+﻿html, body, main {
     margin: 0;
     height: 100%;
     background-image: url("../../assets/img/backgroundlogin1.jpg");
@@ -23,10 +21,10 @@ html, body, main {
     color: #FFC312;
 }
 
-    .social_icon span:hover {
-        color: white;
-        cursor: pointer;
-    }
+.social_icon span:hover {
+    color: white;
+    cursor: pointer;
+}
 
 
 .social_icon {
@@ -51,12 +49,12 @@ input:focus {
     color: white;
 }
 
-    .remember input {
-        width: 20px;
-        height: 20px;
-        margin-left: 15px;
-        margin-right: 5px;
-    }
+.remember input {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
 
 .login_btn {
     color: black;
@@ -64,15 +62,15 @@ input:focus {
     width: 100px;
 }
 
-    .login_btn:hover {
-        color: black;
-        background-color: darkorange;
-    }
+.login_btn:hover {
+    color: black;
+    background-color: darkorange;
+}
 
 .links {
     color: white;
 }
 
-    .links a {
-        margin-left: 4px;
-    }
+.links a {
+    margin-left: 4px;
+}
