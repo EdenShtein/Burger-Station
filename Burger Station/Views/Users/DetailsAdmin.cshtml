@@ -180,5 +180,74 @@
             .style("opacity", 0.7);
     </script>
 
+    @{
+        string[] color = { "yellow", "blue", "red", "green", "orange", "pink", "purple", "lime", "teal", "coral" };
+
+    }
+    <center>
+        <div id="firstApp">
+            <div id="firstdChart">
+                <svg id="firstSvg"></svg>
+            </div>
+            <div id="firstData">
+                <ul>
+                    @for (var i = 0; i < ViewBag.valueArr.Length; i++)
+                    {
+                        <li>
+                            <span style="background-color: @color[i];"> &nbsp; </span> &nbsp;&nbsp;@ViewBag.keyArr[i] &nbsp;&nbsp; @ViewBag.valueArr[i]
+                        </li>
+}
+
+                </ul>
+            </div>
+        </div>
+    </center>
+
+
+    <script type="text/javascript">
+
+        var DATA2 = {
+            a: @ViewBag.valueArr[0], b: @ViewBag.valueArr[1], c: @ViewBag.valueArr[2], d: @ViewBag.valueArr[3],
+            d: @ViewBag.valueArr[4], e: @ViewBag.valueArr[5], f: @ViewBag.valueArr[6],
+        g: @ViewBag.valueArr[7],h: @ViewBag.valueArr[8],i: @ViewBag.valueArr[9]}
+        var width = 450, height = 450, margin = 40;
+        var radius = Math.min(width, height) / 2 - margin;
+        var container = d3
+            .select('#firstSvg')
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+        var pie = d3.pie()
+            .value(data => data.value)
+        var data_ready = pie(d3.entries(DATA2))
+        var color = 'yellow';
+        container
+            .selectAll('groups')
+            .data(data_ready)
+            .enter()
+            .append('path')
+            .attr('d', d3.arc()
+                .innerRadius(0)
+                .outerRadius(radius)
+            )
+            .attr('fill', () => {
+                if (color == 'yellow') { color = 'blue'; return 'yellow'; }
+                if (color == 'blue') { color = 'red'; return 'blue'; }
+                if (color == 'red') { color = 'green'; return 'red'; }
+                if (color == 'green') { color = 'orange'; return 'green'; }
+                if (color == 'orange') { color = 'pink'; return 'orange'; }
+                if (color == 'pink') { color = 'purple'; return 'pink'; }
+                if (color == 'purple') { color = 'lime'; return 'purple'; }
+                if (color == 'lime') { color = 'teal'; return 'lime'; }
+                if (color == 'teal') { color = 'coral'; return 'teal'; }
+                else {return 'coral'}
+            })
+            .attr("stroke", "black")
+            .style("stroke-width", "2px")
+            .style("opacity", 0.7);
+    </script>
+
+
 </body>
 </html>
