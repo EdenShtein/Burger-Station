@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Burger_Station.Controllers
 {
@@ -167,10 +169,33 @@ namespace Burger_Station.Controllers
             
             var usersType = users.GroupBy(u => u.Type).OrderBy(g => g.Key).Select(g => Tuple.Create(g.Key, g.Count()));
             ViewBag.userAdmin = usersType.ElementAt(1).Item2;
-
-
-
             ViewBag.userMember = usersType.ElementAt(0).Item2;
+
+
+
+            var items = await _context.Item
+                .ToListAsync();
+            Dictionary<string,int> d = new Dictionary<string, int>();
+            for (int i = 0; i < users.Count; i++)
+            {
+                Item t = users.ElementAt(i).FavoriteItem;
+                if (d.ContainsKey(t.Name))
+                {
+                    int value = d[t.Name];
+                    d[t.Name]= (value + 1);
+                }
+                else
+                {
+                    int v = 1;
+                    d.Add(t.Name, v);
+                }
+            }
+            var valuearr = d.Values.ToArray();
+            var keysarr = d.Keys.ToArray();
+            ViewBag.valueArr = valuearr;
+            ViewBag.keyArr = keysarr;
+            ViewBag.items = items;
+
             return View(user);
         }
 
