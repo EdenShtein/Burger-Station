@@ -34,6 +34,14 @@
                         <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
                     </li>
 
+                    @if (ViewBag.userType == "Admin")
+                    {
+                        <!-- Delete button -->
+                        <li class="book-a-table text-center">
+                            <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+                        </li>
+                    }
+
                     <!-- Back to Home button -->
                     <li class="book-a-table text-center"><a href="\Home">Back</a></li>
                 </ul>

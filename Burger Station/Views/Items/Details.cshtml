@@ -23,14 +23,10 @@
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
-
             <div class="logo mr-auto">
                 <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
-
-
             <nav class="nav-menu d-none d-lg-block">
-
                 <ul>
                     @if (ViewBag.userType != null)
                     {
@@ -45,101 +41,93 @@
                         </li>
 
                     }
-
-                    <li class="book-a-table text-center"><a asp-action="Index">Back</a></li>
+                    <li class="book-a-table text-center"><a asp-action="Index">Back To Menu</a></li>
                 </ul>
-            </nav><!-- .nav-menu -->
-
+            </nav>
+            <!-- .nav-menu -->
         </div>
-    </header><!-- End Header -->
+    </header>
+    <!-- End Header -->
 
     <section></section>
 
+    <!-- ======= Item info ======= -->
+    <main id="main">
+        <section id="branches" class="menu">
+            <div class="container">
+                <table style="width:100%">
+                    <tr>
+                        <th style="text-align:right" width="50%"><img class="circle-photo rounded-circle z-depth-2" src="\images\burgers\@(ViewBag.ItemName).png" data-holder-rendered="true"></th>
+                        <th width="50%">
+                            <section id="branches" class="menu">
+                                <div class="container">
+                                    <div class="section-title" style="text-align:left">
+                                        <h2>
+                                            @Html.DisplayFor(model => model.Name) <br>
+                                            <span>@Html.DisplayFor(model => model.Price)</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </section>
+                        </th>
+                    </tr>
+                </table>
 
-
-    <h1>Details</h1>
-    <div class="container">
-
-        <!-- Portfolio Item Heading -->
-        <h1 class="my-4">
-            @Html.DisplayFor(model => model.Name)<br />
-            <small>
-                @Html.DisplayFor(model => model.Price)
-
-            </small>
-        </h1>
-
-        <!-- Portfolio Item Row -->
-        <div class="row">
-
-            <div class="col-md-8">
-                <img class="img-fluid img2" src="\images\burgers\@(ViewBag.ItemName).png" alt="item-img">
-            </div>
-
-            <div class="col-md-4">
-                <h3 class="my-3">About the item:</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-                <h3 class="my-3">About allergies:</h3>
-                <ul>
-                    <li>Lorem Ipsum</li>
-                    <li>Dolor Sit Amet</li>
-                    <li>Consectetur</li>
-                    <li>Adipiscing Elit</li>
-                </ul>
-            </div>
-
-        </div>
-        <!-- /.row -->
-
-        @if (ViewBag.itemType == "Food")
-        {
-
-        }
-        <div id="menu" class="section lb">
-            <div class="container-fluid">
-                @{int sign = 1; }
-                @foreach (var item in Model.Comments)
+                <!-- Comment section -->
+                @if (ViewBag.itemType == "Food")
                 {
-                    @if (sign == 1)
-                    {
-                        sign = 0;
-                        <div class="container3">
-                            <img src="~/images/img_avatar2.png" alt="Avatar" style="width:90px">
-                            <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
-                            <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
-                            <div class="editadd">
-                                @if (ViewBag.userType == "Admin")
+                    <br>
+                    <!-- Title of comments section -->
+                    <div class="section-title">
+                        <h2>Let's hear some <span>Comments!</span></h2>
+                    </div>
+
+                    <div id="menu" class="section lb">
+                        <div class="container-fluid">
+                            @{int sign = 1; }
+                            @foreach (var item in Model.Comments)
+                            {
+                                @if (sign == 1)
                                 {
-                                    <a asp-controller="Comments" asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
-                                    <a asp-controller="Comments" asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
+                                    sign = 0;
+                                    <div class="container3">
+                                        <img src="~/images/img_avatar2.png" alt="Avatar" style="width:90px">
+                                        <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
+                                        <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
+                                        <div class="editadd">
+                                            @if (ViewBag.userType == "Admin")
+                                            {
+                                                <a asp-controller="Comments" asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
+                                                <a asp-controller="Comments" asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
+                                            }
+                                            <a asp-controller="Comments" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                        </div>
+                                    </div>
                                 }
-                                <a asp-controller="Comments" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                            </div>
-                        </div>
-                    }
-                    else
-                    {
-                        sign = 1;
-                        <div class="container3">
-                            <img src="~/images/flat-faces-icons-circle-man-1.png" alt="Avatar" style="width:90px">
-                            <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
-                            <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
-                            <div class="editadd">
-                                @if (ViewBag.userType == "Admin")
+                                else
                                 {
-                                    <a asp-controller="Comments" asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
-                                    <a asp-controller="Comments" asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
+                                    sign = 1;
+                                    <div class="container3">
+                                        <img src="~/images/flat-faces-icons-circle-man-1.png" alt="Avatar" style="width:90px">
+                                        <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
+                                        <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
+                                        <div class="editadd">
+                                            @if (ViewBag.userType == "Admin")
+                                            {
+                                                <a asp-controller="Comments" asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
+                                                <a asp-controller="Comments" asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
+                                            }
+                                            <a asp-controller="Comments" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                        </div>
+                                    </div>
                                 }
-                                <a asp-controller="Comments" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                            </div>
+                            }
                         </div>
-                    }
+                    </div>
                 }
-
             </div>
-
-        </div>
-        
-    </div>
+        </section>
+    </main>
+    <!-- End Item info-->
 </body>
 </html>

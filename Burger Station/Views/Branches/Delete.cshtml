@@ -27,9 +27,6 @@
             <div class="logo mr-auto">
                 <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
-
-           
-
         </div>
     </header><!-- End Header -->
 
@@ -37,34 +34,17 @@
     <section></section>
 
     <div class="data-d">
-
         <div class="container">
             <div class="d-flex justify-content-center h-100">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Delete</h3>
+                        <h3 style="text-align: center">Are you sure you want to delete?</h3>
                     </div>
                     <div class="card-body">
-                        <table class="table table-hover table-sm table-dark">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">@Html.DisplayNameFor(model => model.Address)</th>
-                                    <th scope="col"> @Html.DisplayNameFor(model => model.City)</th>
-                                    <th scope="col"> @Html.DisplayNameFor(model => model.District)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>  @Html.DisplayFor(model => model.Address)</td>
-                                    <td>  @Html.DisplayFor(model => model.City)</td>
-                                    <td> @Html.DisplayFor(model => model.District)</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <b><span>@Html.DisplayNameFor(model => model.Address):</span></b> @Html.DisplayFor(model => model.Address) <br>
+                        <b><span>@Html.DisplayNameFor(model => model.City):</span></b> @Html.DisplayFor(model => model.City) <br>
+                        <b><span>@Html.DisplayNameFor(model => model.District):</span></b> @Html.DisplayFor(model => model.District) <br>
                     </div>
-
                     <nav class="nav-menu d-none d-lg-block">
                         <form asp-action="Details">
                             <input type="hidden" asp-for="Id" />

@@ -36,53 +36,16 @@
     </header><!-- End Header -->
 
     <section></section>
-    <br />
 
-
-    
     <section id="branches" class="menu">
         <div class="container">
-
             <div class="section-title">
-                <h2> <span>Details</span></h2>
-            </div>
-            <div class="section-title">
-                <dl class="row">
-                    <dt class="col-sm-2">
-                        @*@Html.DisplayNameFor(model => model.PostTitle)*@
-                    </dt>
-                    <dd class="col-sm-10">
-                        <b><span>@Html.DisplayFor(model => model.PostTitle)</span></b>
-                    </dd>
-                    <dt class="col-sm-2">
-                        @*@Html.DisplayNameFor(model => model.PostBody)*@
-                    </dt>
-                    <dd class="col-sm-10">
-                        <b><span>@Html.DisplayFor(model => model.PostBody)</span></b>
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PostDate)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PostDate)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PostedBy)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PostedBy)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Item)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @ViewBag.Item
-                    </dd>
-                </dl>
+                <h2><span>@Html.DisplayFor(model => model.PostedBy)</span>'s Comment on <span>@ViewBag.Item</span></h2>
+                <p>@Html.DisplayFor(model => model.PostTitle)</p>
+                <p>@Html.DisplayFor(model => model.PostBody)</p>
+                <p>Posted on @Html.DisplayFor(model => model.PostDate)</p>
             </div>
         </div>
     </section>
-    
-
 </body>
 </html>

@@ -28,11 +28,11 @@
             </div>
 
             <nav class="nav-menu d-none d-lg-block">
-                <form asp-action="Details">
-                    <input type="hidden" asp-for="Id" />
-                    <input class="btn float-right clicked-btn" type="submit" value="Back" />
-                </form>
-            </nav><!-- .nav-menu -->
+                <ul>
+                    <li class="book-a-table text-center"><a href="\Items\Details\@Model.Id">Back</a></li>
+                </ul>
+            </nav>
+            <!-- .nav-menu -->
 
         </div>
     </header><!-- End Header -->
@@ -76,15 +76,11 @@
                         <div class="btn-c">
                             <input type="submit" value="Save" class="btn float-right clicked-btn" />
                         </div>
-                        
                     </form>
                 </div>
             </div>
-
-
         </div>
     </div>
-
 </body>
 </html>
 

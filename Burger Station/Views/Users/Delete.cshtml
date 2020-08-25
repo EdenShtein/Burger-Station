@@ -27,14 +27,6 @@
             <div class="logo mr-auto">
                 <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
-
-            <nav class="nav-menu d-none d-lg-block">
-                <form asp-action="Details">
-                    <input type="hidden" asp-for="Id" />
-                    <input class="btn float-right clicked-btn" type="submit" value="Back" />
-                </form>
-            </nav>
-            <!-- .nav-menu -->
         </div>
     </header>
     <!-- End Header -->
@@ -43,12 +35,11 @@
     <section></section>
 
     <div class="data-d">
-
         <div class="container">
             <div class="d-flex justify-content-center h-100">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Delete</h3>
+                        <h3 style="text-align: center">Are you sure you want to delete?</h3>
                     </div>
                     <div class="card-body">
                         <b><span>@Html.DisplayNameFor(model => model.FirstName):</span></b> @Html.DisplayFor(model => model.FirstName) <br>
