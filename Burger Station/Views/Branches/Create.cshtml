@@ -50,23 +50,38 @@
                         
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <div class="form-group">
-                                <label asp-for="Address" class="control-label"></label>
-                                <input asp-for="Address" class="form-control" />
+
+
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input asp-for="Address" class="form-control" placeholder="Address" autocomplete="off" />
                                 <span asp-validation-for="Address" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="City" class="control-label"></label>
+
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
                                 <select class="form-control" asp-for="City" asp-items="@Html.GetEnumSelectList<City>()"></select>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="District" class="control-label"></label>
+
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
                                 <select class="form-control" asp-for="District" asp-items="@Html.GetEnumSelectList<District>()"></select>
                             </div>
-                            <div class="form-group">
-                                <label for="ItemId" class="control-label"></label>
+
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
                                 <select name="ItemId" class="form-control" asp-items="ViewBag.ItemsId" multiple></select>
                             </div>
+
+
                             <div class="form-group">
                                 <input type="submit" value="Create" class="btn float-right clicked-btn">
                             </div>
