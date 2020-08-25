@@ -72,59 +72,25 @@
                         </th>
                     </tr>
                 </table>
-
-                <!-- Comment section -->
-                @if (ViewBag.itemType == "Food")
-                {
-                    <br>
-                    <!-- Title of comments section -->
-                    <div class="section-title">
-                        <h2>Let's hear some <span>Comments!</span></h2>
-                    </div>
-
-                    <div id="menu" class="section lb">
-                        <div class="container-fluid">
-                            @{int sign = 1; }
-                            @foreach (var item in Model.Comments)
-                            {
-                                @if (sign == 1)
-                                {
-                                    sign = 0;
-                                    <div class="container3">
-                                        <img src="~/images/img_avatar2.png" alt="Avatar" style="width:90px">
-                                        <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
-                                        <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
-                                        <div class="editadd">
-                                            @if (ViewBag.userType == "Admin")
-                                            {
-                                                <a asp-controller="Comments" asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
-                                                <a asp-controller="Comments" asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
-                                            }
-                                            <a asp-controller="Comments" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                                        </div>
-                                    </div>
-                                }
-                                else
-                                {
-                                    sign = 1;
-                                    <div class="container3">
+                <!-- ======= Comments ======= -->
+                <div id="menu" class="section lb">
+                    <div class="container-fluid">
+                        @foreach (var item in Model.Comments)
+                        {
+                            <section id="branches" class="menu">
+                                <div class="container">
+                                    <div class="section-title">
                                         <img src="~/images/flat-faces-icons-circle-man-1.png" alt="Avatar" style="width:90px">
-                                        <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
-                                        <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
-                                        <div class="editadd">
-                                            @if (ViewBag.userType == "Admin")
-                                            {
-                                                <a asp-controller="Comments" asp-action="Edit" asp-route-id="@item.Id">Edit</a> @Html.Raw("|")
-                                                <a asp-controller="Comments" asp-action="Delete" asp-route-id="@item.Id">Delete</a> @Html.Raw("|")
-                                            }
-                                            <a asp-controller="Comments" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                                        </div>
+                                        <h2><span>@item.PostedBy</span>'s Comment on <span>@item.Item.Name</span></h2><br>
+                                        <h3>@item.PostTitle</h3>
+                                        <p>@item.PostBody</p>
+                                        <p>Posted on @item.PostDate</p>
                                     </div>
-                                }
-                            }
-                        </div>
+                                </div>
+                            </section>
+                        }
                     </div>
-                }
+                </div>
             </div>
         </section>
     </main>
