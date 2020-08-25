@@ -4,13 +4,11 @@
     ViewData["Title"] = "";
 }
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento" rel="stylesheet">
-    <link rel="stylesheet" href="~/assets/css/style.css"/>
-    <link rel="stylesheet" href="~/css/comments.css"/>
+
+    <link rel="stylesheet" href="~/assets/css/comments.css" />
 </head>
 <body>
-    <link rel="stylesheet" href="~/assets/css/comments.css" />
-
+   
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
         <div class="container text-right">
@@ -52,62 +50,45 @@
         </div>
     </section>
     <!-- End Title -->
-    <br>
-    <br>
-    
+
     <!-- ======= Comments ======= -->
     <div id="menu" class="section lb">
         <div class="container-fluid">
-            @{ int sign = 1; }
             @foreach (var item in Model)
             {
-                <!-- Comment with photo - 1 -->
-                @if (sign == 1)
-                {
-                    sign = 0;
-                    <div class="container2">
-                        <img src="~/images/img_avatar2.png" alt="Avatar" style="width:90px">
-                        <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
-                        <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
-                        <div class="editadd">
-                            @if (ViewBag.userType == "Admin")
-                            {
-                                <!-- Edit button -->
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn float-center clicked-btn">Edit</a>
+                <section id="branches" class="menu">
+                    <div class="container">
+                        <div class="section-title">
+                            <img src="~/images/flat-faces-icons-circle-man-1.png" alt="Avatar" style="width:90px">
+                            <h2><span>@item.PostedBy</span>'s Comment on <span>@item.Item.Name</span></h2><br>
+                            <h3>@item.PostTitle</h3>
+                            <p>@item.PostBody</p>
+                            <p>Posted on @item.PostDate</p>
 
-                                <!-- Delete button -->
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn float-center clicked-btn">Delete</a>
-                            }
+                            <nav style="margin:auto" class="nav-menu d-none d-lg-block text-center">
+                                <ul>
+                                    @if (ViewBag.userType == "Admin")
+                                    {
+                                        <!-- Edit button -->
+                                        <li class="book-a-table text-center justify-content-center">
+                                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                        </li>
 
-                            <!-- Details button -->
-                            <a asp-action="Details" asp-route-id="@item.Id" class="btn float-center clicked-btn">Details</a>
-                        </div>
+                                        <!-- Delete button -->
+                                        <li class="book-a-table text-center justify-content-center">
+                                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                        </li>
+                                    }
 
-                    </div>
-                }
-                else
-                {
-                    <!-- Comment with photo - 2 -->
-                    sign = 1;
-                    <div class="container2">
-                        <img src="~/images/flat-faces-icons-circle-man-1.png" alt="Avatar" style="width:90px">
-                        <p><span>@Html.DisplayFor(modelItem => item.PostTitle)</span><span>        -</span>@Html.DisplayFor(modelItem => item.PostedBy)</p>
-                        <p>@Html.DisplayFor(modelItem => item.PostBody)</p>
-                        <div class="editadd">
-                            @if (ViewBag.userType == "Admin")
-                            {
-                                <!-- Edit button -->
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn float-center clicked-btn">Edit</a>
-
-                                <!-- Delete button -->
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn float-center clicked-btn">Delete</a>
-                            }
-
-                            <!-- Details button -->
-                            <a asp-action="Details" asp-route-id="@item.Id" class="btn float-center clicked-btn">Details</a>
+                                    <!-- Back to Home button -->
+                                    <li class="book-a-table text-center justify-content-center">
+                                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
-                }
+                </section>
             }
         </div>
     </div>
