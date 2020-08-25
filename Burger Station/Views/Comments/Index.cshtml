@@ -4,13 +4,11 @@
     ViewData["Title"] = "";
 }
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento" rel="stylesheet">
-    <link rel="stylesheet" href="~/assets/css/style.css" />
-    <link rel="stylesheet" href="~/css/comments.css" />
+
+    <link rel="stylesheet" href="~/assets/css/comments.css" />
 </head>
 <body>
-    <link rel="stylesheet" href="~/assets/css/comments.css" />
-
+   
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
         <div class="container text-right">
@@ -67,7 +65,7 @@
                             <p>@item.PostBody</p>
                             <p>Posted on @item.PostDate</p>
 
-                            <nav class="nav-menu d-none d-lg-block text-center">
+                            <nav style="margin:auto" class="nav-menu d-none d-lg-block text-center">
                                 <ul>
                                     @if (ViewBag.userType == "Admin")
                                     {
