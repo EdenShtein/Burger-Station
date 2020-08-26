@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/assets/css/comments.css" />
 </head>
 <body>
-   
+
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
         <div class="container text-right">
@@ -51,6 +51,32 @@
     </section>
     <!-- End Title -->
 
+    @* ------------------ SEARCH --------------------*@
+
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div class="card-body">
+                <form asp-action="Search" id="myForm">
+                    <div class="form-group">
+                        <input name="postTitle" id="postTitle" class="form-control" autocomplete="off" placeholder="Post Title" required />
+                    </div>
+                    <div class="form-group">
+                        <input name="postBy" id="postBy" class="form-control" autocomplete="off" placeholder="Posted By" required />
+                    </div>
+                    <div class="form-group">
+                        <input name="PostItem" id="PostItem" class="form-control" autocomplete="off" placeholder="Item" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" id="btnSubmit" value="Search" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @* ------------------ / SEARCH --------------------*@
+
+
     <!-- ======= Comments ======= -->
     <div id="menu" class="section lb">
         <div class="container-fluid">
@@ -60,7 +86,7 @@
                     <div class="container">
                         <div class="section-title">
                             <img src="~/images/flat-faces-icons-circle-man-1.png" alt="Avatar" style="width:90px">
-                            <h2><span>@item.PostedBy</span>'s Comment on <span>@item.Item.Name</span></h2><br>
+                            <h2><span>@item.PostedBy</span>'s Comment on <span>@Html.DisplayFor(modelItem => item.Item.Name)</span></h2><br>
                             <h3>@item.PostTitle</h3>
                             <p>@item.PostBody</p>
                             <p>Posted on @item.PostDate</p>

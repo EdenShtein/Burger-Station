@@ -20,7 +20,7 @@ namespace Burger_Station.Models
         [DisplayName("Item Name")]
         [RegularExpression(@"^[a-zA-Z][a-zA-Z ]+")]
         public String Name { get; set; }
-
+        
         [Range(0, 50)]
         [DataType(DataType.Currency)]
         public double Price { get; set; }

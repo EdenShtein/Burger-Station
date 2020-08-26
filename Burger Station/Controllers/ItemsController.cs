@@ -5,6 +5,7 @@ using Burger_Station.Data;
 using Burger_Station.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Burger_Station.Controllers
@@ -247,13 +248,14 @@ namespace Burger_Station.Controllers
             return _context.Item.Any(e => e.Id == id);
         }
 
-        public async Task<IActionResult> Search(String name, double price, ItemType itemType)
+        public async Task<IActionResult> Search(string name, int price, ItemType itemType)
         {
+            
             var itemsResults = from item in _context.Item
-                               where item.Name.Contains(name) || item.Price <= price || item.Type == itemType
-                               orderby item.Name
-                               select item;
-
+                                where  (item.Price <= price) && item.Name.Contains(name) && (item.Type == itemType)
+                                //orderby item.Name
+                                select item;
+            
             return View("Index", await itemsResults.ToListAsync());
         }
     }
