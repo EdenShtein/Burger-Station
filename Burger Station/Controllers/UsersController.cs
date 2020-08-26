@@ -156,19 +156,9 @@ namespace Burger_Station.Controllers
 
             var users = await _context.User
                 .ToListAsync();
-
-            //ViewBag.usersType = from userT in users
-            //                group users by userT.Type into userGroup
-            //                select new
-            //                {
-            //                    Type = userGroup.Key,
-            //                    Count = userGroup.Count(),
-            //                };
             
             var usersType = users.GroupBy(u => u.Type).OrderBy(g => g.Key).Select(g => Tuple.Create(g.Key, g.Count()));
             ViewBag.userAdmin = usersType.ElementAt(1).Item2;
-
-
 
             ViewBag.userMember = usersType.ElementAt(0).Item2;
             return View(user);
@@ -241,6 +231,7 @@ namespace Burger_Station.Controllers
                 {
                     return NotFound();
                 }
+
                 ViewBag.Items = new SelectList(await _context.Item
                     .Where(i => i.Type == ItemType.Food)
                     .ToListAsync(), "Id", "Name");
@@ -248,7 +239,7 @@ namespace Burger_Station.Controllers
                 return View(user);
             }
 
-            return RedirectToAction("Index" , "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: Users/Edit/5
@@ -256,7 +247,7 @@ namespace Burger_Station.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,FirstName,LastName,Email,Password,Birthday")] User user, int itemId)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,FirstName,LastName,Email,Password,Birthday,FavoriteItem.Id")] User user, int itemId)
         {
             if (id != user.Id)
             {
@@ -280,8 +271,8 @@ namespace Burger_Station.Controllers
                         {
                             item.SatisfiedUsers.Add(user);
                             _context.Item.Update(item);
+                            await _context.SaveChangesAsync();
                         }
-
                     }
                     else
                     {
@@ -303,6 +294,7 @@ namespace Burger_Station.Controllers
                             item.SatisfiedUsers.Add(user);
 
                             _context.Item.Update(item);
+                            await _context.SaveChangesAsync();
                         }
                     }
 
@@ -321,19 +313,7 @@ namespace Burger_Station.Controllers
                     }
                 }
 
-                //if (user == null)
-                //{
-                //    return NotFound();
-                //}
-
-                //if (type == "Member")
-                //{
-                //    return RedirectToAction("DetailsMember", "Users", new { @id = userId });
-                //}
-
-                //return RedirectToAction("DetailsAdmin", "Users", new { @id = userId });
-
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(user.Id));
             }
 
             return View(user);
