@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Burger_Station.Controllers
 {
@@ -156,11 +158,44 @@ namespace Burger_Station.Controllers
 
             var users = await _context.User
                 .ToListAsync();
+
+            //ViewBag.usersType = from userT in users
+            //                group users by userT.Type into userGroup
+            //                select new
+            //                {
+            //                    Type = userGroup.Key,
+            //                    Count = userGroup.Count(),
+            //                };
             
             var usersType = users.GroupBy(u => u.Type).OrderBy(g => g.Key).Select(g => Tuple.Create(g.Key, g.Count()));
             ViewBag.userAdmin = usersType.ElementAt(1).Item2;
-
             ViewBag.userMember = usersType.ElementAt(0).Item2;
+
+
+
+            var items = await _context.Item
+                .ToListAsync();
+            Dictionary<string,int> d = new Dictionary<string, int>();
+            for (int i = 0; i < users.Count; i++)
+            {
+                Item t = users.ElementAt(i).FavoriteItem;
+                if (d.ContainsKey(t.Name))
+                {
+                    int value = d[t.Name];
+                    d[t.Name]= (value + 1);
+                }
+                else
+                {
+                    int v = 1;
+                    d.Add(t.Name, v);
+                }
+            }
+            var valuearr = d.Values.ToArray();
+            var keysarr = d.Keys.ToArray();
+            ViewBag.valueArr = valuearr;
+            ViewBag.keyArr = keysarr;
+            ViewBag.items = items;
+
             return View(user);
         }
 
@@ -231,7 +266,6 @@ namespace Burger_Station.Controllers
                 {
                     return NotFound();
                 }
-
                 ViewBag.Items = new SelectList(await _context.Item
                     .Where(i => i.Type == ItemType.Food)
                     .ToListAsync(), "Id", "Name");
@@ -239,7 +273,7 @@ namespace Burger_Station.Controllers
                 return View(user);
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index" , "Home");
         }
 
         // POST: Users/Edit/5
@@ -247,7 +281,7 @@ namespace Burger_Station.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,FirstName,LastName,Email,Password,Birthday,FavoriteItem.Id")] User user, int itemId)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,FirstName,LastName,Email,Password,Birthday")] User user, int itemId)
         {
             if (id != user.Id)
             {
@@ -271,8 +305,8 @@ namespace Burger_Station.Controllers
                         {
                             item.SatisfiedUsers.Add(user);
                             _context.Item.Update(item);
-                            await _context.SaveChangesAsync();
                         }
+
                     }
                     else
                     {
@@ -294,7 +328,6 @@ namespace Burger_Station.Controllers
                             item.SatisfiedUsers.Add(user);
 
                             _context.Item.Update(item);
-                            await _context.SaveChangesAsync();
                         }
                     }
 
@@ -313,7 +346,19 @@ namespace Burger_Station.Controllers
                     }
                 }
 
-                return RedirectToAction(nameof(user.Id));
+                //if (user == null)
+                //{
+                //    return NotFound();
+                //}
+
+                //if (type == "Member")
+                //{
+                //    return RedirectToAction("DetailsMember", "Users", new { @id = userId });
+                //}
+
+                //return RedirectToAction("DetailsAdmin", "Users", new { @id = userId });
+
+                return RedirectToAction(nameof(Index));
             }
 
             return View(user);
