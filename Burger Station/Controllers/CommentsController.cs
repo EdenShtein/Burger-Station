@@ -243,5 +243,16 @@ namespace Burger_Station.Controllers
         {
             return _context.Comment.Any(e => e.Id == id);
         }
+
+        public async Task<IActionResult> Search(string postTitle, string postBy, string PostItem)
+        {
+
+            var itemsResults = from comment in _context.Comment
+                               where comment.PostTitle.Contains(postTitle) && comment.PostedBy.Contains(postBy) && comment.Item.Name.Contains(PostItem)
+                               select comment;
+
+            return View("Index", await itemsResults.ToListAsync());
+        }
+
     }
 }
