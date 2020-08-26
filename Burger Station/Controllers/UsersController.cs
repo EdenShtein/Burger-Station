@@ -196,6 +196,18 @@ namespace Burger_Station.Controllers
             ViewBag.keyArr = keysarr;
             ViewBag.items = items;
 
+
+
+
+            //-----Recommendation
+
+            var branches = await _context.Branch
+               .ToListAsync();
+           
+
+
+
+
             return View(user);
         }
 
