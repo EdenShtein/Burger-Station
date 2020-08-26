@@ -229,7 +229,7 @@ namespace Burger_Station.Controllers
             */
 
             //-----Recommendation
-
+            
             var branches = await _context.Branch.Include(u=> u.BranchItems)
                .ToListAsync();
             
@@ -248,8 +248,7 @@ namespace Burger_Station.Controllers
 
                 }
             }
-
-
+           
                 return View(user);
         }
 

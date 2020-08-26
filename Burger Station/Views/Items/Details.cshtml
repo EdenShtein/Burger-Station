@@ -94,6 +94,25 @@
             </div>
         </section>
     </main>
-    <!-- End Item info-->
+    <table class="joinTable">
+        <tr>
+            <th> Item Name </th>
+            <th> Comment </th>
+            
+        </tr>
+        @{
+            foreach (var x in  ViewBag.joinList)
+            {
+                <tr>
+                    <td>@x.itemName</td>
+                    <td>@x.itemComments</td>
+                    
+                </tr>
+            }
+        }
+    </table>
+
+
+        <!-- End Item info-->
 </body>
 </html>
