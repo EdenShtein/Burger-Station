@@ -115,6 +115,26 @@ namespace Burger_Station.Controllers
                 ViewBag.FavoriteItem = user.FavoriteItem.Name;
             }
 
+
+            var branches = await _context.Branch.Include(u => u.BranchItems)
+              .ToListAsync();
+
+            for (int a = 0; a < branches.Count; a++)
+            {
+                Branch be = branches.ElementAt(a);
+                for (int b = 0; b < be.BranchItems.Count; b++)
+                {
+                    int fv = be.BranchItems.ElementAt(b).ItemId;
+                    if (fv == user.FavoriteItem.Id)
+                    {
+                        ViewBag.branchName = be.Address;
+                        ViewBag.branchCity = be.City;
+                        break;
+                    }
+
+                }
+            }
+
             return View(user);
         }
 
@@ -201,14 +221,27 @@ namespace Burger_Station.Controllers
 
             //-----Recommendation
 
-            var branches = await _context.Branch
+            var branches = await _context.Branch.Include(u=> u.BranchItems)
                .ToListAsync();
-           
+            
+            for(int a=0;a<branches.Count;a++)
+            {
+                Branch be = branches.ElementAt(a);
+                for (int b = 0; b < be.BranchItems.Count; b++)
+                {
+                    int fv = be.BranchItems.ElementAt(b).ItemId;
+                    if(fv == user.FavoriteItem.Id)
+                    {
+                        ViewBag.branchName = be.Address;
+                        ViewBag.branchCity = be.City;
+                        break;
+                    }
+
+                }
+            }
 
 
-
-
-            return View(user);
+                return View(user);
         }
 
         // GET: Users/Create
