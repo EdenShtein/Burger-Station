@@ -192,12 +192,16 @@
             </div>
             <div id="firstData">
                 <ul style="list-style-type:none;">
-                    @for (var i = 0; i < ViewBag.valueArr.Length; i++)
-                    {
-                        <li>
-                            <span style="background-color: @color[i];"> &nbsp; </span> &nbsp;&nbsp;@ViewBag.keyArr[i] &nbsp;&nbsp; @ViewBag.valueArr[i]
-                        </li>
-                    }
+
+                    <li>
+                        <span style="background-color: red;"> &nbsp; </span> &nbsp;&nbsp;North &nbsp;&nbsp; @ViewBag.northD
+                    </li>
+                    <li>
+                        <span style="background-color: purple;"> &nbsp; </span> &nbsp;&nbsp;South &nbsp;&nbsp; @ViewBag.southD
+                    </li>
+                    <li>
+                        <span style="background-color: teal;"> &nbsp; </span> &nbsp;&nbsp;Center &nbsp;&nbsp; @ViewBag.centerD
+                    </li>
 
                 </ul>
             </div>
@@ -208,9 +212,7 @@
     <script type="text/javascript">
 
         var DATA2 = {
-            a: @ViewBag.valueArr[0], b: @ViewBag.valueArr[1], c: @ViewBag.valueArr[2], d: @ViewBag.valueArr[3],
-            d: @ViewBag.valueArr[4], e: @ViewBag.valueArr[5], f: @ViewBag.valueArr[6],
-        g: @ViewBag.valueArr[7],h: @ViewBag.valueArr[8],i: @ViewBag.valueArr[9]}
+            a: @ViewBag.northD,b: @ViewBag.southD, c:@ViewBag.centerD }
         var width = 450, height = 450, margin = 40;
         var radius = Math.min(width, height) / 2 - margin;
         var container = d3
@@ -222,7 +224,7 @@
         var pie = d3.pie()
             .value(data => data.value)
         var data_ready = pie(d3.entries(DATA2))
-        var color = 'yellow';
+        var color = 'red';
         container
             .selectAll('groups')
             .data(data_ready)
@@ -233,16 +235,9 @@
                 .outerRadius(radius)
             )
             .attr('fill', () => {
-                if (color == 'yellow') { color = 'blue'; return 'yellow'; }
-                if (color == 'blue') { color = 'red'; return 'blue'; }
-                if (color == 'red') { color = 'green'; return 'red'; }
-                if (color == 'green') { color = 'orange'; return 'green'; }
-                if (color == 'orange') { color = 'pink'; return 'orange'; }
-                if (color == 'pink') { color = 'purple'; return 'pink'; }
-                if (color == 'purple') { color = 'lime'; return 'purple'; }
-                if (color == 'lime') { color = 'teal'; return 'lime'; }
-                if (color == 'teal') { color = 'coral'; return 'teal'; }
-                else {return 'coral'}
+                if (color == 'red') { color = 'purple'; return 'red'; }
+                if (color == 'purple') { color = 'teal'; return 'purple'; }
+                else { return 'teal';}
             })
             .attr("stroke", "black")
             .style("stroke-width", "2px")

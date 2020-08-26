@@ -191,8 +191,17 @@ namespace Burger_Station.Controllers
             ViewBag.userAdmin = usersType.ElementAt(1).Item2;
             ViewBag.userMember = usersType.ElementAt(0).Item2;
 
+            var branchesD = await _context.Branch
+               .ToListAsync();
+            var branchDistrict = branchesD.GroupBy(b => b.District).OrderBy(g => g.Key).Select(g => Tuple.Create(g.Key, g.Count()));
+            ViewBag.northD = branchDistrict.ElementAt(0).Item2;
+            ViewBag.southD = branchDistrict.ElementAt(1).Item2;
+            ViewBag.centerD = branchDistrict.ElementAt(2).Item2;
 
 
+
+
+            /*
             var items = await _context.Item
                 .ToListAsync();
             Dictionary<string,int> d = new Dictionary<string, int>();
@@ -217,7 +226,7 @@ namespace Burger_Station.Controllers
             ViewBag.items = items;
 
 
-
+            */
 
             //-----Recommendation
 
