@@ -54,17 +54,6 @@
                     <h2>What's on our <span>Menu</span></h2>
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-12 d-flex justify-content-center">
-                        <ul id="menu-flters">
-                            <li data-filter="*" class="filter-active">Show All</li>
-                            <li data-filter=".filter-food">Food</li>
-                            <li data-filter=".filter-drink">Drink</li>
-                        </ul>
-                    </div>
-                </div>
-
-
                 @* ------------------ SEARCH --------------------*@
 
                 <div class="d-flex justify-content-center h-100">
@@ -80,15 +69,27 @@
                                 <div class="form-group">
                                     <input name="itemType" id="type" class="form-control" autocomplete="off" placeholder="Type" required />
                                 </div>
-                                <div class="form-group">
-                                    <input type="submit" id="btnSubmit" value="Search" class="btn btn-primary" />
+                                <div>
+                                    <input type="submit" id="btnSubmit" value="Search" class="clicked-btn" />
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-
+                <br />
                 @* ------------------ / SEARCH --------------------*@
+
+                <div class="row">
+                    <div class="col-lg-12 d-flex justify-content-center">
+                        <ul id="menu-flters">
+                            <li data-filter="*" class="filter-active">Show All</li>
+                            <li data-filter=".filter-food">Food</li>
+                            <li data-filter=".filter-drink">Drink</li>
+                        </ul>
+                    </div>
+                </div>
+
+
 
                 @foreach (var group in Model.GroupBy(item => item.Type))
                 {

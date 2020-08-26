@@ -223,5 +223,16 @@ namespace Burger_Station.Controllers
         {
             return _context.Branch.Any(e => e.Id == id);
         }
+
+        public async Task<IActionResult> Search(string baddress)
+        {
+
+            var itemsResults = from branch in _context.Branch
+                               where branch.Address.Contains(baddress)
+                               //orderby item.Name
+                               select branch;
+
+            return View("Index", await itemsResults.ToListAsync());
+        }
     }
 }
