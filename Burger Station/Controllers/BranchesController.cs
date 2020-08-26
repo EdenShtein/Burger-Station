@@ -46,6 +46,11 @@ namespace Burger_Station.Controllers
                 return NotFound();
             }
 
+
+            ViewBag.adress = branch.Address;
+            ViewBag.city = branch.City;
+
+
             return View(branch);
         }
 

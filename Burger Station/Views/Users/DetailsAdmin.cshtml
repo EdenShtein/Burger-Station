@@ -71,10 +71,12 @@
         <b><span>@Html.DisplayNameFor(model => model.Password):</span></b> @Html.DisplayFor(model => model.Password) <br>
         <b><span>@Html.DisplayNameFor(model => model.Birthday):</span></b> @Html.DisplayFor(model => model.Birthday) <br>
         <b><span>@Html.DisplayNameFor(model => model.FavoriteItem):</span></b> @ViewBag.FavoriteItem <br>
+        <b><span>You can get your favorite at:</span></b> @ViewBag.branchName,@ViewBag.branchCity <br>
     </div>
     <br />
     <br />
     <br />
+    
     <!-- End Member Info -->
     <!-- Facebook SDK -->
     <center>
@@ -107,7 +109,7 @@
         <br />
         <textarea style="width:600px; height:100px;" name="text" placeholder="Type your status here!" id="postTxt"></textarea>
         <br />
-        <button style="width:600px;" onclick="postAStatus()"> Publish </button>
+        <button type="button" class="btn btn-warning" style="width:600px;" onclick="postAStatus()"> Publish </button>
     </center>
 
     <br />
@@ -190,12 +192,16 @@
             </div>
             <div id="firstData">
                 <ul style="list-style-type:none;">
-                    @for (var i = 0; i < ViewBag.valueArr.Length; i++)
-                    {
-                        <li>
-                            <span style="background-color: @color[i];"> &nbsp; </span> &nbsp;&nbsp;@ViewBag.keyArr[i] &nbsp;&nbsp; @ViewBag.valueArr[i]
-                        </li>
-                    }
+
+                    <li>
+                        <span style="background-color: red;"> &nbsp; </span> &nbsp;&nbsp;North &nbsp;&nbsp; @ViewBag.northD
+                    </li>
+                    <li>
+                        <span style="background-color: purple;"> &nbsp; </span> &nbsp;&nbsp;South &nbsp;&nbsp; @ViewBag.southD
+                    </li>
+                    <li>
+                        <span style="background-color: teal;"> &nbsp; </span> &nbsp;&nbsp;Center &nbsp;&nbsp; @ViewBag.centerD
+                    </li>
 
                 </ul>
             </div>
@@ -206,9 +212,7 @@
     <script type="text/javascript">
 
         var DATA2 = {
-            a: @ViewBag.valueArr[0], b: @ViewBag.valueArr[1], c: @ViewBag.valueArr[2], d: @ViewBag.valueArr[3],
-            d: @ViewBag.valueArr[4], e: @ViewBag.valueArr[5], f: @ViewBag.valueArr[6],
-        g: @ViewBag.valueArr[7],h: @ViewBag.valueArr[8],i: @ViewBag.valueArr[9]}
+            a: @ViewBag.northD,b: @ViewBag.southD, c:@ViewBag.centerD }
         var width = 450, height = 450, margin = 40;
         var radius = Math.min(width, height) / 2 - margin;
         var container = d3
@@ -220,7 +224,7 @@
         var pie = d3.pie()
             .value(data => data.value)
         var data_ready = pie(d3.entries(DATA2))
-        var color = 'yellow';
+        var color = 'red';
         container
             .selectAll('groups')
             .data(data_ready)
@@ -231,16 +235,9 @@
                 .outerRadius(radius)
             )
             .attr('fill', () => {
-                if (color == 'yellow') { color = 'blue'; return 'yellow'; }
-                if (color == 'blue') { color = 'red'; return 'blue'; }
-                if (color == 'red') { color = 'green'; return 'red'; }
-                if (color == 'green') { color = 'orange'; return 'green'; }
-                if (color == 'orange') { color = 'pink'; return 'orange'; }
-                if (color == 'pink') { color = 'purple'; return 'pink'; }
-                if (color == 'purple') { color = 'lime'; return 'purple'; }
-                if (color == 'lime') { color = 'teal'; return 'lime'; }
-                if (color == 'teal') { color = 'coral'; return 'teal'; }
-                else {return 'coral'}
+                if (color == 'red') { color = 'purple'; return 'red'; }
+                if (color == 'purple') { color = 'teal'; return 'purple'; }
+                else { return 'teal';}
             })
             .attr("stroke", "black")
             .style("stroke-width", "2px")
@@ -295,13 +292,14 @@
     <br />
     <br />
     <br />
+
     <div class="newspaper">
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.
     </div>
 
-        <nav style="text-align:center;">
+     <nav style="text-align:center;">
             <a href="\Home">Back</a>
-        </nav>
+     </nav>
 
 
 </body>
