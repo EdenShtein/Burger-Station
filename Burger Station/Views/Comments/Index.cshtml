@@ -54,13 +54,13 @@
     <!-- ======= Comments ======= -->
     <div id="menu" class="section lb">
         <div class="container-fluid">
-            @foreach (var item in Model)
+            @foreach (var item in ViewBag.joinList)
             {
                 <section id="branches" class="menu">
                     <div class="container">
                         <div class="section-title">
                             <img src="~/images/flat-faces-icons-circle-man-1.png" alt="Avatar" style="width:90px">
-                            <h2><span>@item.PostedBy</span>'s Comment on <span>@item.Item.Name</span></h2><br>
+                            <h2><span>@item.PostedBy</span>'s Comment on <span>@item.ItemName</span></h2><br>
                             <h3>@item.PostTitle</h3>
                             <p>@item.PostBody</p>
                             <p>Posted on @item.PostDate</p>
@@ -71,18 +71,18 @@
                                     {
                                         <!-- Edit button -->
                                         <li class="book-a-table text-center justify-content-center">
-                                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                            <a asp-action="Edit" asp-route-id="@item.CommentId">Edit</a>
                                         </li>
 
                                         <!-- Delete button -->
                                         <li class="book-a-table text-center justify-content-center">
-                                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                            <a asp-action="Delete" asp-route-id="@item.CommentId">Delete</a>
                                         </li>
                                     }
 
                                     <!-- Back to Home button -->
                                     <li class="book-a-table text-center justify-content-center">
-                                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                        <a asp-action="Details" asp-route-id="@item.CommentId">Details</a>
                                     </li>
                                 </ul>
                             </nav>

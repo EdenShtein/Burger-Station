@@ -5,11 +5,14 @@ using System.Threading.Tasks;
 
 namespace Burger_Station.Models
 {
-    public class itemComment
+    public class ItemComment
     {
-        public decimal itemId { get; set; }
-        public string itemName { get; set; }
-        public string itemComments { get; set; }
-       
+        public int ItemId { get; set; }
+        public int CommentId { get; set; }
+        public string ItemName { get; set; }
+        public string PostedBy { get; set; }
+        public string PostTitle { get; set; }
+        public string PostBody { get; set; }
+        public DateTime PostDate { get; set; }
     }
 }

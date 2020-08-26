@@ -25,9 +25,21 @@ namespace Burger_Station.Controllers
             ViewBag.FullName = HttpContext.Session.GetString("FullName");
             ViewBag.userType = HttpContext.Session.GetString("Type");
 
-            return View(await _context.Comment
-                .Include(c=> c.Item)
-                .ToListAsync());
+            ViewBag.joinList = (from i in _context.Item
+                                join c in _context.Comment on i.Id equals c.Item.Id
+                                orderby c.PostDate descending
+                                select new ItemComment
+                                {
+                                    CommentId = c.Id,
+                                    ItemName = i.Name,
+                                    PostTitle = c.PostTitle,
+                                    PostedBy = c.PostedBy,
+                                    PostBody = c.PostBody,
+                                    PostDate = c.PostDate
+                                }
+                                );
+
+            return View();
         }
 
         // GET: Comments/Details/5

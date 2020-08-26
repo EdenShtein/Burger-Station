@@ -54,27 +54,21 @@ namespace Burger_Station.Controllers
             ViewBag.ItemName = item.Name;
             ViewBag.itemType = item.Type.ToString();
 
-            //var joinList = _context.Item.Join(_context.Comment, i => i.Id, c => c.Item.Id,
-            //     ((item, comment) => new itemComment
-            //     {
-            //         itemId = item.Id,
-            //         itemName = item.Name,
-            //         itemComments = comment.PostBody,
-
-            //     })).OrderBy(item=>item.itemId).ToList();
-
-            var joinList = (from i in _context.Item
+            ViewBag.joinList = (from i in _context.Item
                             where (i.Id == id)
                             join c in _context.Comment on i.Id equals c.Item.Id
-                            select new itemComment
+                            orderby c.PostDate descending
+                            select new ItemComment
                             {
-                                itemId = i.Id,
-                                itemName = i.Name,
-                                itemComments = c.PostBody
-                            });
-             ViewBag.joinList = joinList;
+                                ItemId = i.Id,
+                                ItemName = i.Name,
+                                PostTitle = c.PostTitle,
+                                PostedBy = c.PostedBy,
+                                PostBody = c.PostBody,
+                                PostDate = c.PostDate
+                            }
+                            );
 
-           
             return View(item);
         }
 
