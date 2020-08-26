@@ -72,43 +72,45 @@
         <b><span>@Html.DisplayNameFor(model => model.Birthday):</span></b> @Html.DisplayFor(model => model.Birthday) <br>
         <b><span>@Html.DisplayNameFor(model => model.FavoriteItem):</span></b> @ViewBag.FavoriteItem <br>
     </div>
-    <div class="myvideo">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/f63qxa_lAdU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-
+    <br />
+    <br />
+    <br />
     <!-- End Member Info -->
     <!-- Facebook SDK -->
-    <script type="text/javascript" src="~/Content/JSFiles/site.js"></script>
-    <script>
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '2560600564202212',
-                cookie: true,
-                xfbml: true,
-                version: 'v8.0'
-            });
+    <center>
+        <script type="text/javascript" src="~/Content/JSFiles/site.js"></script>
+        <script>
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '2560600564202212',
+                    cookie: true,
+                    xfbml: true,
+                    version: 'v8.0'
+                });
 
-            FB.AppEvents.logPageView();
-        };
+                FB.AppEvents.logPageView();
+            };
 
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) { return; }
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
 
 
-    <!-- Facebook post -->
-    <label> Post on our Facebook Page: </label>
+        <!-- Facebook post -->
+        <h3> Post on our Facebook Page: </h3>
+        <br />
+        <br />
+        <textarea style="width:600px; height:100px;" name="text" placeholder="Type your status here!" id="postTxt"></textarea>
+        <br />
+        <button style="width:600px;" onclick="postAStatus()"> Publish </button>
+    </center>
+
     <br />
-    <br />
-    <textarea style="width:600px; height:100px;" name="text" placeholder="Type your status here!" id="postTxt"></textarea>
-    <br />
-    <button style="width:600px;" onclick="postAStatus()"> Publish </button>
-
     <br />
     <br />
     <br />
@@ -122,20 +124,17 @@
     <!-- Color scale -->
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
-    <!-- Add 2 buttons -->
-    <button style="float:right" onclick="update(data1)">Members/Admins</button>
-    <button style="float:right" onclick="update(data2)">Favorite Item</button>
-
     <!-- Create a div where the graph will take place -->
 
 
     <center>
+        <h3>Important Statistics:</h3>
         <div id="secondApp">
             <div id="secondChart">
                 <svg id="secondSvg"></svg>
             </div>
             <div id="secondData">
-                <ul>
+                <ul style="list-style-type:none;">
                     <li>
                         <span style="background-color: yellow;"> &nbsp; </span> &nbsp;&nbsp; Member users &nbsp;&nbsp; @ViewBag.userMember
                     </li>
@@ -190,13 +189,13 @@
                 <svg id="firstSvg"></svg>
             </div>
             <div id="firstData">
-                <ul>
+                <ul style="list-style-type:none;">
                     @for (var i = 0; i < ViewBag.valueArr.Length; i++)
                     {
                         <li>
                             <span style="background-color: @color[i];"> &nbsp; </span> &nbsp;&nbsp;@ViewBag.keyArr[i] &nbsp;&nbsp; @ViewBag.valueArr[i]
                         </li>
-}
+                    }
 
                 </ul>
             </div>
@@ -247,6 +246,44 @@
             .style("stroke-width", "2px")
             .style("opacity", 0.7);
     </script>
+
+
+    <br />
+    <br />
+    <br />
+
+
+    <div class="myvideo" style="text-align:center;">
+        <h3>Burger Video</h3>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/f63qxa_lAdU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+
+
+    <br />
+    <br />
+    <br />
+
+
+
+    <div class="canvasburger" style="text-align:center;">
+        <canvas id="myCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
+            Your browser does not support the HTML canvas tag.
+        </canvas>
+
+        <script>
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            ctx.moveTo(0, 0);
+            ctx.lineTo(200, 100);
+            ctx.stroke();
+        </script>
+    </div>
+
+
+    <nav style="text-align:center;">
+        <a href="\Home">Back</a>
+    </nav>
 
 
 </body>
