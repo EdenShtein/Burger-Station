@@ -127,6 +127,7 @@ namespace Burger_Station.Controllers
                 return NotFound();
             }
 
+            
             string type = HttpContext.Session.GetString("Type");
 
             var comment = await _context.Comment.FindAsync(id);
