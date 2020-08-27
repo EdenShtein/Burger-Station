@@ -25,7 +25,7 @@ namespace Burger_Station.Controllers
             ViewBag.FullName = HttpContext.Session.GetString("FullName");
             ViewBag.userType = HttpContext.Session.GetString("Type");
 
-            ViewBag.joinList = (from i in _context.Item
+            ViewBag.joinListCounter = (from i in _context.Item
                                 join c in _context.Comment on i.Id equals c.Item.Id
                                 orderby c.PostDate descending
                                 select new ItemComment
@@ -37,9 +37,12 @@ namespace Burger_Station.Controllers
                                     PostBody = c.PostBody,
                                     PostDate = c.PostDate
                                 }
-                                );
+                                ).Count();
 
-            return View();
+            return View(await _context
+                .Comment
+                .Include(c => c.Item)
+                .ToListAsync());
         }
 
         // GET: Comments/Details/5
@@ -124,6 +127,7 @@ namespace Burger_Station.Controllers
                 return NotFound();
             }
 
+            
             string type = HttpContext.Session.GetString("Type");
 
             var comment = await _context.Comment.FindAsync(id);
@@ -140,7 +144,7 @@ namespace Burger_Station.Controllers
                 return RedirectToAction("Index", "Comments");
             }
 
-            else if (userName.Equals(comment.PostedBy) || type == "Admin")
+            else if (type == "Admin")
             {
 
                 ViewBag.Items = new SelectList(await _context.Item
@@ -251,9 +255,11 @@ namespace Burger_Station.Controllers
 
             var itemsResults = from comment in _context.Comment
                                where comment.PostTitle.Contains(postTitle) && comment.PostedBy.Contains(postBy) && comment.Item.Name.Contains(PostItem)
+                               orderby comment.PostDate descending
                                select comment;
 
-            return View("Index", await itemsResults.ToListAsync());
+
+            return View("Index", await itemsResults.Include(c => c.Item).ToListAsync());
         }
 
     }

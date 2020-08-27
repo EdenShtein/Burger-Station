@@ -47,6 +47,7 @@
     <section id="title">
         <div class="section-title">
             <h2>Let's hear some <span>Comments!</span></h2>
+            <h2>The total number of <span>Comments</span> is <span>@ViewBag.joinListCounter</span></h2>
         </div>
     </section>
     <!-- End Title -->
@@ -72,49 +73,50 @@
             </div>
         </div>
     </div>
-
-    <br />
     @* ------------------ / SEARCH --------------------*@
-
 
     <!-- ======= Comments ======= -->
     <div id="menu" class="section lb">
         <div class="container-fluid">
-            @foreach (var item in ViewBag.joinList)
+            @*@foreach (var item in Model.GroupBy(c => c.PostDate.Date))*@
+            @foreach (var group in Model.GroupBy(item => item.PostDate).Reverse())
             {
-                <section id="branches" class="menu">
-                    <div class="container">
-                        <div class="section-title">
-                            <img src="~/images/flat-faces-icons-circle-man-1.png" alt="Avatar" style="width:90px">
-                            <h2><span>@item.PostedBy</span>'s Comment on <span>@item.ItemName</span></h2><br>
-                            <h3>@item.PostTitle</h3>
-                            <p>@item.PostBody</p>
-                            <p>Posted on @item.PostDate</p>
-                            <br />
-                            <div class="col-lg-12 d-flex justify-content-center">
-                                <ul id="menu-flters">
-                                    @if (ViewBag.userType == "Admin")
-                                    {
-                                        <!-- Edit button -->
-                                        <li class="book-a-table text-center justify-content-center">
-                                            <a class="text-black-50" asp-action="Edit" asp-route-id="@item.CommentId">Edit</a>
-                                        </li>
+                @foreach (var item in group)
+                {
+                    <section id="branches" class="menu">
+                        <div class="container">
+                            <div class="section-title">
+                                <img src="~/images/flat-faces-icons-circle-man-1.png" alt="Avatar" style="width:90px">
+                                <h2><span>@item.PostedBy</span>'s Comment on <span>@item.Item.Name</span></h2><br>
+                                <h3>@item.PostTitle</h3>
+                                <p>@item.PostBody</p>
+                                <p>Posted on @item.PostDate</p>
+                                <br />
+                                <div class="col-lg-12 d-flex justify-content-center">
+                                    <ul id="menu-flters">
+                                        @if (ViewBag.userType == "Admin")
+                                        {
+                                            <!-- Edit button -->
+                                            <li class="book-a-table text-center justify-content-center">
+                                                <a class="text-black-50" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                            </li>
 
-                                        <!-- Delete button -->
-                                        <li class="book-a-table text-center justify-content-center">
-                                            <a class="text-black-50" asp-action="Delete" asp-route-id="@item.CommentId">Delete</a>
-                                        </li>
-                                    }
+                                            <!-- Delete button -->
+                                            <li class="book-a-table text-center justify-content-center">
+                                                <a class="text-black-50" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                            </li>
+                                        }
 
-                                    <!-- Details button -->
-                                    <li class="book-a-table text-center justify-content-center">
-                                        <a class="text-black-50" asp-action="Details" asp-route-id="@item.CommentId">Details</a>
-                                    </li>
-                                </ul>
+                                        <!-- Details button -->
+                                        <li class="book-a-table text-center justify-content-center">
+                                            <a class="text-black-50" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                }
             }
         </div>
     </div>
