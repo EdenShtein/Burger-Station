@@ -45,6 +45,6 @@ folder and run ```Enable-Migrations``` following by ```Add-Migration init``` and
 
 ---
 ## Images
-<p align="center"> <img src="burgerstation.png"> </p>
+<p align="center"> <img src="burgerstaion.png"> </p>
 
 [Back To The Top](#Table-of-Contents)
