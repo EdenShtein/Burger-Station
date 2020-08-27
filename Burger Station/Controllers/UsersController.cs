@@ -179,13 +179,7 @@ namespace Burger_Station.Controllers
             var users = await _context.User
                 .ToListAsync();
 
-            //ViewBag.usersType = from userT in users
-            //                group users by userT.Type into userGroup
-            //                select new
-            //                {
-            //                    Type = userGroup.Key,
-            //                    Count = userGroup.Count(),
-            //                };
+          
             
             var usersType = users.GroupBy(u => u.Type).OrderBy(g => g.Key).Select(g => Tuple.Create(g.Key, g.Count()));
             ViewBag.userAdmin = usersType.ElementAt(1).Item2;
@@ -198,35 +192,6 @@ namespace Burger_Station.Controllers
             ViewBag.southD = branchDistrict.ElementAt(1).Item2;
             ViewBag.centerD = branchDistrict.ElementAt(2).Item2;
 
-
-
-
-            /*
-            var items = await _context.Item
-                .ToListAsync();
-            Dictionary<string,int> d = new Dictionary<string, int>();
-            for (int i = 0; i < users.Count; i++)
-            {
-                Item t = users.ElementAt(i).FavoriteItem;
-                if (d.ContainsKey(t.Name))
-                {
-                    int value = d[t.Name];
-                    d[t.Name]= (value + 1);
-                }
-                else
-                {
-                    int v = 1;
-                    d.Add(t.Name, v);
-                }
-            }
-            var valuearr = d.Values.ToArray();
-            var keysarr = d.Keys.ToArray();
-            ViewBag.valueArr = valuearr;
-            ViewBag.keyArr = keysarr;
-            ViewBag.items = items;
-
-
-            */
 
             //-----Recommendation
             
@@ -399,17 +364,7 @@ namespace Burger_Station.Controllers
                     }
                 }
 
-                //if (user == null)
-                //{
-                //    return NotFound();
-                //}
-
-                //if (type == "Member")
-                //{
-                //    return RedirectToAction("DetailsMember", "Users", new { @id = userId });
-                //}
-
-                //return RedirectToAction("DetailsAdmin", "Users", new { @id = userId });
+               
 
                 return RedirectToAction(nameof(Index));
             }
