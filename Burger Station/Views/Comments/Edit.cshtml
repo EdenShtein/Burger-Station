@@ -77,6 +77,14 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
+                            <input asp-for="PostDate" class="form-control" />
+                            <span asp-validation-for="PostDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
                             <select name="ItemId" class="form-control" asp-items="@ViewBag.Items"></select>
                         </div>
 

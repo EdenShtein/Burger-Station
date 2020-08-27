@@ -147,6 +147,8 @@ namespace Burger_Station.Controllers
                     .Where(i => i.Type == ItemType.Food)
                     .ToListAsync(), "Id", "Name");
 
+                ViewBag.PostDate = comment.PostDate;
+
                 return View(comment);
             }
 
