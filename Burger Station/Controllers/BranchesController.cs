@@ -48,7 +48,6 @@ namespace Burger_Station.Controllers
 
             ViewBag.adress = branch.Address;
             ViewBag.city = branch.City;
-
             return View(branch);
         }
 
@@ -57,6 +56,7 @@ namespace Burger_Station.Controllers
         {
             ViewBag.userType = HttpContext.Session.GetString("Type");
             string type = HttpContext.Session.GetString("Type");
+            
             if (type != "Admin")
             {
                 return RedirectToAction("Index", "Branches");
@@ -114,7 +114,6 @@ namespace Burger_Station.Controllers
             }
 
             ViewBag.ItemsId = new SelectList(await _context.Item.ToListAsync(), "Id", "Name");
-            
             return View(branch);
         }
 
@@ -135,7 +134,6 @@ namespace Burger_Station.Controllers
                 try
                 {
                     branch.BranchItems = new List<BranchItem>();
-
                     branch.BranchItems = await _context.BranchItem
                         .Where(bi => bi.BranchId == branch.Id)
                         .Include(bi => bi.Item)
@@ -172,6 +170,7 @@ namespace Burger_Station.Controllers
                         throw;
                     }
                 }
+                
                 return RedirectToAction(nameof(Index));
             }
 
@@ -182,6 +181,7 @@ namespace Burger_Station.Controllers
         public async Task<IActionResult> Delete(int? id)
         {
             ViewBag.userType = HttpContext.Session.GetString("Type");
+            
             if (id == null)
             {
                 return NotFound();
@@ -224,7 +224,6 @@ namespace Burger_Station.Controllers
 
         public async Task<IActionResult> Search(string baddress)
         {
-
             var itemsResults = from branch in _context.Branch
                                where branch.Address.Contains(baddress)
                                //orderby item.Name

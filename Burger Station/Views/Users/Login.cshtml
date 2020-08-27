@@ -2,28 +2,23 @@
 <html>
 <head>
     <title>Login Page</title>
-
     <!--Custom styles-->
     <link rel="stylesheet" type="text/css" href="~/assets/css/Login.css">
 </head>
 <body>
-
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
         <div class="container text-right">
         </div>
     </section>
     <!-- End Top Bar -->
-
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
-            
             <!-- Logo -->
             <div class="logo mr-auto">
                 <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
-
             <!-- Back to Home button -->
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
@@ -34,10 +29,8 @@
         </div>
     </header>
     <!-- End Header -->
-
     <section></section>
     <section></section>
-
     <!-- ======= Login box ======= -->
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/he_IL/sdk.js#xfbml=1&version=v8.0&appId=2560600564202212&autoLogAppEvents=1" nonce="Szy4Ng6H"></script>
@@ -47,7 +40,6 @@
                 <div class="card-header">
                     <h3>Login</h3>
                     <div class="d-flex justify-content-end social_icon">
-
                         <!-- Facebook login script -->
                         <script>
                             function statusChangeCallback(response) {       // Called with the results from FB.getLoginStatus().
@@ -60,7 +52,6 @@
                                         'into this webpage.';
                                 }
                             }
-
                             function checkLoginState() {                    // Called when a person is finished with the Login Button.
                                 FB.getLoginStatus(function (response) {     // See the onlogin handler
                                     statusChangeCallback(response);
@@ -70,11 +61,9 @@
                                 }, { scope: 'email' });
 
                             }
-
                             FB.logout(function (response) {
                                 // Person is now logged out
                             });
-
                             window.fbAsyncInit = function () {
                                 FB.init({
                                     appId: '2560600564202212',
@@ -83,12 +72,10 @@
                                     version: 'v8.0'
                                 });
                                 FB.AppEvents.logPageView();
-
                                 FB.getLoginStatus(function (response) {         // Called after the JS SDK has been initialized.
                                     statusChangeCallback(response);             // Returns the login status.
                                 });
                             };
-
                             function testAPI() {                                // Testing Graph API after login. See statusChangeCallback() for when this call is made.
                                 console.log('Welcome!  Fetching your information.... ');
 
@@ -97,14 +84,12 @@
                                     document.getElementById('status').innerHTML =
                                         'Thanks for logging in, ' + response.email + '!';
                                 });
-
                                 FB.api(
                                         '/me',
                                         'GET',
                                         { "fields": "email" },
                                         function (response) {
                                             var fbEmail = response.email;
-
                                             $.ajax({
                                                 type: "POST",
                                                 url: '@Url.Action("FacebookLogin", "Users")',
@@ -126,7 +111,6 @@
                                         }
                                     );
                             }
-
                             (function (d, s, id) {
                                 var js, fjs = d.getElementsByTagName(s)[0];
                                 if (d.getElementById(id)) { return; }
@@ -134,16 +118,13 @@
                                 js.src = "https://connect.facebook.net/en_US/sdk.js";
                                 fjs.parentNode.insertBefore(js, fjs);
                             }(document, 'script', 'facebook-jssdk'));
-
                         </script>
                         <!-- End Facebook login script -->
                     </div>
                 </div>
-
                 <!-- Login without Facebook -->
                 <div class="card-body">
                     <form class="User" asp-action="Login">
-
                         <!-- Email -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
@@ -151,7 +132,6 @@
                             </div>
                             <input type="email" class="form-control" placeholder="Email" name="email" autocomplete="off" required>
                         </div>
-
                         <!-- Password -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
@@ -159,21 +139,18 @@
                             </div>
                             <input type="password" class="form-control" placeholder="Password" name="password" autocomplete="off" required>
                         </div>
-
                         <!-- Login using Facebook's email -->
                         <fb:login-button class="fb-login-button" length="long" size="large" scope="public_profile,email" onlogin="checkLoginState();">
                             <span style="margin-right: 10px;">Connect to Facebook</span>
                         </fb:login-button>
                         <div id="status">
                         </div>
-
                         <!-- Submit button -->
                         <div class="form-group">
                             <input type="submit" value="Login" class="btn float-right clicked-btn">
                         </div>
                     </form>
                 </div>
-
                 <!-- Move to login section button -->
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">
@@ -184,6 +161,5 @@
         </div>
     </div>
     <!-- End Login -->
-
 </body>
 </html>

@@ -1,12 +1,10 @@
 ﻿@model Burger_Station.Models.User
-
 @{
     ViewData["Title"] = "DetailsMember";
 }
 
 <!DOCTYPE html>
 <meta charset="utf-8">
-
 <html>
 <head>
     <!--Custom styles-->
@@ -19,11 +17,9 @@
         <div class="container text-right">
         </div>
     </section>
-
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
-
             <div class="logo mr-auto">
                 <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
@@ -33,7 +29,6 @@
                     <li class="book-a-table text-center">
                         <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
                     </li>
-
                     @if (ViewBag.userType == "Admin")
                     {
                         <!-- Delete button -->
@@ -41,19 +36,15 @@
                             <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
                         </li>
                     }
-
                     <!-- Back to Home button -->
                     <li class="book-a-table text-center"><a href="\Home">Back</a></li>
                 </ul>
             </nav>
             <!-- .nav-menu -->
-
         </div>
     </header>
     <!-- End Header -->
-
     <section><br></section>
-
     <!-- ======= Member Info ======= -->
     <div class="section-title">
         <h2>

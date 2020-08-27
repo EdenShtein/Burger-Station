@@ -29,7 +29,6 @@ namespace Burger_Station.Controllers
             }
 
             var testShopContext = _context.BranchItem.Include(b => b.Branch).Include(b => b.Item);
-
             return View(await testShopContext.ToListAsync());
         }
 
@@ -73,7 +72,6 @@ namespace Burger_Station.Controllers
 
             ViewData["BranchId"] = new SelectList(_context.Set<Branch>(), "Id", "Id");
             ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Id");
-
             return View();
         }
 
@@ -93,7 +91,6 @@ namespace Burger_Station.Controllers
 
             ViewData["BranchId"] = new SelectList(_context.Set<Branch>(), "Id", "Id", branchItem.BranchId);
             ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Id", branchItem.ItemId);
-            
             return View(branchItem);
         }
 
@@ -113,13 +110,14 @@ namespace Burger_Station.Controllers
             }
 
             var branchItem = await _context.BranchItem.FindAsync(id);
+            
             if (branchItem == null)
             {
                 return NotFound();
             }
+            
             ViewData["BranchId"] = new SelectList(_context.Set<Branch>(), "Id", "Id", branchItem.BranchId);
             ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Id", branchItem.ItemId);
-            
             return View(branchItem);
         }
 
@@ -159,7 +157,6 @@ namespace Burger_Station.Controllers
 
             ViewData["BranchId"] = new SelectList(_context.Set<Branch>(), "Id", "Id", branchItem.BranchId);
             ViewData["ItemId"] = new SelectList(_context.Item, "Id", "Id", branchItem.ItemId);
-            
             return View(branchItem);
         }
 

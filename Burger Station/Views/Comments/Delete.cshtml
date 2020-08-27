@@ -1,5 +1,4 @@
 ﻿@model Burger_Station.Models.Comment
-
 @{
     ViewData["Title"] = "Delete";
 }
@@ -15,7 +14,6 @@
         <div class="container text-right">
         </div>
     </section>
-
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
@@ -23,16 +21,12 @@
             <div class="logo mr-auto">
                 <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
-
-
-
         </div>
     </header>
     <!-- End Header -->
-
     <section></section>
     <section></section>
-
+    <!-- ======= Delete box ======= -->
     <div class="data-d">
         <div class="container">
             <div class="d-flex justify-content-center h-100">
@@ -41,10 +35,12 @@
                         <h3 style="text-align: center">Are you sure you want to delete?</h3>
                     </div>
                     <nav class="nav-menu d-none d-lg-block">
+                        <!-- Submit button -->
                         <form asp-action="Index">
                             <input type="hidden" asp-for="Id" />
                             <input class="btn float-right clicked-btn" type="submit" value="Cancel" />
                         </form>
+                        <!-- Cancel button -->
                         <form asp-action="Delete">
                             <input type="hidden" asp-for="Id" />
                             <input class="btn float-left clicked-btn-red" type="submit" value="Delete" />
@@ -54,7 +50,7 @@
             </div>
         </div>
     </div>
-
+    <!-- End delete box -->
 </body>
 </html>
 

@@ -48,7 +48,6 @@ namespace Burger_Station.Controllers
                 .ToListAsync());
         }
 
-
         // GET: Users/Details/
         public async Task<IActionResult> Details()
         {
@@ -77,7 +76,6 @@ namespace Burger_Station.Controllers
 
             return RedirectToAction("DetailsAdmin", "Users", new { @id = userId });
         }
-
 
         // GET: Users/DetailsMember/5
         public async Task<IActionResult> DetailsMember(int? id)
@@ -114,24 +112,24 @@ namespace Burger_Station.Controllers
             {
                 ViewBag.FavoriteItem = user.FavoriteItem.Name;
             }
-
-
+        
             var branches = await _context.Branch.Include(u => u.BranchItems)
               .ToListAsync();
 
             for (int a = 0; a < branches.Count; a++)
             {
                 Branch be = branches.ElementAt(a);
+            
                 for (int b = 0; b < be.BranchItems.Count; b++)
                 {
                     int fv = be.BranchItems.ElementAt(b).ItemId;
+                
                     if (fv == user.FavoriteItem.Id)
                     {
                         ViewBag.branchName = be.Address;
                         ViewBag.branchCity = be.City;
                         break;
                     }
-
                 }
             }
 
@@ -174,46 +172,43 @@ namespace Burger_Station.Controllers
                 ViewBag.FavoriteItem = user.FavoriteItem.Name;
             }
 
-            //----------- Count variables for D3------------//
-
+            // Count variables using D3
             var users = await _context.User
                 .ToListAsync();
-
-          
-            
-            var usersType = users.GroupBy(u => u.Type).OrderBy(g => g.Key).Select(g => Tuple.Create(g.Key, g.Count()));
+            var usersType = users.GroupBy(u => u.Type)
+                .OrderBy(g => g.Key)
+                .Select(g => Tuple.Create(g.Key, g.Count()));
             ViewBag.userAdmin = usersType.ElementAt(1).Item2;
             ViewBag.userMember = usersType.ElementAt(0).Item2;
-
             var branchesD = await _context.Branch
                .ToListAsync();
-            var branchDistrict = branchesD.GroupBy(b => b.District).OrderBy(g => g.Key).Select(g => Tuple.Create(g.Key, g.Count()));
+            var branchDistrict = branchesD.GroupBy(b => b.District)
+                .OrderBy(g => g.Key)
+                .Select(g => Tuple.Create(g.Key, g.Count()));
             ViewBag.northD = branchDistrict.ElementAt(0).Item2;
             ViewBag.southD = branchDistrict.ElementAt(1).Item2;
             ViewBag.centerD = branchDistrict.ElementAt(2).Item2;
 
-
-            //-----Recommendation
-            
+            // Recommendation
             var branches = await _context.Branch.Include(u=> u.BranchItems)
                .ToListAsync();
             
             for(int a=0;a<branches.Count;a++)
             {
                 Branch be = branches.ElementAt(a);
+            
                 for (int b = 0; b < be.BranchItems.Count; b++)
                 {
                     int fv = be.BranchItems.ElementAt(b).ItemId;
+                
                     if(fv == user.FavoriteItem.Id)
                     {
                         ViewBag.branchName = be.Address;
                         ViewBag.branchCity = be.City;
                         break;
                     }
-
                 }
             }
-           
                 return View(user);
         }
 
@@ -273,7 +268,6 @@ namespace Burger_Station.Controllers
 
             string type = HttpContext.Session.GetString("Type");
             int userId = (int)HttpContext.Session.GetInt32("Id");
-
             ViewBag.userType = type;
 
             if (userId == id || type == "Admin")
@@ -284,6 +278,7 @@ namespace Burger_Station.Controllers
                 {
                     return NotFound();
                 }
+            
                 ViewBag.Items = new SelectList(await _context.Item
                     .Where(i => i.Type == ItemType.Food)
                     .ToListAsync(), "Id", "Name");
@@ -314,7 +309,6 @@ namespace Burger_Station.Controllers
                     {
                         user.FavoriteItem = await _context.Item
                             .FirstOrDefaultAsync(i => (i.Id == itemId));
-
                         var item = await _context.Item
                             .Include(x => x.SatisfiedUsers)
                             .FirstOrDefaultAsync(i => (i.Id == itemId));
@@ -324,7 +318,6 @@ namespace Burger_Station.Controllers
                             item.SatisfiedUsers.Add(user);
                             _context.Item.Update(item);
                         }
-
                     }
                     else
                     {
@@ -333,16 +326,12 @@ namespace Burger_Station.Controllers
                             var item = await _context.Item
                                 .Include(x => x.SatisfiedUsers)
                                 .FirstOrDefaultAsync(i => (i.Id == user.FavoriteItem.Id));
-
                             item.SatisfiedUsers.Remove(user);
-
                             user.FavoriteItem = await _context.Item
                                 .FirstOrDefaultAsync(i => (i.Id == itemId));
-
                             item = await _context.Item
                                 .Include(x => x.SatisfiedUsers)
                                 .FirstOrDefaultAsync(i => (i.Id == itemId));
-
                             item.SatisfiedUsers.Add(user);
 
                             _context.Item.Update(item);
@@ -363,8 +352,6 @@ namespace Burger_Station.Controllers
                         throw;
                     }
                 }
-
-               
 
                 return RedirectToAction(nameof(Index));
             }
@@ -412,16 +399,14 @@ namespace Burger_Station.Controllers
             if(user.FavoriteItem != null)
             {
                 var item = await _context.Item
-                .Include(x => x.SatisfiedUsers)
-                .FirstOrDefaultAsync(i => (i.Id == user.FavoriteItem.Id));
-
+                    .Include(x => x.SatisfiedUsers)
+                    .FirstOrDefaultAsync(i => (i.Id == user.FavoriteItem.Id));
                 item.SatisfiedUsers.Remove(user);
                 _context.Item.Update(item);
             }
 
             _context.User.Remove(user);
             await _context.SaveChangesAsync();
-
             return RedirectToAction(nameof(Index));
         }
 
@@ -459,6 +444,7 @@ namespace Burger_Station.Controllers
             }
 
             match = regex.Match(lastName.ToLower());
+            
             if (!match.Success) { return RedirectToAction("Signup", "Users"); }
 
             if (new System.Net.Mail.MailAddress(email).Address != email) 
@@ -477,9 +463,7 @@ namespace Burger_Station.Controllers
 
             _context.Add(user);
             await _context.SaveChangesAsync();
-
             SignIn(user);
-
             return RedirectToAction("Index", "Home");
         }
 
@@ -548,7 +532,6 @@ namespace Burger_Station.Controllers
 
         public async Task<IActionResult> Search(string fname, string lname)
         {
-
             var itemsResults = from user in _context.User
                                where user.FirstName.Contains(fname) || user.LastName.Contains(lname)
                                //orderby item.Name

@@ -1,16 +1,13 @@
 ﻿@model Burger_Station.Models.Branch
-
 @{
     ViewData["Title"] = "Edit";
 }
 
 <html>
 <head>
-
     <!--Custom styles-->
     <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="~/assets/css/Create_Delete.css">
-
 </head>
 <body>
     <!-- ======= Top Bar ======= -->
@@ -18,29 +15,24 @@
         <div class="container text-right">
         </div>
     </section>
-
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
-
             <div class="logo mr-auto">
                 <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
-
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li class="book-a-table text-center"><a href="\Branches\Details\@Model.Id">Back</a></li>
                 </ul>
             </nav>
             <!-- .nav-menu -->
-
         </div>
-    </header><!-- End Header -->
-
+    </header>
+    <!-- End Header -->
     <section></section>
     <section></section>
-
-
+    <!-- ======= Edit box ======= -->
     <div class="container">
         <div class="d-flex justify-content-center h-100">
             <div class="card">
@@ -51,6 +43,7 @@
                     <form class="Item" asp-action="Edit">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="Id" />
+                        <!-- Address -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -58,20 +51,23 @@
                             <input asp-for="Address" class="form-control" />
                             <span asp-validation-for="Address" class="text-danger"></span>
                         </div>
+                        <!-- City -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                
+
                             </div>
                             <select class="form-control" asp-for="City" asp-items="@Html.GetEnumSelectList<City>()"></select>
                         </div>
+                        <!-- District -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            
+
                             <select class="form-control" asp-for="District" asp-items="@Html.GetEnumSelectList<District>()"></select>
                         </div>
+                        <!-- Branches's items -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -79,15 +75,16 @@
                             <label for="ItemId" class="control-label"></label>
                             <select name="ItemId" class="form-control" asp-items="ViewBag.ItemsId" multiple></select>
                         </div>
+                        <!-- Save button -->
                         <div class="btn-c">
                             <input type="submit" value="Save" class="btn float-right clicked-btn" />
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
+    <!-- End edit box -->
 </body>
 </html>
 

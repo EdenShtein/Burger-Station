@@ -1,5 +1,4 @@
 ﻿@model Burger_Station.Models.Comment
-
 @{
     ViewData["Title"] = "Details";
 }
@@ -15,29 +14,25 @@
         <div class="container text-right">
         </div>
     </section>
-
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
-
             <div class="logo mr-auto">
                 <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
-
             <nav class="nav-menu d-none d-lg-block">
-
                 <ul>
                     <li class="book-a-table text-center"><a asp-action="Index">Back</a></li>
                 </ul>
-
-            </nav><!-- .nav-menu -->
-
+            </nav>
+            <!-- .nav-menu -->
         </div>
-    </header><!-- End Header -->
-
+    </header>
+    <!-- End Header -->
     <section></section>
-
+    <!-- ======= Details box ======= -->
     <section id="branches" class="menu">
+        <!-- Comment info -->
         <div class="container">
             <div class="section-title">
                 <h2><span>@Html.DisplayFor(model => model.PostedBy)</span>'s Comment on <span>@ViewBag.Item</span></h2>
@@ -47,5 +42,6 @@
             </div>
         </div>
     </section>
+    <!-- End Details box -->
 </body>
 </html>

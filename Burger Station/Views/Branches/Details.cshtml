@@ -1,12 +1,10 @@
 ﻿@model Burger_Station.Models.Branch
-
 @{
     ViewData["Title"] = "Details";
 }
 
 <html>
 <head>
-   
 </head>
 <body>
     <!-- ======= Top Bar ======= -->
@@ -14,18 +12,13 @@
         <div class="container text-right">
         </div>
     </section>
-
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
-
             <div class="logo mr-auto">
                 <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
-
-
             <nav class="nav-menu d-none d-lg-block">
-
                 <ul>
                     @if (ViewBag.userType == "Admin")
                     {
@@ -40,25 +33,24 @@
                         </li>
 
                     }
-
                     <li class="book-a-table text-center"><a asp-action="Index">Back</a></li>
                 </ul>
-            </nav><!-- .nav-menu -->
-
+            </nav>
+            <!-- .nav-menu -->
         </div>
-    </header><!-- End Header -->
-
+    </header>
+    <!-- End Header -->
     <section></section>
-
+    <!-- ======= Details box ======= -->
     <main id="main">
         <section id="branches" class="menu">
             <div class="container">
+                <!-- Branch info -->
                 <div class="section-title">
                     <h2 style="text-align:center">@Html.DisplayFor(model => model.Address), <span>@Html.DisplayFor(model => model.City)</span>, @Html.DisplayFor(model => model.District)</h2>
                 </div>
-
                 <hr />
-
+                <!-- Branches' items table -->
                 <div class="row">
                     <div class="col-lg-12 d-flex justify-content-center">
                         <ul id="menu-flters">
@@ -69,7 +61,6 @@
                         </ul>
                     </div>
                 </div>
-
                 @foreach (var group in Model.BranchItems.GroupBy(item => item.Item.Type))
                 {
                     @foreach (var item in group)
@@ -87,18 +78,17 @@
             </div>
         </section>
     </main>
-
-    <br>
+    <!--  End Details box -->
+    <!-- ======= Branch location on the map ======= -->
     <div class="section-title">
         <h2 style="text-align:center"><span>@Html.DisplayFor(model => model.Address)</span> on the map</h2>
     </div>
-
-    <!-- Branch location on the map -->
     <center>
         <div class="map">
             <div class="gmap_canvas"><iframe style="border:0; width: 100%; height: 350px;" id="gmap_canvas" src="https://maps.google.com/maps?q=@ViewBag.adress,@ViewBag.city&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.embedgooglemap.net"></a></div>
         </div>
     </center>
+    <!--  End branch location on the map -->
 </body>
 </html>
 

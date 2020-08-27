@@ -6,7 +6,6 @@
 
 <!DOCTYPE html>
 <meta charset="utf-8">
-
 <html>
 <head>
     <!--Custom styles-->
@@ -19,11 +18,9 @@
         <div class="container text-right">
         </div>
     </section>
-
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
-
             <div class="logo mr-auto">
                 <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
@@ -33,34 +30,27 @@
                     <li class="book-a-table text-center">
                         <a asp-action="Index">All Users</a>
                     </li>
-
                     <!-- Creat new user button -->
                     <li class="book-a-table text-center">
                         <a asp-action="Create">Add New User</a>
                     </li>
-
                     <!-- Edit button -->
                     <li class="book-a-table text-center">
                         <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
                     </li>
-
                     <!-- Delete button -->
                     <li class="book-a-table text-center">
                         <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
                     </li>
-
                     <!-- Back to Home button -->
                     <li class="book-a-table text-center"><a href="\Home">Back</a></li>
                 </ul>
             </nav>
             <!-- .nav-menu -->
-
         </div>
     </header>
     <!-- End Header -->
-
     <section><br></section>
-
     <!-- ======= Member Info ======= -->
     <div class="section-title">
         <h2>
@@ -74,9 +64,6 @@
         <b><span>You can get your favorite at:</span></b> @ViewBag.branchName,@ViewBag.branchCity <br>
     </div>
     <br />
-    <br />
-    <br />
-
     <!-- End Member Info -->
     <!-- Facebook SDK -->
     <center>
@@ -92,7 +79,6 @@
 
                 FB.AppEvents.logPageView();
             };
-
             (function (d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) { return; }
@@ -101,8 +87,6 @@
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         </script>
-
-
         <!-- Facebook post -->
         <h3> Post on our Facebook Page: </h3>
         <br />
@@ -111,24 +95,16 @@
         <br />
         <button type="button" class="btn btn-warning" style="width:600px;" onclick="postAStatus()"> Publish </button>
     </center>
-
     <br />
     <br />
-    <br />
-    <br />
-
     <!--- D3 Pie Chart--->
     <!-- Imports d3js libraries -->
     <script src="https://d3js.org/d3.v5.js"></script>
     <script src="https://d3js.org/d3-scale.v3.min.js"></script>
     <script src="https://d3js.org/d3-axis.v1.min.js"></script>
-
     <!-- Color scale -->
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-
     <!-- Create a div where the graph will take place -->
-
-
     <center>
         <h3>Important Statistics:</h3>
         <div id="secondApp">
@@ -147,8 +123,6 @@
             </div>
         </div>
     </center>
-
-
     <script type="text/javascript">
 
         var DATA2 = { a: @ViewBag.userAdmin, b: @ViewBag.userMember }
@@ -180,7 +154,6 @@
             .style("stroke-width", "2px")
             .style("opacity", 0.7);
     </script>
-
     @{
         string[] color = { "yellow", "blue", "red", "green", "orange", "pink", "purple", "lime", "teal", "coral" };
 
@@ -192,7 +165,6 @@
             </div>
             <div id="firstData">
                 <ul style="list-style-type:none;">
-
                     <li>
                         <span style="background-color: red;"> &nbsp; </span> &nbsp;&nbsp;North &nbsp;&nbsp; @ViewBag.northD
                     </li>
@@ -202,15 +174,11 @@
                     <li>
                         <span style="background-color: teal;"> &nbsp; </span> &nbsp;&nbsp;Center &nbsp;&nbsp; @ViewBag.centerD
                     </li>
-
                 </ul>
             </div>
         </div>
     </center>
-
-
     <script type="text/javascript">
-
         var DATA2 = {
             a: @ViewBag.northD,b: @ViewBag.southD, c:@ViewBag.centerD }
         var width = 450, height = 450, margin = 40;
@@ -243,25 +211,16 @@
             .style("stroke-width", "2px")
             .style("opacity", 0.7);
     </script>
-
-
     <br />
-    <br />
-    <br />
-
-
     <div class="myvideo">
         <h3>Burger Video</h3>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/f63qxa_lAdU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <br />
-    <br />
-    <br />
     <div class="canvasburger">
         <canvas id="myCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
             Your browser does not support the HTML canvas tag.
         </canvas>
-
         <script>
             var c = document.getElementById("myCanvas");
             var ctx = c.getContext("2d");
@@ -271,23 +230,14 @@
         </script>
     </div>
     <br />
-    <br />
-    <br />
     <div id="cssreq">
         <h1 style="text-shadow: 0 0 3px #FF0000;"> Burger Station - The Best Burger In Town</h1>
     </div>
     <br />
-    <br />
-    <br />
     <div class="newspaper">
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.
     </div>
-
-
     <br />
-    <br />
-    <br />
-
     <aside>
         <h4>Epcot Cenfffter</h4>
         <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.</p>

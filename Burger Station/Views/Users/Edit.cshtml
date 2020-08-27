@@ -1,16 +1,13 @@
 ﻿@model Burger_Station.Models.User
-
 @{
     ViewData["Title"] = "Edit";
 }
 
 <html>
 <head>
-
     <!--Custom styles-->
     <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="~/assets/css/Create_Delete.css">
-
 </head>
 <body>
     <!-- ======= Top Bar ======= -->
@@ -18,15 +15,12 @@
         <div class="container text-right">
         </div>
     </section>
-
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
-
             <div class="logo mr-auto">
                 <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
-
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li class="book-a-table text-center"><a href="\Users\Details\@Model.Id">Back</a></li>
@@ -36,10 +30,9 @@
         </div>
     </header>
     <!-- End Header -->
-
     <section></section>
     <br />
-
+    <!-- ======= Edit box ======= -->
     <div class="container">
         <div class="d-flex justify-content-center h-100">
             <div class="card">
@@ -50,6 +43,7 @@
                     <form class="Item" asp-action="Edit">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="Id" />
+                        <!-- User's type -->
                         @if (ViewBag.userType == "Admin")
                         {
                             <div class="input-group form-group">
@@ -59,7 +53,7 @@
                                 <select class="form-control" asp-for="Type" asp-items="@Html.GetEnumSelectList<UserType>()"></select>
                             </div>
                         }
-
+                        <!-- User's first name -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -67,7 +61,7 @@
                             <input asp-for="FirstName" class="form-control" placeholder="First Name" autocomplete="off" />
                             <span asp-validation-for="FirstName" class="text-danger"></span>
                         </div>
-
+                        <!-- User's last name -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -75,7 +69,7 @@
                             <input asp-for="LastName" class="form-control" placeholder="Last Name" autocomplete="off" />
                             <span asp-validation-for="LastName" class="text-danger"></span>
                         </div>
-
+                        <!-- User's email -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -83,7 +77,7 @@
                             <input asp-for="Email" class="form-control" placeholder="Email" autocomplete="off" />
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
-
+                        <!-- User's passowrd -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -91,7 +85,7 @@
                             <input asp-for="Password" class="form-control" placeholder="Password" autocomplete="off" />
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
-
+                        <!-- User's birthday date -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -99,14 +93,14 @@
                             <input asp-for="Birthday" class="form-control" placeholder="Birthday" autocomplete="off" />
                             <span asp-validation-for="Birthday" class="text-danger"></span>
                         </div>
-
+                        <!-- User's favorite item -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
                             <select name="ItemId" class="form-control" asp-items="@ViewBag.Items"></select>
                         </div>
-
+                        <!-- Save button -->
                         <div class="btn-c">
                             <input type="submit" value="Save" class="btn float-right clicked-btn" />
                         </div>
@@ -115,6 +109,7 @@
             </div>
         </div>
     </div>
+    <!-- End edit box -->
 </body>
 </html>
 

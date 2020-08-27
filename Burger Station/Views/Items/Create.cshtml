@@ -4,51 +4,41 @@
     ViewData["Title"] = "Create";
 }
 
-
-
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-
 <!DOCTYPE html>
 <html>
 <head>
-
     <!--Custom styles-->
     <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="~/assets/css/Create_Delete.css">
-
 </head>
 <body>
-
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
         <div class="container text-right">
         </div>
     </section>
-
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
-
             <div class="logo mr-auto">
                 <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
-
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li class="book-a-table text-center"><a href="\Items\Index">Back</a></li>
                 </ul>
             </nav>
             <!-- .nav-menu -->
-
         </div>
-    </header><!-- End Header -->
-
+    </header>
+    <!-- End Header -->
     <section></section>
     <section></section>
-
+    <!-- ======= Create box ======= -->
     <div class="container">
         <div class="d-flex justify-content-center h-100">
             <div class="card">
@@ -58,41 +48,39 @@
                 <div class="card-body">
                     <form class="Item" asp-action="Create">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        
+                        <!-- Item's type -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
                             <select class="form-control" asp-for="Type" asp-items="@Html.GetEnumSelectList<ItemType>()"></select>
                         </div>
-                        
+                        <!-- Item's name -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
                             <input asp-for="Name" class="form-control" placeholder="Name" />
                             <span asp-validation-for="Name" class="text-danger"></span>
-
                         </div>
-
+                        <!-- Item's price -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
                             <input asp-for="Price" class="form-control" placeholder="Price" />
                             <span asp-validation-for="Price" class="text-danger"></span>
-
                         </div>
-
+                        <!-- Create button -->
                         <div class="form-group">
                             <input type="submit" value="Create" class="btn float-right clicked-btn">
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
+    <!-- End create box -->
 </body>
 </html>
 

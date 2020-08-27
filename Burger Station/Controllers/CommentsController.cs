@@ -24,7 +24,8 @@ namespace Burger_Station.Controllers
         {
             ViewBag.FullName = HttpContext.Session.GetString("FullName");
             ViewBag.userType = HttpContext.Session.GetString("Type");
-
+            
+            // Join using LINQ.
             ViewBag.joinListCounter = (from i in _context.Item
                                 join c in _context.Comment on i.Id equals c.Item.Id
                                 orderby c.PostDate descending
@@ -65,7 +66,6 @@ namespace Burger_Station.Controllers
             }
 
             ViewBag.Item = comment.Item.Name;
-
             return View(comment);
         }
 
@@ -83,9 +83,7 @@ namespace Burger_Station.Controllers
             ViewBag.Items = new SelectList(await _context.Item
                 .Where(i => i.Type == ItemType.Food)
                 .ToListAsync(), "Id", "Name");
-
             ViewBag.userName = HttpContext.Session.GetString("FullName");
-            
             return View();
         }
 
@@ -105,11 +103,11 @@ namespace Burger_Station.Controllers
                 var item = await _context.Item
                     .Include(x => x.Comments)
                     .FirstOrDefaultAsync(x => x.Id == itemId);
-
                 item.Comments.Add(comment);
 
                 _context.Item.Update(item);
                 _context.Add(comment);
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -127,9 +125,7 @@ namespace Burger_Station.Controllers
                 return NotFound();
             }
 
-            
             string type = HttpContext.Session.GetString("Type");
-
             var comment = await _context.Comment.FindAsync(id);
             
             if (comment == null)
@@ -150,9 +146,7 @@ namespace Burger_Station.Controllers
                 ViewBag.Items = new SelectList(await _context.Item
                     .Where(i => i.Type == ItemType.Food)
                     .ToListAsync(), "Id", "Name");
-
                 ViewBag.PostDate = comment.PostDate;
-
                 return View(comment);
             }
 
@@ -208,8 +202,8 @@ namespace Burger_Station.Controllers
             {
                 return NotFound();
             }
-            string type = HttpContext.Session.GetString("Type");
 
+            string type = HttpContext.Session.GetString("Type");
             var comment = await _context.Comment
                 .FirstOrDefaultAsync(m => m.Id == id);
 
@@ -252,13 +246,10 @@ namespace Burger_Station.Controllers
 
         public async Task<IActionResult> Search(string postTitle, string postBy, string PostItem)
         {
-
             var itemsResults = from comment in _context.Comment
                                where comment.PostTitle.Contains(postTitle) && comment.PostedBy.Contains(postBy) && comment.Item.Name.Contains(PostItem)
                                orderby comment.PostDate descending
                                select comment;
-
-
             return View("Index", await itemsResults.Include(c => c.Item).ToListAsync());
         }
 

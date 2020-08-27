@@ -23,7 +23,6 @@ namespace Burger_Station.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.userType = HttpContext.Session.GetString("Type");
-            
             return View(await _context.Item.ToListAsync());
 
         }
@@ -41,7 +40,6 @@ namespace Burger_Station.Controllers
             var item = await _context.Item
                 .Include(i => i.Comments)
                 .FirstOrDefaultAsync(m => m.Id == id);
-
             item = await _context.Item
                 .Include(bi => bi.BranchItems)
                 .ThenInclude(b => b.Branch)
@@ -55,6 +53,7 @@ namespace Burger_Station.Controllers
             ViewBag.ItemName = item.Name;
             ViewBag.itemType = item.Type.ToString();
 
+            // Join using LINQ.
             ViewBag.joinList = (from i in _context.Item
                             where (i.Id == id)
                             join c in _context.Comment on i.Id equals c.Item.Id
@@ -100,6 +99,7 @@ namespace Burger_Station.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(item);
         }
 
@@ -270,7 +270,6 @@ namespace Burger_Station.Controllers
                                 where  (item.Price <= price) && item.Name.Contains(name) && (item.Type == itemType)
                                 //orderby item.Name
                                 select item;
-            
             return View("Index", await itemsResults.ToListAsync());
         }
     }

@@ -1,14 +1,12 @@
 ﻿@model IEnumerable<Burger_Station.Models.Comment>
-
 @{
     ViewData["Title"] = "";
 }
-<head>
 
+<head>
     <link rel="stylesheet" href="~/assets/css/comments.css" />
 </head>
 <body>
-
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
         <div class="container text-right">
@@ -18,20 +16,17 @@
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
-
             <!-- Logo -->
             <div class="logo mr-auto">
                 <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-
                     <!-- Create new comment button -->
                     @if (ViewBag.userType != null)
                     {
                         <li class="book-a-table text-center"><a asp-action="Create">Add New Comment</a></li>
                     }
-
                     <!-- Back to Home button -->
                     <li class="book-a-table text-center"><a href="\Home">Back</a></li>
                 </ul>
@@ -40,9 +35,7 @@
         </div>
     </header>
     <!-- End Header -->
-
     <section></section>
-
     <!-- ======= Title ======= -->
     <section id="title">
         <div class="section-title">
@@ -51,8 +44,7 @@
         </div>
     </section>
     <!-- End Title -->
-    @* ------------------ SEARCH --------------------*@
-
+    <!-- ======= Comments search ======= -->
     <div class="d-flex justify-content-center h-100">
         <div class="card">
             <div class="card-body">
@@ -73,12 +65,10 @@
             </div>
         </div>
     </div>
-    @* ------------------ / SEARCH --------------------*@
-
-    <!-- ======= Comments ======= -->
+    <!-- End comments search -->
+    <!-- ======= Comments info ======= -->
     <div id="menu" class="section lb">
         <div class="container-fluid">
-            @*@foreach (var item in Model.GroupBy(c => c.PostDate.Date))*@
             @foreach (var group in Model.GroupBy(item => item.PostDate).Reverse())
             {
                 @foreach (var item in group)
@@ -106,7 +96,6 @@
                                                 <a class="text-black-50" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                                             </li>
                                         }
-
                                         <!-- Details button -->
                                         <li class="book-a-table text-center justify-content-center">
                                             <a class="text-black-50" asp-action="Details" asp-route-id="@item.Id">Details</a>
@@ -120,4 +109,5 @@
             }
         </div>
     </div>
+    <!-- End comments info -->
 </body>

@@ -1,5 +1,4 @@
 ﻿@model Burger_Station.Models.User
-
 @{
     ViewData["Title"] = "Delete";
 }
@@ -10,16 +9,12 @@
     <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="~/assets/css/Create_Delete.css">
 </head>
-
-
 <body>
-
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
         <div class="container text-right">
         </div>
     </section>
-
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
@@ -30,10 +25,9 @@
         </div>
     </header>
     <!-- End Header -->
-
     <section></section>
     <section></section>
-
+    <!-- ======= Delete box ======= -->
     <div class="data-d">
         <div class="container">
             <div class="d-flex justify-content-center h-100">
@@ -41,6 +35,7 @@
                     <div class="card-header">
                         <h3 style="text-align: center">Are you sure you want to delete?</h3>
                     </div>
+                    <!-- User's info to be deleted -->
                     <div class="card-body">
                         <b><span>@Html.DisplayNameFor(model => model.FirstName):</span></b> @Html.DisplayFor(model => model.FirstName) <br>
                         <b><span>@Html.DisplayNameFor(model => model.LastName):</span></b> @Html.DisplayFor(model => model.LastName) <br>
@@ -49,10 +44,12 @@
                         <b><span>@Html.DisplayNameFor(model => model.Birthday):</span></b> @Html.DisplayFor(model => model.Birthday) <br>
                     </div>
                     <nav class="nav-menu d-none d-lg-block">
+                        <!-- Cancel button -->
                         <form asp-action="Details">
                             <input type="hidden" asp-for="Id" />
                             <input class="btn float-right clicked-btn" type="submit" value="Cancel" />
                         </form>
+                        <!-- Submit button -->
                         <form asp-action="Delete">
                             <input type="hidden" asp-for="Id" />
                             <input class="btn float-left clicked-btn-red" type="submit" value="Delete" />
@@ -62,5 +59,6 @@
             </div>
         </div>
     </div>
+    <!-- End delete box -->
 </body>
 </html>

@@ -1,45 +1,38 @@
 ﻿@model Burger_Station.Models.Comment
-
 @{
     ViewData["Title"] = "";
 }
+
 <html>
 <head>
-
     <!--Custom styles-->
     <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="~/assets/css/Create_Delete.css">
-
 </head>
 <body>
-
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
         <div class="container text-right">
         </div>
     </section>
-
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
-
             <div class="logo mr-auto">
                 <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
-
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li class="book-a-table text-center"><a href="\Comments\Index">Back</a></li>
                 </ul>
             </nav>
             <!-- .nav-menu -->
-
         </div>
-    </header><!-- End Header -->
-
+    </header>
+    <!-- End Header -->
     <section></section>
     <section></section>
-
+    <!-- ======= Create box ======= -->
     <div class="container">
         <div class="d-flex justify-content-center h-100">
             <div class="card">
@@ -49,11 +42,12 @@
                 <div class="card-body">
                     <form asp-action="Create" display="inline">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <!-- Item's id -->
                         <div class="form-group">
                             <label for="Items" class="control-label"></label>
                             <select name="ItemId" class="form-control" asp-items="@ViewBag.Items"></select>
                         </div>
-
+                        <!-- Post's title -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -61,7 +55,7 @@
                             <input asp-for="PostTitle" class="form-control" placeholder="Post Title" />
                             <span asp-validation-for="PostTitle" class="text-danger"></span>
                         </div>
-
+                        <!-- Post's body -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -69,11 +63,13 @@
                             <input asp-for="PostBody" class="form-control" placeholder="Post" />
                             <span asp-validation-for="PostBody" class="text-danger"></span>
                         </div>
+                        <!-- Post's auther -->
                         <div class="form-group">
-                            <label asp-for="PostedBy" class="control-label"></label> 
+                            <label asp-for="PostedBy" class="control-label"></label>
                             : @ViewBag.userName
                             <span asp-validation-for="PostedBy" class="text-danger"></span>
                         </div>
+                        <!-- Submit button -->
                         <div class="form-group">
                             <input type="submit" value="Create" class="btn float-right clicked-btn">
                         </div>
@@ -83,10 +79,10 @@
             </div>
         </div>
     </div>
-
-
+    <!-- End Create box -->
 </body>
 </html>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

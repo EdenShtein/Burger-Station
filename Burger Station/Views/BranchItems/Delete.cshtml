@@ -1,11 +1,9 @@
 ﻿@model Burger_Station.Models.BranchItem
-
 @{
     ViewData["Title"] = "Delete";
 }
 
 <h1>Delete</h1>
-
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>BranchItem</h4>
@@ -24,7 +22,6 @@
             @Html.DisplayFor(model => model.Item.Id)
         </dd>
     </dl>
-
     <form asp-action="Delete">
         <input type="hidden" asp-for="BranchId" />
         <input type="hidden" asp-for="ItemId" />

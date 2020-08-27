@@ -1,98 +1,89 @@
 ﻿@model Burger_Station.Models.Branch
-
 @{
     ViewData["Title"] = "Create";
 }
 
 <html>
 <head>
-
-        <!--Custom styles-->
-        <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
-        <link rel="stylesheet" type="text/css" href="~/assets/css/Create_Delete.css">
-
+    <!--Custom styles-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/Create_Delete.css">
 </head>
 <body>
-
-        <!-- ======= Top Bar ======= -->
-        <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
-            <div class="container text-right">
+    <!-- ======= Top Bar ======= -->
+    <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
+        <div class="container text-right">
+        </div>
+    </section>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+        <div class="container d-flex align-items-center">
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
             </div>
-        </section>
-
-        <!-- ======= Header ======= -->
-        <header id="header" class="fixed-top d-flex align-items-center header-transparent">
-            <div class="container d-flex align-items-center">
-
-                <div class="logo mr-auto">
-                    <h1 class="text-light"><a href="\Home"><span>Burger Station</span></a></h1>
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li class="book-a-table text-center"><a href="\Branches\Index">Back</a></li>
+                </ul>
+            </nav>
+            <!-- .nav-menu -->
+        </div>
+    </header>
+    <!-- End Header -->
+    <section></section>
+    <section></section>
+    <!-- ======= Creat box ======= -->
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Create a new Item</h3>
                 </div>
-
-                <nav class="nav-menu d-none d-lg-block">
-                    <ul>
-                        <li class="book-a-table text-center"><a href="\Branches\Index">Back</a></li>
-                    </ul>
-                </nav><!-- .nav-menu -->
-
-            </div>
-        </header><!-- End Header -->
-
-        <section></section>
-        <section></section>
-
-        <div class="container">
-            <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Create a new Item</h3>
-                    </div>
-                    <div class="card-body">
-                        
-                        <form asp-action="Create">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                <input asp-for="Address" class="form-control" placeholder="Address" autocomplete="off" />
-                                <span asp-validation-for="Address" class="text-danger"></span>
+                <div class="card-body">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="input-group form-group">
+                            <!-- Address -->
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                <select class="form-control" asp-for="City" asp-items="@Html.GetEnumSelectList<City>()"></select>
+                            <input asp-for="Address" class="form-control" placeholder="Address" autocomplete="off" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                        <!-- City -->
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                <select class="form-control" asp-for="District" asp-items="@Html.GetEnumSelectList<District>()"></select>
+                            <select class="form-control" asp-for="City" asp-items="@Html.GetEnumSelectList<City>()"></select>
+                        </div>
+                        <!-- District -->
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                <select name="ItemId" class="form-control" asp-items="ViewBag.ItemsId" multiple></select>
+                            <select class="form-control" asp-for="District" asp-items="@Html.GetEnumSelectList<District>()"></select>
+                        </div>
+                        <!-- Items in the branch -->
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-
-
-                            <div class="form-group">
-                                <input type="submit" value="Create" class="btn float-right clicked-btn">
-                            </div>
-                        </form>
-                    </div>
+                            <select name="ItemId" class="form-control" asp-items="ViewBag.ItemsId" multiple></select>
+                        </div>
+                        <!-- Create button -->
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn float-right clicked-btn">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    
+    </div>
+    <!-- End create box -->
 </body>
 </html>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

@@ -1,17 +1,12 @@
 ﻿@model Burger_Station.Models.Item
-
 @{
     ViewData["Title"] = "Details";
 }
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
-
     <link rel="stylesheet" href="~/css/comments.css" />
-   
 </head>
 <body>
     <!-- ======= Top Bar ======= -->
@@ -19,7 +14,6 @@
         <div class="container text-right">
         </div>
     </section>
-
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
@@ -34,12 +28,10 @@
                             <!-- Edit button -->
                             <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
                         </li>
-
                         <li class="book-a-table text-center">
                             <!-- Delete button -->
                             <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
                         </li>
-
                     }
                     <li class="book-a-table text-center"><a asp-action="Index">Back To Menu</a></li>
                 </ul>
@@ -48,11 +40,10 @@
         </div>
     </header>
     <!-- End Header -->
-
     <section></section>
-
-    <!-- ======= Item info ======= -->
+    <!-- ======= Details box ======= -->
     <main id="main">
+        <!-- Item info -->
         <section id="branches" class="menu">
             <div class="container">
                 <table style="width:100%">
@@ -72,7 +63,7 @@
                         </th>
                     </tr>
                 </table>
-                <!-- ======= Comments ======= -->
+                <!-- ======= Comments on the item ======= -->
                 <div id="menu" class="section lb">
                     <div class="container-fluid">
                         @foreach (var item in ViewBag.joinList)
@@ -91,7 +82,7 @@
                         }
                     </div>
                 </div>
-                <!-- End Comments -->
+                <!-- End Comments on the item -->
             </div>
         </section>
     </main>
