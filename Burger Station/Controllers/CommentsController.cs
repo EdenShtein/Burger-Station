@@ -127,6 +127,7 @@ namespace Burger_Station.Controllers
                 return NotFound();
             }
 
+            
             string type = HttpContext.Session.GetString("Type");
 
             var comment = await _context.Comment.FindAsync(id);
@@ -143,7 +144,7 @@ namespace Burger_Station.Controllers
                 return RedirectToAction("Index", "Comments");
             }
 
-            else if (userName.Equals(comment.PostedBy) || type == "Admin")
+            else if (type == "Admin")
             {
 
                 ViewBag.Items = new SelectList(await _context.Item

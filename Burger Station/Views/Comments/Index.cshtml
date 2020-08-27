@@ -79,7 +79,6 @@
     <div id="menu" class="section lb">
         <div class="container-fluid">
             @*@foreach (var item in Model.GroupBy(c => c.PostDate.Date))*@
-            {
             @foreach (var group in Model.GroupBy(item => item.PostDate).Reverse())
             {
                 @foreach (var item in group)
