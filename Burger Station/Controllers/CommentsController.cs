@@ -143,7 +143,7 @@ namespace Burger_Station.Controllers
                 return RedirectToAction("Index", "Comments");
             }
 
-            else if (userName.Equals(comment.PostedBy) || type == "Admin")
+            else if (type == "Admin")
             {
 
                 ViewBag.Items = new SelectList(await _context.Item
