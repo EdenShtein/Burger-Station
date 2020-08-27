@@ -590,5 +590,16 @@ namespace Burger_Station.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        public async Task<IActionResult> Search(string fname, string lname)
+        {
+
+            var itemsResults = from user in _context.User
+                               where user.FirstName.Contains(fname) || user.LastName.Contains(lname)
+                               //orderby item.Name
+                               select user;
+
+            return View("Index", await itemsResults.ToListAsync());
+        }
     }
 }
