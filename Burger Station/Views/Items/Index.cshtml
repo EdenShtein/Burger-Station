@@ -67,7 +67,7 @@
                                     <input name="price" id="price" class="form-control" autocomplete="off" placeholder="Price" required />
                                 </div>
                                 <div class="form-group">
-                                    <input name="itemType" id="type" class="form-control" autocomplete="off" placeholder="Type" required />
+                                    <select id="itemType" name="itemType" class="form-control" asp-items="@Html.GetEnumSelectList<ItemType>()"></select>
                                 </div>
                                 <div>
                                     <input type="submit" id="btnSubmit" value="Search" class="clicked-btn" />
