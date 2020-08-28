@@ -4,9 +4,7 @@
 
 ## Description
 
-A web application we developed during our "Web application development" course taught by Dr. Igor Rochlin.
-This project helped us to gain a higher level of knowledge in programming web applications using the MVC model. 
-We further advanced our skills with web languages such as javascript, html/css and C# while also implementing advanced syntax such as Razor,LINQ and more.
+A web application chain store restaurant we developed during our "Web application development" course taught by Dr. Igor Rochlin. This project helped us to gain a higher level of knowledge in programming web applications using MVC architecture. We further advanced our skills with web languages such as C#, JavaScript (jQuery & 3D.js libraries), HTML\CSS, LINQ, and Razor.
 
 #### Languages
 
