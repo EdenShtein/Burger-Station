@@ -4,9 +4,9 @@
 
 ## Description
 
-Web application we developed during our "Web application development" course taught by Dr. Igor Rochlin.
-In this project we gain a high level of understanding in programing web applications with MVC model and advance our
-programing skills with languages like javascript, html/css, and C# using technologies such as Razor,LINQ and more.
+A web application we developed during our "Web application development" course taught by Dr. Igor Rochlin.
+This project helped us to gain a higher level of knowledge in programming web applications using the MVC model. 
+We further advanced our skills with web languages such as javascript, html/css and C# while also implementing advanced syntax such as Razor,LINQ and more.
 
 #### Languages
 
