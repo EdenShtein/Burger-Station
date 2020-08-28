@@ -6,10 +6,11 @@ A web application chain store restaurant we developed during our "Web applicatio
 
 #### Languages
 
-- JavaScript -> jQuery and d3js libraries
-- Html / css
-- Razor
 - C#
+- JavaScript -> jQuery and d3js libraries
+- HTML / CSS
+- LINQ
+- Razor
 
 [Back To The Top](#Table-of-Contents)
 
