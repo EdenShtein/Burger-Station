@@ -27,9 +27,6 @@ folder and run ```Enable-Migrations``` following by ```Add-Migration init``` and
 - Update the database tabels with the queries listed in ```DataBaseQueries``` file 
 - Build and run the application
 
-
-[Back To The Top](#Table-of-Contents)
-
 ---
 ## Authors Info
 
