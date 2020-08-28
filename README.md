@@ -35,10 +35,7 @@ folder and run ```Enable-Migrations``` following by ```Add-Migration init``` and
 * **Or Levi** - [LinkedIn](https://www.linkedin.com/in/orlevi13/)
 * **Rom Sanitovsky** - [LinkedIn](https://www.linkedin.com/in/rom-sanitovsky-a38272197/)
 
-[Back To The Top](#Table-of-Contents)
-
 ---
 ## Images
 <p align="center"> <img src="burgerstaion.png"> </p>
 
-[Back To The Top](#Table-of-Contents)
